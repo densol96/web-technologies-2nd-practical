@@ -1,0 +1,22 @@
+{
+  "name": "anime-portal",
+  "version": "1.0.0",
+  "description": "Web-Dev 2nd Project",
+  "main": "app.js",
+  "scripts": {
+    "start:dev": "set NODE_ENV=development && nodemon server.js",
+    "start:prod": "set NODE_ENV=production && nodemon server.js"
+  },
+  "author": "Deniss Solovjovs",
+  "license": "ISC",
+  "dependencies": {
+    "cookie-parser": "^1.4.6",
+    "dotenv": "^16.3.1",
+    "express": "^4.18.2",
+    "mongoose": "^8.0.3",
+    "slugify": "^1.6.6"
+  },
+  "devDependencies": {
+    "nodemon": "^3.0.2"
+  }
+}
