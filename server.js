@@ -12,6 +12,22 @@ dotenv.config({ path: `${__dirname}/config.env` });
 const app = require('./app.js');
 const mongoose = require('mongoose');
 
+// Configure mongoose to connect to mongoDB instance in cloud (AtlasDB)
+const DB = process.env.DATABASE_REMOTE.replace(
+  '<PASSWORD>',
+  process.env.ATLAS_DB_PASSWORD
+);
+console.log(DB);
+mongoose
+  .connect(DB)
+  .then(() => {
+    console.log(`Connected to remote DB successfully!`);
+  })
+  .catch((err) => {
+    console.log(`💥 UNABLE TO CONNECT TO REMOTE DB:`);
+    console.log(err);
+  });
+
 // Configure server (port 3000 coming from the config file)
 const port = +process.env.PORT;
 const server = app.listen(port, () => {

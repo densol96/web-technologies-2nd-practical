@@ -21,7 +21,8 @@
       src="https://unpkg.com/ionicons@7.1.0/dist/ionicons/ionicons.js"
     ></script>
     <!-- CSS STYLES -->
-    <link rel="stylesheet" href="style.css" />
+    <link rel="stylesheet" href="css/style.css" />
+    <link rel="stylesheet" href="css/querries.css" />
     <!-- JS -->
     <script defer src="index.js"></script>
     <!-- TITLE -->
@@ -35,16 +36,18 @@
           <li><a href="#">Anime</a></li>
           <li><a href="#">Random show</a></li>
           <li><a href="#">Top 10</a></li>
-          <form class="search-form" action="">
-            <input
-              class="search-field"
-              type="search"
-              placeholder="Search anime..."
-            />
-            <button class="search-button">
-              <ion-icon class="search-icon" name="search-outline"></ion-icon>
-            </button>
-          </form>
+          <li class="no-underline">
+            <form class="search-form" action="">
+              <input
+                class="search-field"
+                type="search"
+                placeholder="Search anime..."
+              />
+              <button class="search-button">
+                <ion-icon class="search-icon" name="search-outline"></ion-icon>
+              </button>
+            </form>
+          </li>
           <li class="sign-up"><a href="#">Sign Up</a></li>
           <li class="login"><a href="#">Login</a></li>
         </ul>
@@ -64,14 +67,14 @@
       <div class="overlay"></div>
       <div class="main-layout">
         <aside class="aside">
-          <div class="last-reviews">
-            <h2 class="reviews-title">Last Users' Reviews:</h2>
+          <div class="aside-container">
+            <h2 class="reviews-title">Last Anime Reviews:</h2>
             <div class="reviews">
               <figure class="review">
                 <div class="img-container">
                   <img
                     class="profile-pic"
-                    src="profile.jpg"
+                    src="img/profile.jpg"
                     alt="Profile picture"
                   />
                 </div>
@@ -87,12 +90,12 @@
                     It is my favorite anime! Simply amazing!!!
                   </p>
                   <p class="rev-posted-by">
-                    <span class="rev-bold">Reviewer: </span>
-                    <a href="#">solodeni</a>
+                    <span class="aside-little-bold">Reviewer: </span>
+                    <a href="#" class="blue-under-link">solodeni</a>
                   </p>
                   <p class="rev-anime">
-                    <span class="rev-bold">Anime: </span>
-                    <a href="#">One Piece</a>
+                    <span class="aside-little-bold">Anime: </span>
+                    <a href="#" class="blue-under-link">One Piece</a>
                   </p>
                 </div>
               </figure>
@@ -100,7 +103,7 @@
                 <div class="img-container">
                   <img
                     class="profile-pic"
-                    src="profile.jpg"
+                    src="img/profile.jpg"
                     alt="Profile picture"
                   />
                 </div>
@@ -116,12 +119,12 @@
                     It is my favorite anime! Simply amazing!
                   </p>
                   <p class="rev-posted-by">
-                    <span class="rev-bold">Reviewer: </span>
-                    <a href="#">solodeni</a>
+                    <span class="aside-little-bold">Reviewer: </span>
+                    <a href="#" class="blue-under-link">solodeni</a>
                   </p>
                   <p class="rev-anime">
-                    <span class="rev-bold">Anime: </span>
-                    <a href="#">One Piece</a>
+                    <span class="aside-little-bold">Anime: </span>
+                    <a href="#" class="blue-under-link">One Piece</a>
                   </p>
                 </div>
               </figure>
@@ -129,7 +132,7 @@
                 <div class="img-container">
                   <img
                     class="profile-pic"
-                    src="profile.jpg"
+                    src="img/profile.jpg"
                     alt="Profile picture"
                   />
                 </div>
@@ -145,31 +148,31 @@
                     It is my favorite anime! Simply amazing!!
                   </p>
                   <p class="rev-posted-by">
-                    <span class="rev-bold">Reviewer: </span>
-                    <a href="#">solodeni</a>
+                    <span class="aside-little-bold">Reviewer: </span>
+                    <a href="#" class="blue-under-link">solodeni</a>
                   </p>
                   <p class="rev-anime">
-                    <span class="rev-bold">Anime: </span>
-                    <a href="#">One Piece</a>
+                    <span class="aside-little-bold">Anime: </span>
+                    <a href="#" class="blue-under-link">One Piece</a>
                   </p>
                 </div>
               </figure>
             </div>
           </div>
 
-          <div class="chat">
+          <div class="aside-container chat">
             <h2 class="chat-title reviews-title">Live chat:</h2>
             <div class="chat-texts">
               <figure class="chat-message">
                 <div class="img-container">
-                  <img class="profile-pic" src="profile.jpg" alt="" />
+                  <img class="profile-pic" src="img/profile.jpg" alt="" />
                 </div>
                 <div class="chat-msg-unit">
                   <p class="chat-text">This portal is cool!</p>
                   <div class="user-chat rev-posted-by">
-                    <span class="rev-bold">Posted by</span>
-                    <a href="#" class="chat-author">solodeni</a>
-                    <span class="rev-bold">at</span>
+                    <span class="aside-little-bold">Posted by</span>
+                    <a href="#" class="chat-author blue-under-link">solodeni</a>
+                    <span class="aside-little-bold">at</span>
                     <span class="chat-date">19 Dec. 23:17</span>
                   </div>
                 </div>
@@ -177,7 +180,7 @@
               </figure>
               <figure class="chat-message">
                 <div class="img-container">
-                  <img class="profile-pic" src="profile.jpg" alt="" />
+                  <img class="profile-pic" src="img/profile.jpg" alt="" />
                 </div>
                 <div class="chat-msg-unit">
                   <p class="chat-text">
@@ -185,9 +188,9 @@
                     the best! Go Moogivaras!!!!!!!!!!!
                   </p>
                   <div class="user-chat rev-posted-by">
-                    <span class="rev-bold">Posted by</span>
-                    <a href="#" class="chat-author">solodeni</a>
-                    <span class="rev-bold">at</span>
+                    <span class="aside-little-bold">Posted by</span>
+                    <a href="#" class="chat-author blue-under-link">solodeni</a>
+                    <span class="aside-little-bold">at</span>
                     <span class="chat-date">19 Dec. 23:17</span>
                   </div>
                 </div>
@@ -195,16 +198,16 @@
               </figure>
               <figure class="chat-message">
                 <div class="img-container">
-                  <img class="profile-pic" src="profile.jpg" alt="" />
+                  <img class="profile-pic" src="img/profile.jpg" alt="" />
                 </div>
                 <div class="chat-msg-unit">
                   <p class="chat-text">
                     Hello there! I am a new user around here..
                   </p>
                   <div class="user-chat rev-posted-by">
-                    <span class="rev-bold">Posted by</span>
-                    <a href="#" class="chat-author">solodeni</a>
-                    <span class="rev-bold">at</span>
+                    <span class="aside-little-bold">Posted by</span>
+                    <a href="#" class="chat-author blue-under-link">solodeni</a>
+                    <span class="aside-little-bold">at</span>
                     <span class="chat-date">19 Dec. 23:17</span>
                   </div>
                 </div>
@@ -212,7 +215,7 @@
               </figure>
               <figure class="chat-message">
                 <div class="img-container">
-                  <img class="profile-pic" src="profile.jpg" alt="" />
+                  <img class="profile-pic" src="img/profile.jpg" alt="" />
                 </div>
                 <div class="chat-msg-unit">
                   <p class="chat-text">
@@ -220,9 +223,9 @@
                     the best! Go Moogivaras!!!!!!!!!!!
                   </p>
                   <div class="user-chat rev-posted-by">
-                    <span class="rev-bold">Posted by</span>
-                    <a href="#" class="chat-author">solodeni</a>
-                    <span class="rev-bold">at</span>
+                    <span class="aside-little-bold">Posted by</span>
+                    <a href="#" class="chat-author blue-under-link">solodeni</a>
+                    <span class="aside-little-bold">at</span>
                     <span class="chat-date">19 Dec. 23:17</span>
                   </div>
                 </div>
@@ -230,7 +233,7 @@
               </figure>
               <figure class="chat-message">
                 <div class="img-container">
-                  <img class="profile-pic" src="profile.jpg" alt="" />
+                  <img class="profile-pic" src="img/profile.jpg" alt="" />
                 </div>
                 <div class="chat-msg-unit">
                   <p class="chat-text">
@@ -238,9 +241,9 @@
                     the best! Go Moogivaras!!!!!!!!!!!
                   </p>
                   <div class="user-chat rev-posted-by">
-                    <span class="rev-bold">Posted by</span>
-                    <a href="#" class="chat-author">solodeni</a>
-                    <span class="rev-bold">at</span>
+                    <span class="aside-little-bold">Posted by</span>
+                    <a href="#" class="chat-author blue-under-link">solodeni</a>
+                    <span class="aside-little-bold">at</span>
                     <span class="chat-date">19 Dec. 23:17</span>
                   </div>
                 </div>
@@ -304,7 +307,7 @@
     </main>
     <footer class="footer">
       <p class="footer-text">
-        © Deniss Solovjovs, Web Technologies, 2nd Practical project
+        © Deniss Solovjovs, Web Technologies, 2nd Practical project, 2023-2024
       </p>
     </footer>
   </body>

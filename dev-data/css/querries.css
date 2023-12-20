@@ -1,0 +1,40 @@
+@media (max-width: 1270px) {
+  .btn-mobile-nav {
+    display: block;
+    margin-left: auto;
+    border: none;
+  }
+
+  .nav-list {
+    position: absolute;
+    opacity: 0;
+    pointer-events: none;
+    visibility: hidden;
+  }
+
+  .open .nav-list {
+    top: 7.2rem;
+    height: auto;
+    width: 100%;
+    background-color: rgba(0, 0, 0, 0.452);
+    backdrop-filter: blur(25px);
+
+    display: flex;
+    flex-wrap: wrap;
+
+    padding: 3rem 0;
+
+    z-index: 1000;
+    opacity: 1;
+    pointer-events: auto;
+    visibility: visible;
+  }
+
+  .nav-list li {
+    height: auto;
+  }
+
+  .sign-up {
+    margin-left: 0;
+  }
+}

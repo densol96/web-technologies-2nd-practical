@@ -1,0 +1,477 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <!-- META DATA -->
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <!-- FONTS -->
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Lobster&family=Rubik:wght@400;500;700&display=swap"
+      rel="stylesheet"
+    />
+    <!-- ICONS -->
+    <script
+      type="module"
+      src="https://unpkg.com/ionicons@7.1.0/dist/ionicons/ionicons.esm.js"
+    ></script>
+    <script
+      nomodule
+      src="https://unpkg.com/ionicons@7.1.0/dist/ionicons/ionicons.js"
+    ></script>
+    <!-- CSS STYLES -->
+    <link rel="stylesheet" href="css/style.css" />
+    <link rel="stylesheet" href="css/querries.css" />
+    <!-- JS -->
+    <script defer src="index.js"></script>
+    <!-- TITLE -->
+    <title>AniPortal - For Anime Fans</title>
+  </head>
+  <body>
+    <header class="header">
+      <nav class="nav-menu">
+        <a href="#" class="logo-title nav-element"><span>AniPortal</span></a>
+        <ul class="nav-list left">
+          <li><a href="#">Anime</a></li>
+          <li><a href="#">Random show</a></li>
+          <li><a href="#">Top 10</a></li>
+          <li class="no-underline">
+            <form class="search-form" action="">
+              <input
+                class="search-field"
+                type="search"
+                placeholder="Search anime..."
+              />
+              <button class="search-button">
+                <ion-icon class="search-icon" name="search-outline"></ion-icon>
+              </button>
+            </form>
+          </li>
+          <li class="sign-up"><a href="#">Sign Up</a></li>
+          <li class="login"><a href="#">Login</a></li>
+        </ul>
+        <button class="btn-mobile-nav">
+          <ion-icon
+            class="icon-mobile-close icon-nav"
+            name="close-outline"
+          ></ion-icon>
+          <ion-icon
+            class="icon-mobile-open icon-nav"
+            name="menu-outline"
+          ></ion-icon>
+        </button>
+      </nav>
+    </header>
+    <main>
+      <div class="overlay"></div>
+      <div class="main-layout">
+        <aside class="aside">
+          <div class="aside-container">
+            <h2 class="reviews-title">Last Anime Reviews:</h2>
+            <div class="reviews">
+              <figure class="review">
+                <div class="img-container">
+                  <img
+                    class="profile-pic"
+                    src="img/profile.jpg"
+                    alt="Profile picture"
+                  />
+                </div>
+                <div class="review-message">
+                  <p class="rev-rate">
+                    <ion-icon class="rev-icon" name="star"></ion-icon>
+                    <ion-icon class="rev-icon" name="star"></ion-icon>
+                    <ion-icon class="rev-icon" name="star"></ion-icon>
+                    <ion-icon class="rev-icon" name="star"></ion-icon>
+                    <ion-icon class="rev-icon" name="star-outline"></ion-icon>
+                  </p>
+                  <p class="rev-comment">
+                    It is my favorite anime! Simply amazing!!!
+                  </p>
+                  <p class="rev-posted-by">
+                    <span class="aside-little-bold">Reviewer: </span>
+                    <a href="#" class="blue-under-link">solodeni</a>
+                  </p>
+                  <p class="rev-anime">
+                    <span class="aside-little-bold">Anime: </span>
+                    <a href="#" class="blue-under-link">One Piece</a>
+                  </p>
+                </div>
+              </figure>
+              <figure class="review">
+                <div class="img-container">
+                  <img
+                    class="profile-pic"
+                    src="img/profile.jpg"
+                    alt="Profile picture"
+                  />
+                </div>
+                <div class="review-message">
+                  <p class="rev-rate">
+                    <ion-icon class="rev-icon" name="star"></ion-icon>
+                    <ion-icon class="rev-icon" name="star"></ion-icon>
+                    <ion-icon class="rev-icon" name="star"></ion-icon>
+                    <ion-icon class="rev-icon" name="star"></ion-icon>
+                    <ion-icon class="rev-icon" name="star-outline"></ion-icon>
+                  </p>
+                  <p class="rev-comment">
+                    It is my favorite anime! Simply amazing!
+                  </p>
+                  <p class="rev-posted-by">
+                    <span class="aside-little-bold">Reviewer: </span>
+                    <a href="#" class="blue-under-link">solodeni</a>
+                  </p>
+                  <p class="rev-anime">
+                    <span class="aside-little-bold">Anime: </span>
+                    <a href="#" class="blue-under-link">One Piece</a>
+                  </p>
+                </div>
+              </figure>
+              <figure class="review">
+                <div class="img-container">
+                  <img
+                    class="profile-pic"
+                    src="img/profile.jpg"
+                    alt="Profile picture"
+                  />
+                </div>
+                <div class="review-message">
+                  <p class="rev-rate">
+                    <ion-icon class="rev-icon" name="star"></ion-icon>
+                    <ion-icon class="rev-icon" name="star"></ion-icon>
+                    <ion-icon class="rev-icon" name="star"></ion-icon>
+                    <ion-icon class="rev-icon" name="star"></ion-icon>
+                    <ion-icon class="rev-icon" name="star-outline"></ion-icon>
+                  </p>
+                  <p class="rev-comment">
+                    It is my favorite anime! Simply amazing!!
+                  </p>
+                  <p class="rev-posted-by">
+                    <span class="aside-little-bold">Reviewer: </span>
+                    <a href="#" class="blue-under-link">solodeni</a>
+                  </p>
+                  <p class="rev-anime">
+                    <span class="aside-little-bold">Anime: </span>
+                    <a href="#" class="blue-under-link">One Piece</a>
+                  </p>
+                </div>
+              </figure>
+            </div>
+          </div>
+
+          <div class="aside-container chat">
+            <h2 class="chat-title reviews-title">Live chat:</h2>
+            <div class="chat-texts">
+              <figure class="chat-message">
+                <div class="img-container">
+                  <img class="profile-pic" src="img/profile.jpg" alt="" />
+                </div>
+                <div class="chat-msg-unit">
+                  <p class="chat-text">This portal is cool!</p>
+                  <div class="user-chat rev-posted-by">
+                    <span class="aside-little-bold">Posted by</span>
+                    <a href="#" class="chat-author blue-under-link">solodeni</a>
+                    <span class="aside-little-bold">at</span>
+                    <span class="chat-date">19 Dec. 23:17</span>
+                  </div>
+                </div>
+                <!-- using some same classes as in reviews, be careful with editing -->
+              </figure>
+              <figure class="chat-message">
+                <div class="img-container">
+                  <img class="profile-pic" src="img/profile.jpg" alt="" />
+                </div>
+                <div class="chat-msg-unit">
+                  <p class="chat-text">
+                    Hello everyone! How are you guys? I love anime! One Piece is
+                    the best! Go Moogivaras!!!!!!!!!!!
+                  </p>
+                  <div class="user-chat rev-posted-by">
+                    <span class="aside-little-bold">Posted by</span>
+                    <a href="#" class="chat-author blue-under-link">solodeni</a>
+                    <span class="aside-little-bold">at</span>
+                    <span class="chat-date">19 Dec. 23:17</span>
+                  </div>
+                </div>
+                <!-- using some same classes as in reviews, be careful with editing -->
+              </figure>
+              <figure class="chat-message">
+                <div class="img-container">
+                  <img class="profile-pic" src="img/profile.jpg" alt="" />
+                </div>
+                <div class="chat-msg-unit">
+                  <p class="chat-text">
+                    Hello there! I am a new user around here..
+                  </p>
+                  <div class="user-chat rev-posted-by">
+                    <span class="aside-little-bold">Posted by</span>
+                    <a href="#" class="chat-author blue-under-link">solodeni</a>
+                    <span class="aside-little-bold">at</span>
+                    <span class="chat-date">19 Dec. 23:17</span>
+                  </div>
+                </div>
+                <!-- using some same classes as in reviews, be careful with editing -->
+              </figure>
+              <figure class="chat-message">
+                <div class="img-container">
+                  <img class="profile-pic" src="img/profile.jpg" alt="" />
+                </div>
+                <div class="chat-msg-unit">
+                  <p class="chat-text">
+                    Hello everyone! How are you guys? I love anime! One Piece is
+                    the best! Go Moogivaras!!!!!!!!!!!
+                  </p>
+                  <div class="user-chat rev-posted-by">
+                    <span class="aside-little-bold">Posted by</span>
+                    <a href="#" class="chat-author blue-under-link">solodeni</a>
+                    <span class="aside-little-bold">at</span>
+                    <span class="chat-date">19 Dec. 23:17</span>
+                  </div>
+                </div>
+                <!-- using some same classes as in reviews, be careful with editing -->
+              </figure>
+              <figure class="chat-message">
+                <div class="img-container">
+                  <img class="profile-pic" src="img/profile.jpg" alt="" />
+                </div>
+                <div class="chat-msg-unit">
+                  <p class="chat-text">
+                    Hello everyone! How are you guys? I love anime! One Piece is
+                    the best! Go Moogivaras!!!!!!!!!!!
+                  </p>
+                  <div class="user-chat rev-posted-by">
+                    <span class="aside-little-bold">Posted by</span>
+                    <a href="#" class="chat-author blue-under-link">solodeni</a>
+                    <span class="aside-little-bold">at</span>
+                    <span class="chat-date">19 Dec. 23:17</span>
+                  </div>
+                </div>
+                <!-- using some same classes as in reviews, be careful with editing -->
+              </figure>
+            </div>
+
+            <form action="" class="send-text-form">
+              <textarea
+                class="typing-field"
+                name=""
+                id=""
+                cols="23"
+                rows="2"
+                maxlength="150"
+                placeholder="Type your text here! (max length 150 chars)"
+              ></textarea>
+              <button class="send-to-chat">
+                <ion-icon class="send-icon" name="send"></ion-icon>
+              </button>
+            </form>
+          </div>
+        </aside>
+        <article class="article">
+          <div class="anime-layout">
+            <figure>
+              <img
+                class="anime-main-img"
+                src="img/anime/anime.jpg"
+                alt="Anime picture"
+              />
+            </figure>
+            <div class="stat-data">
+              <h1 class="anime-title">The Pharmacist’s Soliloquies</h1>
+              <h2 class="japanese-title">Kusuriya no Hitorigoto</h2>
+              <div class="anime-rating">
+                <figure class="icons">
+                  <ion-icon class="ani-rate-icon" name="star"></ion-icon>
+                  <ion-icon class="ani-rate-icon" name="star"></ion-icon>
+                  <ion-icon class="ani-rate-icon" name="star"></ion-icon>
+                  <ion-icon class="ani-rate-icon" name="star"></ion-icon>
+                  <ion-icon
+                    class="ani-rate-icon"
+                    name="star-half-outline"
+                  ></ion-icon>
+                </figure>
+                <span class="num-rate">4.5</span>
+              </div>
+
+              <div class="short-info">
+                <p class="anime-label">Reviews</p>
+                <p class="anime-data">10</p>
+                <p class="anime-label">Author(s)</p>
+                <p class="anime-data">Hyuuga Natsu, Nanao Ikki</p>
+                <p class="anime-label">Artist(s)</p>
+                <p class="anime-data">Nekokurage</p>
+                <p class="anime-label">Genre(s)</p>
+                <p class="anime-data">Drama, Historical, Medical, Mystery</p>
+                <p class="anime-label">Status</p>
+                <p class="anime-data">Ongoing</p>
+                <p class="anime-label">Age advice</p>
+                <p class="anime-data">16+</p>
+                <p class="anime-label">Duration</p>
+                <p class="anime-data">22min</p>
+              </div>
+            </div>
+            <section class="description">
+              <div class="summary-title-container">
+                <div class="add-border">
+                  <ion-icon
+                    class="summary-icon"
+                    name="newspaper-outline"
+                  ></ion-icon>
+                  <h3 class="summary-title">Summary</h3>
+                </div>
+                <div class="no-border"></div>
+              </div>
+
+              <article class="summary">
+                <p class="paragraph">
+                  Kusuriya no Hitorigoto / The Apothecary Diaries / The
+                  Pharmacist’s Soliloquies / The Pharmacist’s Monologue / 약사의
+                  혼잣말 / 药屋少女的呢喃 / 薬屋のひとりごと / 약사의 혼잣말 In
+                  the imperial court, a young woman is put into servitude,
+                  Maomao. The tale is just beginning for the woman pharmacist
+                  from the red-light district, as rumors circulate about the
+                  emperor’s children’s lives being short-lived. Her curious
+                  nature and thirst for knowledge pushes her to action. To
+                  satisfy her curiosity, this young pharmacist will investigate
+                  the origin! What is shifting in the imperial court..!? (From:
+                  Square-Enix)Kusuriya no Hitorigoto / The Apothecary Diaries /
+                  The Pharmacist’s Soliloquies / The Pharmacist’s Monologue /
+                  약사의 혼잣말 / 药屋少女的呢喃 / 薬屋のひとりごと / 약사의
+                  혼잣말 In the imperial court, a young woman is put into
+                  servitude, Maomao. The tale is just beginning for the woman
+                  pharmacist
+                </p>
+                <p class="paragraph">
+                  from the red-light district, as rumors circulate about the
+                  emperor’s children’s lives being short-lived. Her curious
+                  nature and thirst for knowledge pushes her to action. To
+                  satisfy her curiosity, this young pharmacist will investigate
+                  the origin! What is shifting in the imperial court..!? (From:
+                  Square-Enix)
+                </p>
+              </article>
+              <div class="center-button">
+                <button class="show-more">
+                  <span>Show more</span>
+                  <div class="show-more-icons">
+                    <ion-icon
+                      class="show-more-icon show-icon"
+                      name="chevron-down-outline"
+                    ></ion-icon>
+                    <ion-icon
+                      class="show-less-icon show-icon hidden-icon"
+                      name="chevron-up-outline"
+                    ></ion-icon>
+                  </div>
+                </button>
+              </div>
+            </section>
+            <section class="leave-comment-section">
+              <div class="summary-title-container">
+                <div class="add-border">
+                  <ion-icon
+                    class="summary-icon"
+                    name="pencil-outline"
+                  ></ion-icon>
+                  <h3 class="summary-title">Leave a comment</h3>
+                </div>
+                <div class="no-border"></div>
+              </div>
+              <form class="leave-review" action="">
+                <div class="leave-review-rating">
+                  <label class="review-label">Rate the anime:</label>
+                  <div class="rate-icons-stars">
+                    <ion-icon
+                      class="rate-icons-star"
+                      name="star-outline"
+                      data-value="1"
+                    ></ion-icon>
+                    <ion-icon
+                      class="rate-icons-star"
+                      name="star-outline"
+                      data-value="2"
+                    ></ion-icon>
+                    <ion-icon
+                      class="rate-icons-star"
+                      name="star-outline"
+                      data-value="3"
+                    ></ion-icon>
+                    <ion-icon
+                      class="rate-icons-star"
+                      name="star-outline"
+                      data-value="4"
+                    ></ion-icon>
+                    <ion-icon
+                      class="rate-icons-star"
+                      name="star-outline"
+                      data-value="5"
+                    ></ion-icon>
+                  </div>
+                </div>
+                <div class="leave-comment">
+                  <label class="review-label" for="comment"
+                    >Leave a comment:</label
+                  >
+                  <textarea
+                    name=""
+                    id="comment"
+                    placeholder="Type your review/comment here..."
+                    class="comment"
+                  ></textarea>
+                </div>
+                <button class="send-comment">Send</button>
+              </form>
+            </section>
+            <section class="all-reviews">
+              <div class="summary-title-container">
+                <div class="add-border">
+                  <ion-icon class="summary-icon" name="book-outline"></ion-icon>
+                  <h3 class="summary-title">Other Reviews</h3>
+                </div>
+                <div class="no-border"></div>
+              </div>
+              <div class="all-comments">
+                <figure class="single-comment">
+                  <div class="img-container-comment">
+                    <img
+                      class="profile-pic-comment"
+                      src="img/profile.jpg"
+                      alt="Profile picture"
+                    />
+                  </div>
+                  <div class="comment-message">
+                    <p class="comment-rate">
+                      <ion-icon class="rev-icon" name="star"></ion-icon>
+                      <ion-icon class="rev-icon" name="star"></ion-icon>
+                      <ion-icon class="rev-icon" name="star"></ion-icon>
+                      <ion-icon class="rev-icon" name="star"></ion-icon>
+                      <ion-icon class="rev-icon" name="star-outline"></ion-icon>
+                    </p>
+                    <p class="text-comment">
+                      It is my favorite anime! Simply amazing!!
+                    </p>
+                    <div class="comment-info">
+                      <p class="comment-posted-by">
+                        <span class="comment-author">Reviewer: </span>
+                        <a href="#" class="blue-under-link">solodeni</a>
+                      </p>
+                      <p class="comment-date">
+                        <span class="comment-posted-at">Date: </span>
+                        <a href="#" class="comment-date-time">21 Dec. 01:42</a>
+                      </p>
+                    </div>
+                  </div>
+                </figure>
+              </div>
+            </section>
+          </div>
+        </article>
+      </div>
+    </main>
+    <footer class="footer">
+      <p class="footer-text">
+        © Deniss Solovjovs, Web Technologies, 2nd Practical project, 2023-2024
+      </p>
+    </footer>
+  </body>
+</html>
