@@ -1,3 +1,47 @@
+@media (max-width: 1500px) {
+  .main-layout {
+    grid-template-columns: 1fr 1fr;
+    grid-template-rows: 30rem auto;
+    row-gap: 4.8rem;
+  }
+
+  .reviews {
+    height: 22rem;
+    overflow-y: scroll;
+  }
+
+  .reviews::-webkit-scrollbar {
+    width: 1rem;
+  }
+
+  .reviews::-webkit-scrollbar-thumb {
+    background-color: #555;
+    border-radius: 10px;
+  }
+
+  .reviews::-webkit-scrollbar-track {
+    background-color: #bbb;
+    border-radius: 10px;
+  }
+  .chat {
+    height: auto;
+  }
+
+  .aside {
+    grid-row: 1;
+    grid-column: span 2;
+    flex-direction: row;
+  }
+  .aside-container {
+    flex: 1;
+  }
+
+  .article {
+    grid-row: 2;
+    grid-column: span 2;
+  }
+}
+
 @media (max-width: 1270px) {
   .btn-mobile-nav {
     display: block;
