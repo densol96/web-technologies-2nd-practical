@@ -13,10 +13,10 @@ mixin singleCard(card)
           p.cards-genres
             each genre, i in card.genres
               - if (i === card.genres.length - 1)
-                a.genre.blue-under-link(data-genre="drama" href=`/genres/${genre}`)= genre
+                a.genre.blue-under-link(data-genre="drama" href=`/genres/${genre.toLowerCase().split(' ').join('-')}`)= genre
                 span  
               - else
-                a.genre.blue-under-link(data-genre="drama" href=`/genres/${genre}`)= `${genre},` 
+                a.genre.blue-under-link(data-genre="drama" href=`/genres/${genre.toLowerCase().split(' ').join('-')}`)= `${genre},` 
                 span  
           - if (card.reviews.length > 0)
             span.card-delimeter  / 
@@ -27,29 +27,28 @@ mixin singleCard(card)
           span.card-reviews= `Reviews: ${card.reviews.length}`
 
         p.card-description= (card.summary.length < 270 ? card.summary : card.summary.slice(0, 270))  
-
-        a.read-more.blue-under-link(href=`/anime/${card.slug}`) Read more...
+        .last-line
+          span.added-at
+            | Added on 
+            span.added-date= card.addedAt.toString().slice(0, 21)
+          a.read-more.blue-under-link(href=`/anime/${card.slug}`) Read more...
 
 
 block content
-  section.overview-layout
+  section.overview-layout(data-pages-total=`${pagesTotal}`)
     .sort-by
       label.sort-text Sort by: 
       select(class="drop-down" name="sort")
-        option(value="newest") Newest
+        option(value="latest") Latest
         option(value="oldest") Oldest
         option(value="rating") Rating 
-        option(value="reviews") Rebiews
+        option(value="reviews") Reviews
 
     .anime-cards
       each card in animes
         +singleCard(card)
-    -if(renderPages)
-      .pagination(data-pages-total=`${pagesTotal}`)
-        button.pagination-btn.prev-page(class="hidden")
-          ion-icon.pagination-icon(name="chevron-back-outline")
-        span.current-page.page-num
-          | Current page - 1
-        button.pagination-btn.next-page
-          ion-icon.pagination-icon(name="chevron-forward-outline")
+    
+    div.end-of
+      ion-icon(name="chevron-down-outline")
+
 

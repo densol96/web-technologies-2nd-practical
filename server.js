@@ -17,7 +17,7 @@ const DB = process.env.DATABASE_REMOTE.replace(
   '<PASSWORD>',
   process.env.ATLAS_DB_PASSWORD
 );
-console.log(DB);
+
 mongoose
   .connect(DB)
   .then(() => {

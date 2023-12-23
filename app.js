@@ -19,6 +19,7 @@ app.set('views', path.join(__dirname, 'views'));
 // Enable Cross-Origin Resource Sharing
 app.use(
   cors({
+    // running dev-data on port 5501 while developing client code
     origin: 'http://127.0.0.1:5501',
   })
 );
@@ -40,11 +41,6 @@ app.use(
 
 // Cookies parser to req.cookies
 app.use(cookieParser());
-app.use((req, res, next) => {
-  console.log('INCOMING REQUEST!');
-  console.log(req.url);
-  next();
-});
 
 // Serve Static Files
 app.use(express.static(`${__dirname}/public`));
@@ -56,9 +52,10 @@ app.use('/api/v1/', apiRouter);
 app.use('/', viewRouter);
 
 app.use((req, res) => {
-  console.log('went through');
+  console.log('went through', req.url);
   res.end();
 });
+
 app.all('*', (req, res, next) => {
   // Will implement the AppError class later to handle this
   next(new AppError('Page Not Found!', 404));

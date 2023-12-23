@@ -28,7 +28,6 @@ exports.getAnime = async (req, res) => {
     });
   }
   const rating = starSequence(anime.rating);
-  console.log(rating);
   res.status(201).render('anime', {
     anime,
     starSequence,

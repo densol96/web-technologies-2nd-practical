@@ -18,12 +18,12 @@ mongoose
     console.log(`💥ERROR connecting to DB: `, err.message);
   });
 
-const animes = fs.readFileSync(`${__dirname}/animes.json`);
+const animes = fs.readFileSync(`${__dirname}/moreAnimes.json`);
 const animesDataObject = JSON.parse(animes);
 
-const single = fs.readFileSync(`${__dirname}/test.json`);
-const singleObject = JSON.parse(single);
-console.log(singleObject);
+// const single = fs.readFileSync(`${__dirname}/moreAnimes.json`);
+// const singleObject = JSON.parse(single);
+// console.log(singleObject);
 
 const importData = async () => {
   try {
@@ -72,5 +72,11 @@ const terminalApp = async () => {
   process.exit();
 };
 
-terminalApp();
+// terminalApp();
 // mongosh "mongodb+srv://cluster0.8gudcwj.mongodb.net/" --apiVersion 1 --username deniss11sol
+const upd = async () => {
+  await Anime.updateMany({}, [
+    { $set: { reviewsTotal: { $size: '$reviews' } } },
+  ]);
+};
+upd();

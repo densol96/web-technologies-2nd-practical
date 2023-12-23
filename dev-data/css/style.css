@@ -701,9 +701,6 @@ main {
 }
 
 /* !!!!!!! OVERVIEW PAGE!!!!! */
-.article {
-  /* border: 2px solid green; */
-}
 
 .overview-layout {
   display: flex;
@@ -772,7 +769,7 @@ main {
 }
 
 .card-description {
-  margin-top: 3rem;
+  margin-top: 1.2rem;
   line-height: 1.6;
 }
 
@@ -798,37 +795,27 @@ main {
   color: #fab005;
 }
 
-/* PAGINATION */
-.pagination {
+.end-of {
   display: flex;
   justify-content: center;
-  align-items: center;
-  gap: 5rem;
 }
 
-.pagination-btn {
-  background: none;
-  border: 1px solid black;
-  border-radius: 50%;
-  padding: 1rem;
+.last-line {
   display: flex;
-  justify-content: center;
-  align-items: center;
+  justify-content: space-between;
+  margin-top: auto;
 }
 
-.page-num {
-  color: #555;
-  font-size: 1.6rem;
-  padding-left: 0.5rem;
+.added-at {
+  font-size: 1.2rem;
 }
 
-.pagination-icon {
-  width: 2.4rem;
-  height: 2.4rem;
+.last-line {
+  display: flex;
+  justify-content: space-between;
+  margin-top: auto;
 }
 
-.pagination-btn:hover {
-  color: #fff;
-  background-color: #555;
-  cursor: pointer;
+.added-at {
+  font-size: 1.2rem;
 }

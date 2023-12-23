@@ -7,14 +7,14 @@ module.exports = class {
   sort() {
     if (this.queryFromRequest.sort) {
       // should get a proper sort=value from the client side so that this works with mongoose
-      if (this.queryFromRequest.sort === 'rating') {
-        this.mongooseQuery = this.mongooseQuery.sort('-rating');
-      } else if (this.queryFromRequest.sort === 'reviews') {
-        this.mongooseQuery = this.mongooseQuery.sort('-reviews');
-      } else if (this.queryFromRequest.sort === 'addedAt') {
+      if (this.queryFromRequest.sort === 'latest') {
+        this.mongooseQuery = this.mongooseQuery.sort({ addedAt: -1 });
+      } else if (this.queryFromRequest.sort === 'oldest') {
         this.mongooseQuery = this.mongooseQuery.sort({ addedAt: 1 });
-      } else if (this.queryFromRequest.sort === '-addedAt') {
-        this.mongooseQuery = this.mongooseQuery.sort('-addedAt');
+      } else if (this.queryFromRequest.sort === 'rating') {
+        this.mongooseQuery = this.mongooseQuery.sort({ rating: -1 });
+      } else if (this.queryFromRequest.sort === 'reviews') {
+        this.mongooseQuery = this.mongooseQuery.sort({ reviewsTotal: -1 });
       }
     }
     return this;
@@ -29,7 +29,4 @@ module.exports = class {
     this.mongooseQuery = this.mongooseQuery.skip(skip).limit(limit);
     return this;
   }
-
-  // If required, will add more later..
-  // Remember to await .mongooseQuery, not this
 };

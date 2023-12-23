@@ -1,0 +1,548 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <!-- META DATA -->
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <!-- FONTS -->
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Lobster&family=Rubik:wght@400;500;700&display=swap"
+      rel="stylesheet"
+    />
+    <!-- ICONS -->
+    <script
+      type="module"
+      src="https://unpkg.com/ionicons@7.1.0/dist/ionicons/ionicons.esm.js"
+    ></script>
+    <script
+      nomodule
+      src="https://unpkg.com/ionicons@7.1.0/dist/ionicons/ionicons.js"
+    ></script>
+    <!-- CSS STYLES -->
+    <link
+      rel="stylesheet"
+      href="https://cdn.jsdelivr.net/npm/bootstrap@4.2.1/dist/css/bootstrap.min.css"
+      integrity="sha384-GJzZqFGwb1QTTN6wy59ffF1BuGJpLSa9DkKMp0DgiMDm4iYMj70gZWKYbI706tWS"
+      crossorigin="anonymous"
+    />
+    <link rel="stylesheet" href="css/style.css" />
+    <link rel="stylesheet" href="css/querries.css" />
+    <!-- JS -->
+    <!-- <script defer src="index.js"></script> -->
+    <script defer type="module" src="js/index.js"></script>
+    <!-- TITLE -->
+    <title>AniPortal - For Anime Fans</title>
+  </head>
+  <body>
+    <header class="header">
+      <nav class="nav-menu">
+        <a href="#" class="logo-title nav-element"><span>AniPortal</span></a>
+        <ul class="nav-list left">
+          <li><a href="#">Anime</a></li>
+          <li><a href="#">Random show</a></li>
+          <li><a href="#">Top 10</a></li>
+          <li class="no-underline">
+            <form class="search-form" action="">
+              <input
+                class="search-field"
+                type="search"
+                placeholder="Search anime..."
+              />
+              <button class="search-button">
+                <ion-icon class="search-icon" name="search-outline"></ion-icon>
+              </button>
+            </form>
+          </li>
+          <li class="sign-up"><a href="#">Sign Up</a></li>
+          <li class="login"><a href="#">Login</a></li>
+        </ul>
+        <button class="btn-mobile-nav">
+          <ion-icon
+            class="icon-mobile-close icon-nav"
+            name="close-outline"
+          ></ion-icon>
+          <ion-icon
+            class="icon-mobile-open icon-nav"
+            name="menu-outline"
+          ></ion-icon>
+        </button>
+      </nav>
+    </header>
+    <main>
+      <div class="overlay"></div>
+      <div class="main-layout">
+        <aside class="aside">
+          <div class="aside-container">
+            <h2 class="reviews-title">Last Anime Reviews:</h2>
+            <div class="reviews">
+              <figure class="review">
+                <div class="img-container">
+                  <img
+                    class="profile-pic"
+                    src="img/profile.jpg"
+                    alt="Profile picture"
+                  />
+                </div>
+                <div class="review-message">
+                  <p class="rev-rate">
+                    <ion-icon class="rev-icon" name="star"></ion-icon>
+                    <ion-icon class="rev-icon" name="star"></ion-icon>
+                    <ion-icon class="rev-icon" name="star"></ion-icon>
+                    <ion-icon class="rev-icon" name="star"></ion-icon>
+                    <ion-icon class="rev-icon" name="star-outline"></ion-icon>
+                  </p>
+                  <p class="rev-comment">
+                    It is my favorite anime! Simply amazing!!!
+                  </p>
+                  <p class="rev-anime">
+                    <span class="posted-by">Anime: </span>
+                    <a href="#" class="blue-under-link">One Piece</a>
+                  </p>
+                  <div class="posted-by-general">
+                    <span class="posted-by">Posted by</span>
+                    <a href="#" class="blue-under-link">solodeni</a>
+                    <span class="posted-by">at</span>
+                    <span class="posted-by-date">19 Dec. 23:17</span>
+                  </div>
+                </div>
+              </figure>
+              <figure class="review">
+                <div class="img-container">
+                  <img
+                    class="profile-pic"
+                    src="img/profile.jpg"
+                    alt="Profile picture"
+                  />
+                </div>
+                <div class="review-message">
+                  <p class="rev-rate">
+                    <ion-icon class="rev-icon" name="star"></ion-icon>
+                    <ion-icon class="rev-icon" name="star"></ion-icon>
+                    <ion-icon class="rev-icon" name="star"></ion-icon>
+                    <ion-icon class="rev-icon" name="star"></ion-icon>
+                    <ion-icon class="rev-icon" name="star-outline"></ion-icon>
+                  </p>
+                  <p class="rev-comment">
+                    It is my favorite anime! Simply amazing!
+                  </p>
+                  <p class="rev-anime">
+                    <span class="posted-by">Anime: </span>
+                    <a href="#" class="blue-under-link">One Piece</a>
+                  </p>
+                  <div class="posted-by-general">
+                    <span class="posted-by">Posted by</span>
+                    <a href="#" class="blue-under-link">solodeni</a>
+                    <span class="posted-by">at</span>
+                    <span class="posted-by-date">19 Dec. 23:17</span>
+                  </div>
+                </div>
+              </figure>
+              <figure class="review">
+                <div class="img-container">
+                  <img
+                    class="profile-pic"
+                    src="img/profile.jpg"
+                    alt="Profile picture"
+                  />
+                </div>
+                <div class="review-message">
+                  <p class="rev-rate">
+                    <ion-icon class="rev-icon" name="star"></ion-icon>
+                    <ion-icon class="rev-icon" name="star"></ion-icon>
+                    <ion-icon class="rev-icon" name="star"></ion-icon>
+                    <ion-icon class="rev-icon" name="star"></ion-icon>
+                    <ion-icon class="rev-icon" name="star-outline"></ion-icon>
+                  </p>
+                  <p class="rev-comment">
+                    It is my favorite anime! Simply amazing!!
+                  </p>
+                  <p class="rev-anime">
+                    <span class="posted-by">Anime: </span>
+                    <a href="#" class="blue-under-link">One Piece</a>
+                  </p>
+                  <div class="posted-by-general">
+                    <span class="posted-by">Posted by</span>
+                    <a href="#" class="blue-under-link">solodeni</a>
+                    <span class="posted-by">at</span>
+                    <span class="posted-by-date">19 Dec. 23:17</span>
+                  </div>
+                </div>
+              </figure>
+            </div>
+          </div>
+
+          <div class="aside-container chat">
+            <h2 class="chat-title reviews-title">Live chat:</h2>
+            <div class="chat-texts">
+              <figure class="chat-message">
+                <div class="img-container">
+                  <img class="profile-pic" src="img/profile.jpg" alt="" />
+                </div>
+                <div class="chat-msg-unit">
+                  <p class="chat-text">This portal is cool!</p>
+                  <div class="posted-by-general">
+                    <span class="posted-by">Posted by</span>
+                    <a href="#" class="blue-under-link">solodeni</a>
+                    <span class="posted-by">at</span>
+                    <span class="posted-by-date">19 Dec. 23:17</span>
+                  </div>
+                </div>
+
+                <!-- using some same classes as in reviews, be careful with editing -->
+              </figure>
+              <figure class="chat-message">
+                <div class="img-container">
+                  <img class="profile-pic" src="img/profile.jpg" alt="" />
+                </div>
+                <div class="chat-msg-unit">
+                  <p class="chat-text">
+                    Hello everyone! How are you guys? I love anime! One Piece is
+                    the best! Go Moogivaras!!!!!!!!!!!
+                  </p>
+                  <div class="posted-by-general">
+                    <span class="posted-by">Posted by</span>
+                    <a href="#" class="blue-under-link">solodeni</a>
+                    <span class="posted-by">at</span>
+                    <span class="posted-by-date">19 Dec. 23:17</span>
+                  </div>
+                </div>
+                <!-- using some same classes as in reviews, be careful with editing -->
+              </figure>
+              <figure class="chat-message">
+                <div class="img-container">
+                  <img class="profile-pic" src="img/profile.jpg" alt="" />
+                </div>
+                <div class="chat-msg-unit">
+                  <p class="chat-text">
+                    Hello there! I am a new user around here..
+                  </p>
+                  <div class="posted-by-general">
+                    <span class="posted-by">Posted by</span>
+                    <a href="#" class="blue-under-link">solodeni</a>
+                    <span class="posted-by">at</span>
+                    <span class="posted-by-date">19 Dec. 23:17</span>
+                  </div>
+                </div>
+                <!-- using some same classes as in reviews, be careful with editing -->
+              </figure>
+              <figure class="chat-message">
+                <div class="img-container">
+                  <img class="profile-pic" src="img/profile.jpg" alt="" />
+                </div>
+                <div class="chat-msg-unit">
+                  <p class="chat-text">
+                    Hello everyone! How are you guys? I love anime! One Piece is
+                    the best! Go Moogivaras!!!!!!!!!!!
+                  </p>
+                  <div class="posted-by-general">
+                    <span class="posted-by">Posted by</span>
+                    <a href="#" class="blue-under-link">solodeni</a>
+                    <span class="posted-by">at</span>
+                    <span class="posted-by-date">19 Dec. 23:17</span>
+                  </div>
+                </div>
+                <!-- using some same classes as in reviews, be careful with editing -->
+              </figure>
+              <figure class="chat-message">
+                <div class="img-container">
+                  <img class="profile-pic" src="img/profile.jpg" alt="" />
+                </div>
+                <div class="chat-msg-unit">
+                  <p class="chat-text">
+                    Hello everyone! How are you guys? I love anime! One Piece is
+                    the best! Go Moogivaras!!!!!!!!!!!
+                  </p>
+                  <div class="posted-by-general">
+                    <span class="posted-by">Posted by</span>
+                    <a href="#" class="blue-under-link">solodeni</a>
+                    <span class="posted-by">at</span>
+                    <span class="posted-by-date">19 Dec. 23:17</span>
+                  </div>
+                </div>
+                <!-- using some same classes as in reviews, be careful with editing -->
+              </figure>
+            </div>
+
+            <form action="" class="send-text-form">
+              <textarea
+                class="typing-field"
+                name=""
+                id=""
+                cols="23"
+                rows="2"
+                maxlength="150"
+                placeholder="Type your text here! (max length 150 chars)"
+              ></textarea>
+              <button class="send-to-chat">
+                <ion-icon class="send-icon" name="send"></ion-icon>
+              </button>
+            </form>
+          </div>
+        </aside>
+        <article class="article">
+          <section class="overview-layout" data-pages-total="2">
+            <div class="sort-by">
+              <label class="sort-text">Sort by: </label>
+              <select class="drop-down" name="sort">
+                <option value="rating">Rating</option>
+                <option value="reviews">Reviews</option>
+                <option value="-addedAt">Newest</option>
+                <option value="addedAt">Oldest</option>
+              </select>
+            </div>
+            <div class="anime-cards">
+              <figure class="anime-card">
+                <img
+                  class="anime-card-img"
+                  src="img/anime/anime.jpg"
+                  alt="Anime card image"
+                />
+
+                <div class="card-info">
+                  <a href="#" class="card-title"
+                    >The Pharmacist’s Soliloquies</a
+                  >
+                  <span class="card-japanese">Kusuriya no Hitorigoto</span>
+                  <div class="card-facts">
+                    <span class="card-release-year">2023</span>
+                    <span class="card-delimeter"> / </span>
+                    <p class="cards-genres">
+                      <span
+                        href="#"
+                        class="genre blue-under-link"
+                        data-genre="drama"
+                        >Drama</span
+                      >, Historical, Medical, Mystery
+                    </p>
+                    <span class="card-delimeter"> / </span>
+                    <span class="card-rating"
+                      ><ion-icon
+                        class="card-rating-icon"
+                        name="star"
+                      ></ion-icon>
+                      <span class="card-rate-num">4.5</span></span
+                    >
+                    <span class="card-delimeter"> / </span>
+                    <span class="card-reviews"> Reviews: 10</span>
+                  </div>
+
+                  <p class="card-description">
+                    Kusuriya no Hitorigoto / The Apothecary Diaries / The
+                    Pharmacist’s Soliloquies / The Pharmacist’s Monologue /
+                    약사의 혼잣말 / 药屋少女的呢喃 / 薬屋のひとりごと / 약사의
+                    혼잣말 In the imperial court, a young woman is put into
+                    servitude, Maomao. The tale is just beginning for the woman
+                    pharmacist ...
+                  </p>
+                  <div class="last-line">
+                    <span class="added-at"
+                      >Added on <span class="added-date">12.02.23</span> at
+                      <span class="added-time">21:10</span></span
+                    >
+                    <a class="read-more blue-under-link" href="#"
+                      >Read more...</a
+                    >
+                  </div>
+                </div>
+              </figure>
+              <figure class="anime-card">
+                <img
+                  class="anime-card-img"
+                  src="img/anime/anime.jpg"
+                  alt="Anime card image"
+                />
+
+                <div class="card-info">
+                  <a href="#" class="card-title"
+                    >The Pharmacist’s Soliloquies</a
+                  >
+                  <span class="card-japanese">Kusuriya no Hitorigoto</span>
+                  <div class="card-facts">
+                    <span class="card-release-year">2023</span>
+                    <span class="card-delimeter"> / </span>
+                    <p class="cards-genres">
+                      <span
+                        href="#"
+                        class="genre blue-under-link"
+                        data-genre="drama"
+                        >Drama</span
+                      >, Historical, Medical, Mystery
+                    </p>
+                    <span class="card-delimeter"> / </span>
+                    <span class="card-rating"
+                      ><ion-icon
+                        class="card-rating-icon"
+                        name="star"
+                      ></ion-icon>
+                      <span class="card-rate-num">4.5</span></span
+                    >
+                    <span class="card-delimeter"> / </span>
+                    <span class="card-reviews"> Reviews: 10</span>
+                  </div>
+
+                  <p class="card-description">
+                    Kusuriya no Hitorigoto / The Apothecary Diaries / The
+                    Pharmacist’s Soliloquies / The Pharmacist’s Monologue /
+                    약사의 혼잣말 / 药屋少女的呢喃 / 薬屋のひとりごと / 약사의
+                    혼잣말 In the imperial court, a young woman is put into
+                    servitude, Maomao. The tale is just beginning for the woman
+                    pharmacist ...
+                  </p>
+                  <a class="read-more blue-under-link" href="#">Read more...</a>
+                </div>
+              </figure>
+              <figure class="anime-card">
+                <img
+                  class="anime-card-img"
+                  src="img/anime/anime.jpg"
+                  alt="Anime card image"
+                />
+
+                <div class="card-info">
+                  <a href="#" class="card-title"
+                    >The Pharmacist’s Soliloquies</a
+                  >
+                  <span class="card-japanese">Kusuriya no Hitorigoto</span>
+                  <div class="card-facts">
+                    <span class="card-release-year">2023</span>
+                    <span class="card-delimeter"> / </span>
+                    <p class="cards-genres">
+                      <span
+                        href="#"
+                        class="genre blue-under-link"
+                        data-genre="drama"
+                        >Drama</span
+                      >, Historical, Medical, Mystery
+                    </p>
+                    <span class="card-delimeter"> / </span>
+                    <span class="card-rating"
+                      ><ion-icon
+                        class="card-rating-icon"
+                        name="star"
+                      ></ion-icon>
+                      <span class="card-rate-num">4.5</span></span
+                    >
+                    <span class="card-delimeter"> / </span>
+                    <span class="card-reviews"> Reviews: 10</span>
+                  </div>
+
+                  <p class="card-description">
+                    Kusuriya no Hitorigoto / The Apothecary Diaries / The
+                    Pharmacist’s Soliloquies / The Pharmacist’s Monologue /
+                    약사의 혼잣말 / 药屋少女的呢喃 / 薬屋のひとりごと / 약사의
+                    혼잣말 In the imperial court, a young woman is put into
+                    servitude, Maomao. The tale is just beginning for the woman
+                    pharmacist ...
+                  </p>
+                  <a class="read-more blue-under-link" href="#">Read more...</a>
+                </div>
+              </figure>
+              <figure class="anime-card">
+                <img
+                  class="anime-card-img"
+                  src="img/anime/anime.jpg"
+                  alt="Anime card image"
+                />
+
+                <div class="card-info">
+                  <a href="#" class="card-title"
+                    >The Pharmacist’s Soliloquies</a
+                  >
+                  <span class="card-japanese">Kusuriya no Hitorigoto</span>
+                  <div class="card-facts">
+                    <span class="card-release-year">2023</span>
+                    <span class="card-delimeter"> / </span>
+                    <p class="cards-genres">
+                      <span
+                        href="#"
+                        class="genre blue-under-link"
+                        data-genre="drama"
+                        >Drama</span
+                      >, Historical, Medical, Mystery
+                    </p>
+                    <span class="card-delimeter"> / </span>
+                    <span class="card-rating"
+                      ><ion-icon
+                        class="card-rating-icon"
+                        name="star"
+                      ></ion-icon>
+                      <span class="card-rate-num">4.5</span></span
+                    >
+                    <span class="card-delimeter"> / </span>
+                    <span class="card-reviews"> Reviews: 10</span>
+                  </div>
+
+                  <p class="card-description">
+                    Kusuriya no Hitorigoto / The Apothecary Diaries / The
+                    Pharmacist’s Soliloquies / The Pharmacist’s Monologue /
+                    약사의 혼잣말 / 药屋少女的呢喃 / 薬屋のひとりごと / 약사의
+                    혼잣말 In the imperial court, a young woman is put into
+                    servitude, Maomao. The tale is just beginning for the woman
+                    pharmacist ...
+                  </p>
+                  <a class="read-more blue-under-link" href="#">Read more...</a>
+                </div>
+              </figure>
+              <figure class="anime-card">
+                <img
+                  class="anime-card-img"
+                  src="img/anime/anime.jpg"
+                  alt="Anime card image"
+                />
+
+                <div class="card-info">
+                  <a href="#" class="card-title"
+                    >The Pharmacist’s Soliloquies</a
+                  >
+                  <span class="card-japanese">Kusuriya no Hitorigoto</span>
+                  <div class="card-facts">
+                    <span class="card-release-year">2023</span>
+                    <span class="card-delimeter"> / </span>
+                    <p class="cards-genres">
+                      <span
+                        href="#"
+                        class="genre blue-under-link"
+                        data-genre="drama"
+                        >Drama</span
+                      >, Historical, Medical, Mystery
+                    </p>
+                    <span class="card-delimeter"> / </span>
+                    <span class="card-rating"
+                      ><ion-icon
+                        class="card-rating-icon"
+                        name="star"
+                      ></ion-icon>
+                      <span class="card-rate-num">4.5</span></span
+                    >
+                    <span class="card-delimeter"> / </span>
+                    <span class="card-reviews"> Reviews: 10</span>
+                  </div>
+
+                  <p class="card-description">
+                    Kusuriya no Hitorigoto / The Apothecary Diaries / The
+                    Pharmacist’s Soliloquies / The Pharmacist’s Monologue /
+                    약사의 혼잣말 / 药屋少女的呢喃 / 薬屋のひとりごと / 약사의
+                    혼잣말 In the imperial court, a young woman is put into
+                    servitude, Maomao. The tale is just beginning for the woman
+                    pharmacist ...
+                  </p>
+                  <a class="read-more blue-under-link" href="#">Read more...</a>
+                </div>
+              </figure>
+            </div>
+            <div class="end-of">
+              <ion-icon name="chevron-down-outline"></ion-icon>
+            </div>
+          </section>
+        </article>
+      </div>
+    </main>
+    <footer class="footer">
+      <p class="footer-text">
+        © Deniss Solovjovs, Web Technologies, 2nd Practical project, 2023-2024
+      </p>
+    </footer>
+  </body>
+</html>

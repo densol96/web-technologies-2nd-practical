@@ -90,6 +90,9 @@ const animeSchema = new mongoose.Schema(
         },
       ],
     },
+    reviewsTotal: {
+      type: Number,
+    },
   },
   // if / when converting include virtual fields
   {
@@ -101,6 +104,12 @@ const animeSchema = new mongoose.Schema(
     },
   }
 );
+
+// Add indexes for better sort performance on categories:
+animeSchema.index({ rating: -1 });
+animeSchema.index({ addedAt: -1 });
+animeSchema.index({ addedAt: -1 });
+animeSchema.index({ reviewsTotal: -1 });
 
 // Use document pre-middleware to add a slug
 animeSchema.pre('save', function (next) {

@@ -194,7 +194,7 @@ a {
 /* MAIN */
 main {
   padding: 5rem 0;
-  background-image: url('/img/wallpaper.jpg');
+  background-image: url('../img/wallpaper.jpg');
   background-size: cover;
   background-attachment: fixed;
   position: relative;
@@ -700,18 +700,6 @@ main {
   width: 70rem;
 }
 
-.no-comment {
-  display: flex;
-  height: 10rem;
-  background-color: #f1f3f5;
-  justify-content: center;
-  align-items: center;
-}
-
-.no-comment-message {
-  font-size: 2rem;
-}
-
 /* !!!!!!! OVERVIEW PAGE!!!!! */
 .article {
   /* border: 2px solid green; */
@@ -723,7 +711,6 @@ main {
   gap: 1.8rem;
 }
 
-/* DROP DOWN */
 .sort-by {
   border-top: 2px solid #f1f3f5;
   border-bottom: 2px solid #f1f3f5;
@@ -739,7 +726,6 @@ main {
   margin-left: 1rem;
 }
 
-/* CARDS */
 .anime-cards {
   display: flex;
   flex-direction: column;
@@ -796,6 +782,18 @@ main {
   color: #f03e3e;
 }
 
+.no-comment {
+  display: flex;
+  height: 10rem;
+  background-color: #f1f3f5;
+  justify-content: center;
+  align-items: center;
+}
+
+.no-comment-message {
+  font-size: 2rem;
+}
+
 .card-rating-icon {
   color: #fab005;
 }
@@ -833,4 +831,39 @@ main {
   color: #fff;
   background-color: #555;
   cursor: pointer;
+}
+
+.end-of {
+  display: flex;
+  justify-content: center;
+}
+
+.last-line {
+  display: flex;
+  justify-content: space-between;
+  margin-top: auto;
+}
+
+.added-at {
+  font-size: 1.2rem;
+}
+
+.loader {
+  width: 4rem;
+  height: 4rem;
+  border: 5px solid #555;
+  border-bottom-color: transparent;
+  border-radius: 50%;
+  display: inline-block;
+  box-sizing: border-box;
+  animation: rotation 1s linear infinite;
+}
+
+@keyframes rotation {
+  0% {
+    transform: rotate(0deg);
+  }
+  100% {
+    transform: rotate(360deg);
+  }
 }

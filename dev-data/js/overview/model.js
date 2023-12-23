@@ -1,8 +1,10 @@
 import { ALL_ANIME_API_ROUTE } from './helper.js';
 
 export const state = {
+  // Starting default values (rendered by server on requesting), but to be maintained
   page: 1,
   sortBy: 'rating',
+  // Placeholder for AJAX
   animes: {},
   length: {},
   pagesTotal: {},
@@ -16,5 +18,3 @@ export const loadAnimes = async () => {
   state.animes = data.data;
   state.length = data.length;
 };
-
-console.log(ALL_ANIME_API_ROUTE);
