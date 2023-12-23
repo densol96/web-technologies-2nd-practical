@@ -1,0 +1,114 @@
+extends base
+
+mixin descriptionParagraph(single_p)
+  p.paragraph= single_p
+
+mixin singleComment(comment)
+  figure.single-comment
+    div.img-container-comment
+      img.profile-pic-comment(src="/img/profile.jpg", alt="Profile picture")
+    div.comment-message
+      p.comment-rate
+        - const seq = starSequence(comment.rating);
+        each name in seq
+          ion-icon.ani-rate-icon(name=`${name}`)
+
+      p.text-comment= comment.comment
+      div.posted-by-general
+        span.posted-by Posted by 
+        a.blue-under-link(href="#")= comment.username  
+        span.posted-by  at 
+        span.posted-by-date 19 Dec. 23:17
+
+block content
+    section.anime-layout
+      figure
+        img.anime-main-img(src=`/img/anime/${anime.imageCover}`, alt="Anime picture")
+      div.stat-data
+        h1.anime-title= anime.title
+        h2.japanese-title= anime.japaneseTitle
+        - if (anime.reviews.length > 0)
+          div.anime-rating
+            ion-icon.ani-rate-icon(name=`star`)
+            span.num-rate= anime.rating
+
+        div.short-info
+          p.anime-label Reviews
+          p.anime-data.anime-reviews-total= anime.reviews.length
+          p.anime-label Author(s)
+          - const authors = anime.authors.join(', ')
+          p.anime-data.anime-authors= authors
+          p.anime-label Release-year
+          p.anime-data.anime-release-year= anime.releaseYear
+          p.anime-label Genre(s)
+          - const genres = anime.genres.join(', ')
+          p.anime-data.anime-genres= genres
+          p.anime-label Status
+          p.anime-data.anime-status= anime.status
+          p.anime-label Age advice
+          p.anime-data.anime-age= `${anime.ageAdvice}+`
+          p.anime-label Duration
+          p.anime-data.anime-duration= `${anime.duration}min`
+
+      section.description
+        div.summary-title-container
+          div.add-border
+            ion-icon.summary-icon(name="newspaper-outline")
+            h3.summary-title Summary
+          div.no-border
+          
+        article.summary
+          - const paragraphs = anime.summary.split('\n');
+          each par in paragraphs
+            +descriptionParagraph(par)
+
+        div.center-button
+          button.show-more
+            span Show more
+            div.show-more-icons
+              ion-icon.show-more-icon.show-icon(name="chevron-down-outline")
+              ion-icon.show-less-icon.show-icon.hidden-icon(name="chevron-up-outline")
+          
+
+      section.leave-comment-section
+        div.summary-title-container
+          div.add-border
+            ion-icon.summary-icon(name="pencil-outline")
+            h3.summary-title Leave a comment
+          div.no-border
+          
+        form.leave-review(action="")
+          div.leave-review-rating
+            label.review-label Rate the anime:
+            div.rate-icons-stars
+              ion-icon.rate-icons-star(name="star-outline", data-value="1")
+              ion-icon.rate-icons-star(name="star-outline", data-value="2")
+              ion-icon.rate-icons-star(name="star-outline", data-value="3")
+              ion-icon.rate-icons-star(name="star-outline", data-value="4")
+              ion-icon.rate-icons-star(name="star-outline", data-value="5")
+
+          div.leave-comment
+            label.review-label(for="comment") Leave a comment:
+            textarea.comment(name="", id="comment", placeholder="Type your review/comment here...")
+          button.send-comment Send
+
+      section.all-reviews
+        div.summary-title-container
+          div.add-border
+            ion-icon.summary-icon(name="book-outline")
+            h3.summary-title Other Reviews
+          div.no-border
+          
+        div.all-comments
+          - if (anime.reviews.length > 0)
+            each rev in anime.reviews 
+              +singleComment(rev)
+          - else 
+            div.no-comment
+              p.no-comment-message
+                ion-icon(name="close-circle-outline")
+                span.no-message-text Currently this anime has no reviews..
+
+        - if (anime.reviews.length > 3)
+          button.load-more-comments Load more
+

@@ -1,7 +1,7 @@
 const AppError = require('../utils/AppError.js');
 
 const sendErrDev = (err, req, res) => {
-  res.status(err.statusCode).json({
+  res.status(404).json({
     status: 'error',
     message: err.message,
   });

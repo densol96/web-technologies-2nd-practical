@@ -194,7 +194,7 @@ a {
 /* MAIN */
 main {
   padding: 5rem 0;
-  background-image: url('../img/wallpaper.jpg');
+  background-image: url('/img/wallpaper.jpg');
   background-size: cover;
   background-attachment: fixed;
   position: relative;
@@ -700,6 +700,18 @@ main {
   width: 70rem;
 }
 
+.no-comment {
+  display: flex;
+  height: 10rem;
+  background-color: #f1f3f5;
+  justify-content: center;
+  align-items: center;
+}
+
+.no-comment-message {
+  font-size: 2rem;
+}
+
 /* !!!!!!! OVERVIEW PAGE!!!!! */
 .article {
   /* border: 2px solid green; */
@@ -711,6 +723,7 @@ main {
   gap: 1.8rem;
 }
 
+/* DROP DOWN */
 .sort-by {
   border-top: 2px solid #f1f3f5;
   border-bottom: 2px solid #f1f3f5;
@@ -726,6 +739,7 @@ main {
   margin-left: 1rem;
 }
 
+/* CARDS */
 .anime-cards {
   display: flex;
   flex-direction: column;
@@ -780,18 +794,6 @@ main {
   margin-top: auto;
   align-self: flex-end;
   color: #f03e3e;
-}
-
-.no-comment {
-  display: flex;
-  height: 10rem;
-  background-color: #f1f3f5;
-  justify-content: center;
-  align-items: center;
-}
-
-.no-comment-message {
-  font-size: 2rem;
 }
 
 .card-rating-icon {

@@ -1,0 +1,196 @@
+doctype html
+html(lang="en")
+  head
+    // META DATA
+    meta(charset="UTF-8")
+    meta(name="viewport", content="width=device-width, initial-scale=1.0")
+    
+    // FONTS
+    link(rel="preconnect", href="https://fonts.googleapis.com")
+    link(rel="preconnect", href="https://fonts.gstatic.com", crossorigin)
+    link(href="https://fonts.googleapis.com/css2?family=Lobster&family=Rubik:wght@400;500;700&display=swap", rel="stylesheet")
+    
+    // ICONS
+    script(type="module", src="https://unpkg.com/ionicons@7.1.0/dist/ionicons/ionicons.esm.js")
+    script(nomodule, src="https://unpkg.com/ionicons@7.1.0/dist/ionicons/ionicons.js")
+    
+    // CSS STYLES
+    link(rel="stylesheet", href="/css/style.css")
+    link(rel="stylesheet", href="/css/querries.css")
+    
+    // JS
+    script(defer, src="/index.js")
+    
+    // TITLE
+    title AniPortal - For Anime Fans
+    
+  body
+    // HEADER
+    header.header
+      nav.nav-menu
+        a.logo-title.nav-element(href="#")
+          span AniPortal
+        ul.nav-list.left
+          li
+            a(href="#") Anime
+          li
+            a(href="#") Random show
+          li
+            a(href="#") Top 10
+          li.no-underline
+            form.search-form(action="")
+              input.search-field(type="search", placeholder="Search anime...")
+              button.search-button
+                ion-icon.search-icon(name="search-outline")
+          li.sign-up
+            a(href="#") Sign Up
+          li.login
+            a(href="#") Login
+        button.btn-mobile-nav
+          ion-icon.icon-mobile-close.icon-nav(name="close-outline")
+          ion-icon.icon-mobile-open.icon-nav(name="menu-outline")
+    // MAIN 
+    main
+      div.overlay
+      div.main-layout
+        // ASIDE SECTION
+        aside.aside
+          // LAST LEFT REVIEWS
+          .aside-container
+            h2.reviews-title Last Anime Reviews:
+            .reviews
+              figure.review
+                .img-container
+                  img.profile-pic(src="/img/profile.jpg", alt="Profile picture")
+                .review-message
+                  p.rev-rate
+                    ion-icon.rev-icon(name="star")
+                    ion-icon.rev-icon(name="star")
+                    ion-icon.rev-icon(name="star")
+                    ion-icon.rev-icon(name="star")
+                    ion-icon.rev-icon(name="star-outline")
+                  p.rev-comment It is my favorite anime! Simply amazing!!!
+                  p.rev-anime
+                    span.posted-by Anime: 
+                    a.blue-under-link(href="#") One Piece
+                  .posted-by-general
+                    span.posted-by Posted by
+                    a.blue-under-link(href="#") solodeni
+                    span.posted-by at
+                    span.posted-by-date 19 Dec. 23:17
+              figure.review
+                .img-container
+                  img.profile-pic(src="/img/profile.jpg", alt="Profile picture")
+                .review-message
+                  p.rev-rate
+                    ion-icon.rev-icon(name="star")
+                    ion-icon.rev-icon(name="star")
+                    ion-icon.rev-icon(name="star")
+                    ion-icon.rev-icon(name="star")
+                    ion-icon.rev-icon(name="star-outline")
+                  p.rev-comment It is my favorite anime! Simply amazing!!!
+                  p.rev-anime
+                    span.posted-by Anime: 
+                    a.blue-under-link(href="#") One Piece
+                  .posted-by-general
+                    span.posted-by Posted by
+                    a.blue-under-link(href="#") solodeni
+                    span.posted-by at
+                    span.posted-by-date 19 Dec. 23:17
+              figure.review
+                .img-container
+                  img.profile-pic(src="/img/profile.jpg", alt="Profile picture")
+                .review-message
+                  p.rev-rate
+                    ion-icon.rev-icon(name="star")
+                    ion-icon.rev-icon(name="star")
+                    ion-icon.rev-icon(name="star")
+                    ion-icon.rev-icon(name="star")
+                    ion-icon.rev-icon(name="star-outline")
+                  p.rev-comment It is my favorite anime! Simply amazing!!!
+                  p.rev-anime
+                    span.posted-by Anime: 
+                    a.blue-under-link(href="#") One Piece
+                  .posted-by-general
+                    span.posted-by Posted by
+                    a.blue-under-link(href="#") solodeni
+                    span.posted-by at
+                    span.posted-by-date 19 Dec. 23:17
+              // Repeat similar structure for other reviews...
+          
+          // CHAT
+          .aside-container.chat
+            h2.chat-title.reviews-title Live chat:
+            .chat-texts
+              figure.chat-message
+                .img-container
+                  img.profile-pic(src="/img/profile.jpg", alt="")
+                .chat-msg-unit
+                  p.chat-text This portal is cool!
+                  .posted-by-general
+                    span.posted-by Posted by
+                    a.blue-under-link(href="#") solodeni
+                    span.posted-by at
+                    span.posted-by-date 19 Dec. 23:17
+              figure.chat-message
+                .img-container
+                  img.profile-pic(src="/img/profile.jpg", alt="")
+                .chat-msg-unit
+                  p.chat-text I like anime and different things in general!!!!!!!!!!!!!!!!!!!!!!
+                  .posted-by-general
+                    span.posted-by Posted by
+                    a.blue-under-link(href="#") solodeni
+                    span.posted-by at
+                    span.posted-by-date 18 Dec. 21:15
+              figure.chat-message
+                .img-container
+                  img.profile-pic(src="/img/profile.jpg", alt="")
+                .chat-msg-unit
+                  p.chat-text Hey hey hey! How r u people?
+                  .posted-by-general
+                    span.posted-by Posted by
+                    a.blue-under-link(href="#") solodeni
+                    span.posted-by at
+                    span.posted-by-date 18 Dec. 13:11
+              figure.chat-message
+                .img-container
+                  img.profile-pic(src="/img/profile.jpg", alt="")
+                .chat-msg-unit
+                  p.chat-text This portal is cool!
+                  .posted-by-general
+                    span.posted-by Posted by
+                    a.blue-under-link(href="#") solodeni
+                    span.posted-by at
+                    span.posted-by-date 17 Dec. 23:17
+              figure.chat-message
+                .img-container
+                  img.profile-pic(src="/img/profile.jpg", alt="")
+                .chat-msg-unit
+                  p.chat-text This portal is cool!
+                  .posted-by-general
+                    span.posted-by Posted by
+                    a.blue-under-link(href="#") solodeni
+                    span.posted-by at
+                    span.posted-by-date 19 Dec. 23:17
+              figure.chat-message
+                .img-container
+                  img.profile-pic(src="/img/profile.jpg", alt="")
+                .chat-msg-unit
+                  p.chat-text This portal is cool!
+                  .posted-by-general
+                    span.posted-by Posted by 
+                    a.blue-under-link(href="#") solodeni 
+                    span.posted-by at 
+                    span.posted-by-date 19 Dec. 23:17
+              // Repeat similar structure for other chat messages...
+              
+            form.send-text-form(action="")
+              textarea.typing-field(cols="23", rows="2", maxlength="150", placeholder="Type your text here! (max length 150 chars)")
+              button.send-to-chat
+                ion-icon.send-icon(name="send") 
+        // CONTENT 
+        article.article
+          block content  
+    // FOOTER
+    footer.footer
+      p.footer-text © Deniss Solovjovs, Web Technologies, 2nd Practical project, 2023-2024

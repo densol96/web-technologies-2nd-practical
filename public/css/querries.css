@@ -1,0 +1,84 @@
+@media (max-width: 1500px) {
+  .main-layout {
+    grid-template-columns: 1fr 1fr;
+    grid-template-rows: 30rem auto;
+    row-gap: 4.8rem;
+  }
+
+  .reviews {
+    height: 22rem;
+    overflow-y: scroll;
+  }
+
+  .reviews::-webkit-scrollbar {
+    width: 1rem;
+  }
+
+  .reviews::-webkit-scrollbar-thumb {
+    background-color: #555;
+    border-radius: 10px;
+  }
+
+  .reviews::-webkit-scrollbar-track {
+    background-color: #bbb;
+    border-radius: 10px;
+  }
+  .chat {
+    height: auto;
+  }
+
+  .aside {
+    grid-row: 1;
+    grid-column: span 2;
+    flex-direction: row;
+  }
+  .aside-container {
+    flex: 1;
+  }
+
+  .article {
+    grid-row: 2;
+    grid-column: span 2;
+  }
+}
+
+@media (max-width: 1270px) {
+  .btn-mobile-nav {
+    display: block;
+    margin-left: auto;
+    border: none;
+  }
+
+  .nav-list {
+    position: absolute;
+    opacity: 0;
+    pointer-events: none;
+    visibility: hidden;
+  }
+
+  .open .nav-list {
+    top: 7.2rem;
+    height: auto;
+    width: 100%;
+    background-color: rgba(0, 0, 0, 0.452);
+    backdrop-filter: blur(25px);
+
+    display: flex;
+    flex-wrap: wrap;
+
+    padding: 3rem 0;
+
+    z-index: 1000;
+    opacity: 1;
+    pointer-events: auto;
+    visibility: visible;
+  }
+
+  .nav-list li {
+    height: auto;
+  }
+
+  .sign-up {
+    margin-left: 0;
+  }
+}

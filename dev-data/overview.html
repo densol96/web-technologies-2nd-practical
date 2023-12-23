@@ -21,10 +21,17 @@
       src="https://unpkg.com/ionicons@7.1.0/dist/ionicons/ionicons.js"
     ></script>
     <!-- CSS STYLES -->
+    <link
+      rel="stylesheet"
+      href="https://cdn.jsdelivr.net/npm/bootstrap@4.2.1/dist/css/bootstrap.min.css"
+      integrity="sha384-GJzZqFGwb1QTTN6wy59ffF1BuGJpLSa9DkKMp0DgiMDm4iYMj70gZWKYbI706tWS"
+      crossorigin="anonymous"
+    />
     <link rel="stylesheet" href="css/style.css" />
     <link rel="stylesheet" href="css/querries.css" />
     <!-- JS -->
-    <script defer src="index.js"></script>
+    <!-- <script defer src="index.js"></script> -->
+    <script defer type="module" src="js/controller.js"></script>
     <!-- TITLE -->
     <title>AniPortal - For Anime Fans</title>
   </head>
@@ -275,227 +282,81 @@
           </div>
         </aside>
         <article class="article">
-          <section class="anime-layout">
-            <figure>
-              <img
-                class="anime-main-img"
-                src="img/anime/anime.jpg"
-                alt="Anime picture"
-              />
-            </figure>
-            <div class="stat-data">
-              <h1 class="anime-title">The Pharmacist’s Soliloquies</h1>
-              <h2 class="japanese-title">Kusuriya no Hitorigoto</h2>
-              <div class="anime-rating">
-                <ion-icon class="ani-rate-icon" name="star"></ion-icon>
-                <span class="num-rate">4.5</span>
-              </div>
-
-              <div class="short-info">
-                <p class="anime-label">Reviews</p>
-                <p class="anime-data anime-reviews-total">10</p>
-                <p class="anime-label">Author(s)</p>
-                <p class="anime-data anime-authors">Hyuuga Natsu, Nanao Ikki</p>
-                <p class="anime-label">Release-year</p>
-                <p class="anime-data anime-release-year">2023</p>
-                <p class="anime-label">Genre(s)</p>
-                <p class="anime-data anime-genres">
-                  Drama, Historical, Medical, Mystery
-                </p>
-                <p class="anime-label">Status</p>
-                <p class="anime-data anime-status">Ongoing</p>
-                <p class="anime-label">Age advice</p>
-                <p class="anime-data anime-age">16+</p>
-                <p class="anime-label">Duration</p>
-                <p class="anime-data anime-duration">22min</p>
-              </div>
+          <section class="overview-layout">
+            <div class="sort-by">
+              <label class="sort-text">Sort by: </label>
+              <select class="drop-down" name="sort">
+                <option value="rating">Rating</option>
+                <option value="reviews">Reviews</option>
+                <option value="-addedAt">Newest</option>
+                <option value="addedAt">Oldest</option>
+              </select>
             </div>
-            <section class="description">
-              <div class="summary-title-container">
-                <div class="add-border">
-                  <ion-icon
-                    class="summary-icon"
-                    name="newspaper-outline"
-                  ></ion-icon>
-                  <h3 class="summary-title">Summary</h3>
-                </div>
-                <div class="no-border"></div>
-              </div>
+            <div class="anime-cards">
+              <figure class="anime-card">
+                <img
+                  class="anime-card-img"
+                  src="img/anime/anime.jpg"
+                  alt="Anime card image"
+                />
 
-              <article class="summary">
-                <p class="paragraph">
-                  Kusuriya no Hitorigoto / The Apothecary Diaries / The
-                  Pharmacist’s Soliloquies / The Pharmacist’s Monologue / 약사의
-                  혼잣말 / 药屋少女的呢喃 / 薬屋のひとりごと / 약사의 혼잣말 In
-                  the imperial court, a young woman is put into servitude,
-                  Maomao. The tale is just beginning for the woman pharmacist
-                  from the red-light district, as rumors circulate about the
-                  emperor’s children’s lives being short-lived. Her curious
-                  nature and thirst for knowledge pushes her to action. To
-                  satisfy her curiosity, this young pharmacist will investigate
-                  the origin! What is shifting in the imperial court..!? (From:
-                  Square-Enix)Kusuriya no Hitorigoto / The Apothecary Diaries /
-                  The Pharmacist’s Soliloquies / The Pharmacist’s Monologue /
-                  약사의 혼잣말 / 药屋少女的呢喃 / 薬屋のひとりごと / 약사의
-                  혼잣말 In the imperial court, a young woman is put into
-                  servitude, Maomao. The tale is just beginning for the woman
-                  pharmacist
-                </p>
-                <p class="paragraph">
-                  from the red-light district, as rumors circulate about the
-                  emperor’s children’s lives being short-lived. Her curious
-                  nature and thirst for knowledge pushes her to action. To
-                  satisfy her curiosity, this young pharmacist will investigate
-                  the origin! What is shifting in the imperial court..!? (From:
-                  Square-Enix)
-                </p>
-              </article>
-              <div class="center-button">
-                <button class="show-more">
-                  <span>Show more</span>
-                  <div class="show-more-icons">
-                    <ion-icon
-                      class="show-more-icon show-icon"
-                      name="chevron-down-outline"
-                    ></ion-icon>
-                    <ion-icon
-                      class="show-less-icon show-icon hidden-icon"
-                      name="chevron-up-outline"
-                    ></ion-icon>
-                  </div>
-                </button>
-              </div>
-            </section>
-            <section class="leave-comment-section">
-              <div class="summary-title-container">
-                <div class="add-border">
-                  <ion-icon
-                    class="summary-icon"
-                    name="pencil-outline"
-                  ></ion-icon>
-                  <h3 class="summary-title">Leave a comment</h3>
-                </div>
-                <div class="no-border"></div>
-              </div>
-              <form class="leave-review" action="">
-                <div class="leave-review-rating">
-                  <label class="review-label">Rate the anime:</label>
-                  <div class="rate-icons-stars">
-                    <ion-icon
-                      class="rate-icons-star"
-                      name="star-outline"
-                      data-value="1"
-                    ></ion-icon>
-                    <ion-icon
-                      class="rate-icons-star"
-                      name="star-outline"
-                      data-value="2"
-                    ></ion-icon>
-                    <ion-icon
-                      class="rate-icons-star"
-                      name="star-outline"
-                      data-value="3"
-                    ></ion-icon>
-                    <ion-icon
-                      class="rate-icons-star"
-                      name="star-outline"
-                      data-value="4"
-                    ></ion-icon>
-                    <ion-icon
-                      class="rate-icons-star"
-                      name="star-outline"
-                      data-value="5"
-                    ></ion-icon>
-                  </div>
-                </div>
-                <div class="leave-comment">
-                  <label class="review-label" for="comment"
-                    >Leave a comment:</label
+                <div class="card-info">
+                  <a href="#" class="card-title"
+                    >The Pharmacist’s Soliloquies</a
                   >
-                  <textarea
-                    name=""
-                    id="comment"
-                    placeholder="Type your review/comment here..."
-                    class="comment"
-                  ></textarea>
-                </div>
-                <button class="send-comment">Send</button>
-              </form>
-            </section>
-            <section class="all-reviews">
-              <div class="summary-title-container">
-                <div class="add-border">
-                  <ion-icon class="summary-icon" name="book-outline"></ion-icon>
-                  <h3 class="summary-title">Other Reviews</h3>
-                </div>
-                <div class="no-border"></div>
-              </div>
-              <div class="all-comments">
-                <figure class="single-comment">
-                  <div class="img-container-comment">
-                    <img
-                      class="profile-pic-comment"
-                      src="img/profile.jpg"
-                      alt="Profile picture"
-                    />
-                  </div>
-                  <div class="comment-message">
-                    <p class="comment-rate">
-                      <ion-icon class="rev-icon" name="star"></ion-icon>
-                      <ion-icon class="rev-icon" name="star"></ion-icon>
-                      <ion-icon class="rev-icon" name="star"></ion-icon>
-                      <ion-icon class="rev-icon" name="star"></ion-icon>
-                      <ion-icon class="rev-icon" name="star-outline"></ion-icon>
+                  <span class="card-japanese">Kusuriya no Hitorigoto</span>
+                  <div class="card-facts">
+                    <span class="card-release-year">2023</span>
+                    <span class="card-delimeter"> / </span>
+                    <p class="cards-genres">
+                      <span
+                        href="#"
+                        class="genre blue-under-link"
+                        data-genre="drama"
+                        >Drama</span
+                      >, Historical, Medical, Mystery
                     </p>
-                    <p class="text-comment">
-                      It is my favorite anime! Simply amazing!!!!!
-                    </p>
-                    <div class="posted-by-general">
-                      <span class="posted-by">Posted by</span>
-                      <a href="#" class="blue-under-link">solodeni</a>
-                      <span class="posted-by">at</span>
-                      <span class="posted-by-date">19 Dec. 23:17</span>
-                    </div>
-                  </div>
-                </figure>
-                <figure class="single-comment">
-                  <div class="img-container-comment">
-                    <img
-                      class="profile-pic-comment"
-                      src="img/profile.jpg"
-                      alt="Profile picture"
-                    />
-                  </div>
-                  <div class="comment-message">
-                    <p class="comment-rate">
-                      <ion-icon class="rev-icon" name="star"></ion-icon>
-                      <ion-icon class="rev-icon" name="star"></ion-icon>
-                      <ion-icon class="rev-icon" name="star"></ion-icon>
-                      <ion-icon class="rev-icon" name="star"></ion-icon>
-                      <ion-icon class="rev-icon" name="star-outline"></ion-icon>
-                    </p>
-                    <p class="text-comment">
-                      It is my favorite anime! Simply amazing!!!!!
-                    </p>
-                    <div class="posted-by-general">
-                      <span class="posted-by">Posted by</span>
-                      <a href="#" class="blue-under-link">solodeni</a>
-                      <span class="posted-by">at</span>
-                      <span class="posted-by-date">19 Dec. 23:17</span>
-                    </div>
-                  </div>
-                </figure>
-                <div class="no-comment">
-                  <p class="no-comment-message">
-                    <ion-icon name="close-circle-outline"></ion-icon>
-                    <span class="no-message-text"
-                      >Currently this anime has no reviews..</span
+                    <span class="card-delimeter"> / </span>
+                    <span class="card-rating"
+                      ><ion-icon
+                        class="card-rating-icon"
+                        name="star"
+                      ></ion-icon>
+                      <span class="card-rate-num">4.5</span></span
                     >
+                    <span class="card-delimeter"> / </span>
+                    <span class="card-reviews"> Reviews: 10</span>
+                  </div>
+
+                  <p class="card-description">
+                    Kusuriya no Hitorigoto / The Apothecary Diaries / The
+                    Pharmacist’s Soliloquies / The Pharmacist’s Monologue /
+                    약사의 혼잣말 / 药屋少女的呢喃 / 薬屋のひとりごと / 약사의
+                    혼잣말 In the imperial court, a young woman is put into
+                    servitude, Maomao. The tale is just beginning for the woman
+                    pharmacist ...
                   </p>
+                  <a class="read-more blue-under-link" href="#">Read more...</a>
                 </div>
-              </div>
-              <button class="load-more-comments">Load more</button>
-            </section>
+              </figure>
+            </div>
+            <div class="pagination" data-pages-total="2">
+              <button class="pagination-btn prev-page hidden">
+                <ion-icon
+                  class="pagination-icon"
+                  name="chevron-back-outline"
+                ></ion-icon>
+              </button>
+              <span class="current-page page-num"
+                >Current page - <span class="update-cur-page">1</span></span
+              >
+              <button class="pagination-btn next-page">
+                <ion-icon
+                  class="pagination-icon"
+                  name="chevron-forward-outline"
+                ></ion-icon>
+              </button>
+            </div>
           </section>
         </article>
       </div>
