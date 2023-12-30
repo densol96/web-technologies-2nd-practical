@@ -8,4 +8,7 @@ router.get('/', (req, res) => {
 });
 router.get('/anime/:slug', viewContoller.getAnime);
 router.get('/overview', viewContoller.getOverview);
+router.get('/login', viewContoller.login);
+router.get('/sign-up', viewContoller.signUp);
+
 module.exports = router;

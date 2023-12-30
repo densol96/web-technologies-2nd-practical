@@ -1,0 +1,15 @@
+extends base
+block content
+  .form-layout.log-user-in
+    .login-form.form-left
+    .form-right
+      h2.form-heading Login
+      form.form-content
+        figure.form-item
+          label.form-label(for='email') Email
+          input.form-input(type='text' id='email')
+        figure.form-item
+          label.form-label(for='password') Password
+          input.form-input(type='text' id='password')
+        button.sign-up-btn.form-btn
+          span.form-btn-text Login

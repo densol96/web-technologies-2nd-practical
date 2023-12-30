@@ -10,6 +10,13 @@ const initAnime = () => {
     });
   });
 
+  // CHECK OF THERE IS ACTUALLY OVERFLOW OR MORE BUTTON CAN BE HIDDEN
+  const summaryContainer = document.querySelector('.summary');
+  if (!(summary.scrollHeight > summary.clientHeight)) {
+    summary.classList.add('open-sum');
+    showMoreBtn.classList.add('hidden');
+  }
+
   // LEAVE A COOL STAR RATING
   const ratingStars = document.querySelectorAll('.rate-icons-star');
   const fillStars = function (upTo) {

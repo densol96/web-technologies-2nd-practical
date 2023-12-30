@@ -1,0 +1,21 @@
+extends base
+block content
+  .form-layout.sign-user-up
+    .sign-up-form.form-left
+    .form-right
+      h2.form-heading Sign Up
+      form.form-content
+        figure.form-item
+          label.form-label(for='username') Username
+          input.form-input(type='text' id='username')
+        figure.form-item
+          label.form-label(for='email') Email
+          input.form-input(type='text' id='email')
+        figure.form-item
+          label.form-label(for='password') Password
+          input.form-input(type='text' id='password')
+        figure.form-item
+          label.form-label(for='confirm') Confirm password
+          input.form-input(type='text' id='confirm')
+        button.sign-up-btn.form-btn
+          span.form-btn-text Create Account

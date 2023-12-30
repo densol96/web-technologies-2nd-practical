@@ -1,4 +1,5 @@
 const Anime = require('../models/animeModel.js');
+const catchAssyncErr = require('../utils/catchAssyncErr.js');
 
 const starSequence = (rating) => {
   const fullStars = Math.floor(rating);
@@ -19,7 +20,7 @@ const starSequence = (rating) => {
   return starsForRender;
 };
 
-exports.getAnime = async (req, res) => {
+exports.getAnime = catchAssyncErr(async (req, res) => {
   const anime = await Anime.findOne({ slug: req.params.slug });
   if (!anime) {
     res.status(404).json({
@@ -32,9 +33,9 @@ exports.getAnime = async (req, res) => {
     anime,
     starSequence,
   });
-};
+});
 
-exports.getOverview = async (req, res) => {
+exports.getOverview = catchAssyncErr(async (req, res) => {
   // Want the overview page to render the latest 5 animes that were posted
   const DOCS_PER_PAGE = 5;
   const SEARCH_BY = { addedAt: -1 };
@@ -47,4 +48,12 @@ exports.getOverview = async (req, res) => {
     renderPages: total > DOCS_PER_PAGE,
     pagesTotal,
   });
+});
+
+exports.login = (req, res) => {
+  res.status(200).render('login');
+};
+
+exports.signUp = (req, res) => {
+  res.status(200).render('signup');
 };

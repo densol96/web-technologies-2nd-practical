@@ -18,7 +18,7 @@ const updateDateFormat = (animes) => {
 
 export const loadAnimes = async () => {
   const response = await fetch(
-    `${ALL_ANIME_API_ROUTE}?sort=${state.sortBy}&page=${state.page}&limit=5`
+    `${ALL_ANIME_API_ROUTE}?sort=${state.sortBy}&page=${state.page}&limit=${state.limit}`
   );
   const data = await response.json();
   state.animes = data.data;
