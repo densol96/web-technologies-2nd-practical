@@ -46,4 +46,8 @@ module.exports = class {
   async frozenAccount() {
     await this.send('security', 'Security alert!');
   }
+
+  async sendPasswordResetLink() {
+    await this.send('passwordReset', 'Password reset link');
+  }
 };

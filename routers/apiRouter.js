@@ -6,8 +6,7 @@ const authController = require('../controllers/authController.js');
 // ANIMES
 router.route('/anime/all').get(animeController.getAllAnimes);
 router.route('/users/sign-up').post(authController.signUp);
-router
-  .route('/users/email-confirmation/:token')
-  .get(authController.confirmEmail);
-router.route('/login').post(authController.login);
+router.route('/users/login').post(authController.login);
+router.route('/users/forgot-password').post(authController.forgotPassword);
+
 module.exports = router;

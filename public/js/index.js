@@ -7,9 +7,14 @@ navBtn.addEventListener('click', function (e) {
 });
 
 // FOR DIFFERENT ROUTES
+import redirectTo from './authforms/redirectTo.js';
 import initOverview from './overview/controller.js';
 import initAnime from './anime/anime.js';
-import { initSignUp } from './authforms/authforms.js';
+import {
+  initSignUp,
+  initLogIn,
+  initForgotPassword,
+} from './authforms/authforms.js';
 
 if (window.location.pathname.startsWith('/overview')) {
   initOverview();
@@ -17,7 +22,15 @@ if (window.location.pathname.startsWith('/overview')) {
   initAnime();
 } else if (window.location.pathname.startsWith('/sign-up')) {
   initSignUp();
-  console.log('Hello');
-} else {
+} else if (window.location.pathname.startsWith('/email-confirmation')) {
+  redirectTo('/login', 5);
+} else if (window.location.pathname.startsWith('/login')) {
+  initLogIn();
+} else if (window.location.pathname.startsWith('/forgot-password')) {
+  initForgotPassword();
+}
+// else if () {
+// }
+else {
   alert('Unknown route!');
 }

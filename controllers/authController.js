@@ -31,7 +31,10 @@ const sendCookie = (user, res) => {
   res.status(201).json({
     status: 'success',
     jwt: jwtToken,
-    username: user.username,
+    data: {
+      message: 'You have loggen in!',
+      user: user.username,
+    },
   });
 };
 
@@ -48,7 +51,7 @@ exports.signUp = catchAssyncErr(async (req, res, next) => {
   await newUser.save({ validateBeforeSave: false });
   const confirmUrl = `${req.protocol}://${req.get(
     'host'
-  )}/api/v1/users/email-confirmation/${token}`;
+  )}/email-confirmation/${token}`;
 
   // In case there were some problems with sending the email confirmation token - delete the user, because it will be imppossible for the client to activate it
   try {
@@ -75,21 +78,24 @@ exports.confirmEmail = catchAssyncErr(async (req, res, next) => {
     .update(req.params.token)
     .digest('hex');
   const user = await User.findOne({ emailConfirmationToken: tokenHash });
+  // In case it was already activated or some other error with the token, handle control to errorController
+  if (!user)
+    return next(
+      new AppError(
+        'Invalid email confirmation link! If you are unable to login, get in touch with the adminitrator!',
+        404
+      )
+    );
+
+  // Else if user has been activated
   user.emailConfirmed = true;
   user.emailConfirmationToken = undefined;
   await user.save({ validateBeforeSave: false });
-  res.status(201).json({
-    status: 'success',
-    message:
-      'Your email has been confirmed! You can now log in using the form!',
-  });
-  // Redirect to the "success" page with the passed-on message for render
-  // req.successText =
-  //   'Your email has been confirmed! You can now log in using the form!';
-  // req.redirectUrl = '/login';
-  // res.redirect('/success-page');
+
+  // All good, then next to viewer controller to render the success page for the user
+  req.username = user.username;
+  next();
 });
-// JWT for expiry time uses amount of SECONDS (num) or a special format string like 3d, 2h etc.
 
 exports.login = catchAssyncErr(async (req, res, next) => {
   const { email, password } = req.body;
@@ -147,4 +153,72 @@ exports.login = catchAssyncErr(async (req, res, next) => {
   }
   // If all checks did not trigger, then hand out the JWT
   sendCookie(user, res);
+});
+
+exports.forgotPassword = catchAssyncErr(async (req, res, next) => {
+  // Checks first
+  const { email } = req.body;
+  if (!email) {
+    return next(
+      new AppError(
+        'You need to provide an email where to send a new password!'
+      ),
+      400
+    );
+  }
+  const user = await User.findOne({ email });
+  if (!user) {
+    return next(new AppError('No user found with such email!'), 404);
+  }
+  // Create token for email and save encrypted version in DB
+  const token = user.createPasswordResetToken();
+  await user.save({ validateBeforeSave: false });
+
+  // Send the reset link to the user via email
+  const resetUrl = `${req.protocol}://${req.get(
+    'host'
+  )}/password-reset/${token}`;
+  try {
+    await new Email(user, resetUrl).sendPasswordResetLink();
+  } catch (err) {
+    // In case of some error, clear the fields, update the document in DB and throw an error to error controller
+    user.passwordResetToken = undefined;
+    user.passwordResetExpiry = undefined;
+    await user.save({ validateBeforeSave: false });
+    throw new AppError(
+      'Password reset is currently unavailable! Please try again later!',
+      503
+    );
+  }
+  res.status(200).json({
+    status: 'success',
+    message: 'The password reset link has been sent to your email',
+  });
+});
+
+exports.resetPassword = catchAssyncErr(async (req, res, next) => {
+  const { token } = req.params;
+  const encryptedToken = crypto
+    .createHash('sha256')
+    .update(token)
+    .digest('hex');
+  const user = await User.findOne({ passwordResetToken: encryptedToken });
+  if (!user) {
+    return next(
+      new AppError(
+        'Invalid reset token! If you are sure this is a mistake, get in touch with the admin!',
+        404
+      )
+    );
+  }
+  if (!user.validateResetTokenExpiryDate) {
+    return next(
+      new AppError(
+        'Reset token has expired.. Try to use a new one (request it first!)',
+        404
+      )
+    );
+  }
+  req.username = user.username;
+  next();
 });

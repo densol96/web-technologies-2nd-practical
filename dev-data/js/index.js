@@ -18,5 +18,5 @@ if (window.location.pathname.startsWith('/overview')) {
 } else if (window.location.pathname.startsWith('/dev-data/signup')) {
   initSignUp();
 } else {
-  alert('Unknown route!');
+  // alert('Unknown route!');
 }

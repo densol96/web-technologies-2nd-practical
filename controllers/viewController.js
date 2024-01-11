@@ -23,10 +23,10 @@ const starSequence = (rating) => {
 exports.getAnime = catchAssyncErr(async (req, res) => {
   const anime = await Anime.findOne({ slug: req.params.slug });
   if (!anime) {
-    res.status(404).json({
-      status: 'fail',
-      message: 'No such page!',
-    });
+    const err = new AppError('Page not found', 404);
+    err.name = 'Page not found';
+    err.errors = 'No anime on the portal has this URL';
+    return next(err);
   }
   const rating = starSequence(anime.rating);
   res.status(201).render('anime', {
@@ -56,4 +56,20 @@ exports.login = (req, res) => {
 
 exports.signUp = (req, res) => {
   res.status(200).render('signup');
+};
+
+exports.emailConfirmed = (req, res) => {
+  res.status(200).render('emailConfirmed', {
+    username: req.username,
+  });
+};
+
+exports.forgotPassword = (req, res) => {
+  res.status(200).render('forgotPassword');
+};
+
+exports.resetPassword = (req, res) => {
+  res.status(200).render('resetPassword', {
+    username: req.username,
+  });
 };

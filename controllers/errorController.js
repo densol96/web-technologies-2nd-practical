@@ -31,12 +31,23 @@ const handleDuplicateFieldsErrorDB = (err) => {
 };
 
 const sendErrDev = (err, req, res) => {
-  res.status(err.statusCode || 500).json({
-    status: err.status,
-    message: err.message,
-    name: err.name,
-    errors: err.errors,
-  });
+  // API
+  if (req.originalUrl.startsWith('/api')) {
+    res.status(err.statusCode || 500).json({
+      status: err.status,
+      message: err.message,
+      name: err.name,
+      errors: err.errors,
+    });
+  }
+  // THE PORTAL ITSELF
+  else {
+    res.status(err.statusCode).render('error', {
+      errorName: err.name,
+      errors: err.errors,
+      message: err.message,
+    });
+  }
 };
 
 module.exports = (err, req, res, next) => {

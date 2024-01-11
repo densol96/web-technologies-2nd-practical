@@ -107,12 +107,21 @@ const createRandomToken = function (docField) {
     .update(randomToken)
     .digest('hex');
   this[docField] = encryptedToken;
+  // For password resets the token will only be valid for 5 minutes since otherwise it could be a securitu issue
+  if (docField === 'passwordResetToken') {
+    const fiveMins = 1000 * 60 * 5;
+    this['passwordResetExpiry'] = new Date(Date.now() + fiveMins);
+  }
   return randomToken;
 };
 
 // Define as static methods so it is available on the user document (to be called in the auth controller)
 userSchema.methods.createEmailConfirmationToken = function () {
   return createRandomToken.call(this, 'emailConfirmationToken');
+};
+
+userSchema.methods.createPasswordResetToken = function () {
+  return createRandomToken.call(this, 'passwordResetToken');
 };
 
 userSchema.methods.checkPassword = async (input, password) => {
@@ -122,6 +131,13 @@ userSchema.methods.checkPassword = async (input, password) => {
 userSchema.methods.accountLocked = function () {
   if (this.ban) {
     return Date.now() < this.ban;
+  }
+  return false;
+};
+
+userSchema.methods.validateResetTokenExpiryDate = function () {
+  if (this.passwordResetExpiry) {
+    return Date.now() < this.passwordResetExpiry;
   }
   return false;
 };

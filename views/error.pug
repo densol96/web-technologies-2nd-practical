@@ -1,0 +1,13 @@
+extends base
+
+block content
+  div.generic-message.alert-error#err-no-redirect
+    h2.alert-name
+      ion-icon(name="close-circle-outline")
+      p.error-name= errorName
+    .message-details
+      - if (errors)
+        each error in errors
+          p.message-info= error
+      - else
+        p.message-info= message

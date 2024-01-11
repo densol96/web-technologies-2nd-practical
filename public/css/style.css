@@ -700,11 +700,33 @@ main {
   width: 70rem;
 }
 
-/* !!!!!!! OVERVIEW PAGE!!!!! */
-.article {
-  /* border: 2px solid green; */
+/* !!!!!! SPINNER !!!!!!! */
+.loader {
+  width: 4rem;
+  height: 4rem;
+  border: 5px solid #555;
+  border-bottom-color: transparent;
+  border-radius: 50%;
+  display: inline-block;
+  box-sizing: border-box;
+  animation: rotation 1s linear infinite;
 }
 
+.form-btn .loader {
+  width: 2rem;
+  height: 2rem;
+}
+
+@keyframes rotation {
+  0% {
+    transform: rotate(0deg);
+  }
+  100% {
+    transform: rotate(360deg);
+  }
+}
+
+/* !!!!!!! OVERVIEW PAGE!!!!! */
 .overview-layout {
   display: flex;
   flex-direction: column;
@@ -772,7 +794,7 @@ main {
 }
 
 .card-description {
-  margin-top: 3rem;
+  margin-top: 1.2rem;
   line-height: 1.6;
 }
 
@@ -798,41 +820,6 @@ main {
   color: #fab005;
 }
 
-/* PAGINATION */
-.pagination {
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  gap: 5rem;
-}
-
-.pagination-btn {
-  background: none;
-  border: 1px solid black;
-  border-radius: 50%;
-  padding: 1rem;
-  display: flex;
-  justify-content: center;
-  align-items: center;
-}
-
-.page-num {
-  color: #555;
-  font-size: 1.6rem;
-  padding-left: 0.5rem;
-}
-
-.pagination-icon {
-  width: 2.4rem;
-  height: 2.4rem;
-}
-
-.pagination-btn:hover {
-  color: #fff;
-  background-color: #555;
-  cursor: pointer;
-}
-
 .end-of {
   display: flex;
   justify-content: center;
@@ -848,25 +835,14 @@ main {
   font-size: 1.2rem;
 }
 
-/* !!!!!!! SPINNER !!!!!!! */
-.loader {
-  width: 4rem;
-  height: 4rem;
-  border: 5px solid #555;
-  border-bottom-color: transparent;
-  border-radius: 50%;
-  display: inline-block;
-  box-sizing: border-box;
-  animation: rotation 1s linear infinite;
+.last-line {
+  display: flex;
+  justify-content: space-between;
+  margin-top: auto;
 }
 
-@keyframes rotation {
-  0% {
-    transform: rotate(0deg);
-  }
-  100% {
-    transform: rotate(360deg);
-  }
+.added-at {
+  font-size: 1.2rem;
 }
 
 /* SIGN UP AND LOGIN FORMS */
@@ -936,6 +912,7 @@ main {
   margin-top: 1rem;
   border-radius: 5px;
   transition: all 300ms;
+  width: 100%;
 }
 
 .form-btn:hover {
@@ -959,20 +936,47 @@ main {
   z-index: 100;
 }
 
+/* ADD FORGOT PASSWORD ON LOGIN PAGE */
+/* Container */
+.log-btns {
+  width: 100%;
+  display: flex;
+  gap: 1rem;
+}
+
+.forgot-psswd-link {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+/* ALERTS */
 .alert {
   border-radius: 10px;
   position: absolute;
   background-color: white;
   left: 50%;
   transform: translate(-50%, -100%);
-  padding: 4rem 10rem;
+  padding: 2rem 7rem;
   z-index: 10000;
   font-size: 2rem;
   transition: all 500ms;
+  display: flex;
+  flex-direction: column;
+  gap: 1.6rem;
 }
 
-.alert.opened {
-  transform: translate(-50%, 100%);
+.close-alert-btn {
+  content: 'X';
+  font-weight: 700;
+  font-size: 3rem;
+  position: absolute;
+  top: 1rem;
+  right: 1rem;
+}
+
+.close-alert-btn:hover {
+  cursor: pointer;
 }
 
 .alert-success {
@@ -983,6 +987,111 @@ main {
   border: 5px solid #e03131;
 }
 
-.alert.alert-success.opened {
-  transform: translate(-50%, 100%);
+.alert.opened {
+  transform: translate(-50%, 20%);
+}
+
+.alert-name {
+  font-size: 3rem;
+  font-weight: 500;
+  display: flex;
+  align-items: center;
+  gap: 0.7rem;
+}
+
+.alert-error-heading {
+  color: #e03131;
+}
+
+.alert-success-heading {
+  color: #37b24d;
+}
+
+.alert-details {
+  display: flex;
+  flex-direction: column;
+  gap: 1rem;
+}
+
+.alert-info {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+}
+
+/* !!!!! GENERIC MESSAGE !!!!! */
+.generic-message {
+  width: 80%;
+  margin: 0 auto;
+  display: flex;
+  flex-direction: column;
+  gap: 2.2rem;
+  padding: 2rem 7rem;
+  border-radius: 12px;
+}
+
+.message-details {
+  font-size: 2rem;
+  display: flex;
+  flex-direction: column;
+  gap: 1rem;
+}
+
+.message-to {
+  font-weight: 500;
+}
+
+.message-spinner-container {
+  display: flex;
+  align-items: center;
+  gap: 1rem;
+  margin: 3rem auto 0;
+}
+
+.redirecting-text {
+  font-size: 1.6rem;
+}
+
+.message-spinner {
+  width: 1.8rem;
+  height: 1.8rem;
+  border: 3px solid #555;
+  border-bottom-color: transparent;
+}
+
+.msg-redirect-link {
+  padding-bottom: 0.2rem;
+  border-bottom: 2px solid blue;
+  color: blue;
+  transition: all 300ms;
+}
+
+.msg-redirect-link:hover {
+  border-bottom-color: transparent;
+}
+
+/* ERROR MESSAGE */
+.message-info {
+  line-height: 1.6;
+}
+
+/* PASSWORD RESET PAGE */
+.psswd-reset-form {
+  display: flex;
+  flex-direction: column;
+  gap: 1rem;
+  width: 80%;
+  margin: 0 auto;
+  border-radius: 12px;
+  box-shadow: rgba(0, 0, 0, 0.212) 0px 0px 15px 1px;
+  padding: 2rem;
+}
+
+.psswd-reset-form .form-btn,
+.psswd-reset-form .form-input {
+  width: 50%;
+}
+
+.form-label {
+  font-size: 2rem;
 }

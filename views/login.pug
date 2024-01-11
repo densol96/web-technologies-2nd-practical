@@ -10,6 +10,9 @@ block content
           input.form-input(type='text' id='email')
         figure.form-item
           label.form-label(for='password') Password
-          input.form-input(type='text' id='password')
-        button.sign-up-btn.form-btn
-          span.form-btn-text Login
+          input.form-input(type='password' id='password')
+        div.log-btns
+          button.login-btn.form-btn
+            span.form-btn-text Login
+          a.forgot-psswd-link.form-btn(href='/forgot-password')
+            span.form-btn-text Forgot password

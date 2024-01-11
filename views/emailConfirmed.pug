@@ -1,0 +1,15 @@
+extends base
+
+block content
+  div.generic-message.alert-success
+    h2.alert-name Email confirmed!
+    div.message-details
+      p.message-info
+        span.message-to= `${username}, Your email has been confirmed!`
+      p.message-info You can now log in to your account
+      div.message-spinner-container
+        div.d-flex.justify-content-center
+          span.loader.message-spinner
+        p.redirecting-text
+          | Redirecting to 
+          a.msg-redirect-link(href="/login") Login Page...

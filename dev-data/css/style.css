@@ -964,14 +964,6 @@ main {
   cursor: pointer;
 }
 
-.alert-success {
-  border: 5px solid #37b24d;
-}
-
-.alert-error {
-  border: 5px solid #e03131;
-}
-
 .alert.opened {
   transform: translate(-50%, 20%);
 }
@@ -982,6 +974,14 @@ main {
   display: flex;
   align-items: center;
   gap: 0.7rem;
+}
+
+.alert-success {
+  border: 5px solid #37b24d;
+}
+
+.alert-error {
+  border: 5px solid #e03131;
 }
 
 .alert-error-heading {
@@ -1002,4 +1002,76 @@ main {
   display: flex;
   align-items: center;
   gap: 0.5rem;
+}
+
+/* !!!!! GENERIC MESSAGE !!!!! */
+.generic-message {
+  width: 80%;
+  margin: 0 auto;
+  display: flex;
+  flex-direction: column;
+  gap: 2.2rem;
+  padding: 2rem 7rem;
+  border-radius: 12px;
+}
+
+.message-details {
+  font-size: 2rem;
+  display: flex;
+  flex-direction: column;
+  gap: 1rem;
+}
+
+.message-to {
+  font-weight: 500;
+}
+
+.message-spinner-container {
+  display: flex;
+  align-items: center;
+  gap: 1rem;
+  margin: 3rem auto 0;
+}
+
+.redirecting-text {
+  font-size: 1.6rem;
+}
+
+.message-spinner {
+  width: 1.8rem;
+  height: 1.8rem;
+  border: 3px solid #555;
+  border-bottom-color: transparent;
+}
+
+.msg-redirect-link {
+  padding-bottom: 0.2rem;
+  border-bottom: 2px solid blue;
+  color: blue;
+  transition: all 300ms;
+}
+
+.msg-redirect-link:hover {
+  border-bottom-color: transparent;
+}
+
+/* PASSWORD RESET PAGE */
+.psswd-reset-form {
+  display: flex;
+  flex-direction: column;
+  gap: 1rem;
+  width: 80%;
+  margin: 0 auto;
+  border-radius: 12px;
+  box-shadow: rgba(0, 0, 0, 0.212) 0px 0px 15px 1px;
+  padding: 2rem;
+}
+
+.psswd-reset-form .form-btn,
+.psswd-reset-form .form-input {
+  width: 50%;
+}
+
+.form-label {
+  font-size: 2rem;
 }
