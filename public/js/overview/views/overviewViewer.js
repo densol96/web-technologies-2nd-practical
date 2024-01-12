@@ -80,7 +80,9 @@ const createClass = () => {
                         .toString()
                         .slice(0, 21)}</span>
                     </span>
-                    <a class="read-more blue-under-link" href="/anime/{{ card.slug }}">Read more...</a>
+                    <a class="read-more blue-under-link" href="/anime/${
+                      card.slug
+                    }">Read more...</a>
                   </div>
                 </div>`;
       }

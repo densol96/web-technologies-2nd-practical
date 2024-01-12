@@ -17,10 +17,6 @@ router.get(
   viewContoller.emailConfirmed
 );
 router.get('/forgot-password', viewContoller.forgotPassword);
-router.get(
-  '/password-reset/:token',
-  authController.resetPassword,
-  viewContoller.resetPassword
-);
+router.get('/password-reset/:token', viewContoller.resetPassword);
 
 module.exports = router;

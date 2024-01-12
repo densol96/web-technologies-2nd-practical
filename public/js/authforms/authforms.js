@@ -118,7 +118,6 @@ export const initForgotPassword = () => {
     } catch (err) {
       showAlert('error', 'Something went wrong..', err.response.data.message);
     }
-
     btn.innerHTML = `<span class="form-btn-text">Send reset token</span>`;
   };
 
@@ -128,13 +127,44 @@ export const initForgotPassword = () => {
   });
 };
 
-export const initResetPassword = () => {
+export const initPasswordReset = () => {
   const newPassword = document.querySelector('#new');
   const confirmPassword = document.querySelector('#confirm');
-  const form = document.querySelector('.passwd-reset-form');
+  const form = document.querySelector('.psswd-reset-form');
   const btn = document.querySelector('.send-reset-token');
+  const resetToken = window.location.pathname.slice(16);
 
-  const resetPassword = async (username, password, confirm) => {
-    btn.innerHTML = spinner;
+  const clearInput = () => {
+    newPassword.value = '';
+    confirmPassword.value = '';
+    btn.innerHTML = `<span class="form-btn-text">Change password</span>`;
   };
+
+  const resetPassword = async (token, password, passwordConfirm) => {
+    btn.innerHTML = spinner;
+    try {
+      const result = await axios({
+        method: 'POST',
+        url: `http://127.0.0.1:3000/api/v1/password-reset/${token}`,
+        data: {
+          password,
+          passwordConfirm,
+        },
+      });
+      const msg = result.data.message;
+      const redirectMsg = 'You are being redirected..';
+      showAlert('success', 'Success!', [msg, redirectMsg]);
+      redirectTo('/login', 3);
+    } catch (err) {
+      console.log(err);
+      const errorMessage = err.response.data.message;
+      showAlert('error', 'Something is not right..', errorMessage);
+    }
+    clearInput();
+  };
+
+  form.addEventListener('submit', (e) => {
+    e.preventDefault();
+    resetPassword(resetToken, newPassword.value, confirmPassword.value);
+  });
 };

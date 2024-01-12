@@ -14,6 +14,7 @@ import {
   initSignUp,
   initLogIn,
   initForgotPassword,
+  initPasswordReset,
 } from './authforms/authforms.js';
 
 if (window.location.pathname.startsWith('/overview')) {
@@ -28,9 +29,8 @@ if (window.location.pathname.startsWith('/overview')) {
   initLogIn();
 } else if (window.location.pathname.startsWith('/forgot-password')) {
   initForgotPassword();
-}
-// else if () {
-// }
-else {
+} else if (window.location.pathname.startsWith('/password-reset')) {
+  initPasswordReset();
+} else {
   alert('Unknown route!');
 }

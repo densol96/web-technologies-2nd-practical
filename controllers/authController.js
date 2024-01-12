@@ -151,7 +151,9 @@ exports.login = catchAssyncErr(async (req, res, next) => {
     }
     return await user.save({ validateBeforeSave: false });
   }
-  // If all checks did not trigger, then hand out the JWT
+  // If all checks did not trigger, update wrong password counter and then hand out the JWT
+  user.loginAttempts = 0;
+  await user.save({ validateBeforeSave: false });
   sendCookie(user, res);
 });
 
@@ -198,6 +200,8 @@ exports.forgotPassword = catchAssyncErr(async (req, res, next) => {
 
 exports.resetPassword = catchAssyncErr(async (req, res, next) => {
   const { token } = req.params;
+  const { password, passwordConfirm } = req.body;
+
   const encryptedToken = crypto
     .createHash('sha256')
     .update(token)
@@ -211,7 +215,7 @@ exports.resetPassword = catchAssyncErr(async (req, res, next) => {
       )
     );
   }
-  if (!user.validateResetTokenExpiryDate) {
+  if (!user.validateResetTokenExpiryDate()) {
     return next(
       new AppError(
         'Reset token has expired.. Try to use a new one (request it first!)',
@@ -219,6 +223,15 @@ exports.resetPassword = catchAssyncErr(async (req, res, next) => {
       )
     );
   }
-  req.username = user.username;
-  next();
+
+  user.password = password;
+  user.passwordConfirm = passwordConfirm;
+  user.passwordResetToken = undefined;
+  user.passwordResetExpiry = undefined;
+
+  await user.save();
+  res.status(200).json({
+    status: 'success',
+    message: 'Your password has been changed! You can now log in..',
+  });
 });
