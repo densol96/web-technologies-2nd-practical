@@ -52,6 +52,9 @@ const userSchema = new mongoose.Schema({
       message: 'Password and confirm password not match',
     },
   },
+  passwordChangedAt: {
+    type: Date,
+  },
   role: {
     type: String,
     // admin will have acces to adding and editing animes + CMS over animes/reviews/users
@@ -88,6 +91,15 @@ userSchema.pre('save', async function (next) {
   this.password = await bcrypt.hash(this.password, 12);
   // validators in schema run before middleware => only relevant to user input sent via AJAX and handled in the controller
   this.passwordConfirm = undefined;
+  next();
+});
+
+// Update password change date/time
+userSchema.pre('save', function (next) {
+  // If password not changed or this is a new document in DB - return
+  if (!this.isModified('password') || this.isNew) return next();
+  // TEST FOR ERRORS
+  this.passwordChangedAt = Date.now();
   next();
 });
 
@@ -141,6 +153,15 @@ userSchema.methods.validateResetTokenExpiryDate = function () {
   }
   return false;
 };
+
+userSchema.methods.passwordChangedAfter = function (timestampJWT) {
+  if (this.passwordChangedAt) {
+    const changedStampInSeconds = this.passwordChangedAt.getTime() / 1000;
+    return timestampJWT < changedStampInSeconds;
+  }
+  return false;
+};
+
 const User = mongoose.model('User', userSchema);
 
 module.exports = User;

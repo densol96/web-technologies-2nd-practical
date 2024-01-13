@@ -6,10 +6,12 @@ const Email = require('../utils/email.js');
 const bcrypt = require('bcryptjs');
 const jwt = require(`jsonwebtoken`);
 const crypto = require(`crypto`);
+const { promisify } = require('util');
 
 const signToken = (id) => {
   return jwt.sign({ id }, process.env.JWT_SECRET, {
-    expiresIn: +process.env.JWT_EXPIRES_IN * 24 * 60 * 60 * 1000,
+    // expiresIn passed in as seconds
+    expiresIn: +process.env.JWT_EXPIRES_IN * 24 * 60 * 60,
   });
 };
 
@@ -234,4 +236,36 @@ exports.resetPassword = catchAssyncErr(async (req, res, next) => {
     status: 'success',
     message: 'Your password has been changed! You can now log in..',
   });
+});
+
+exports.forLoggedUsers = catchAssyncErr(async (req, res, next) => {
+  if (req.cookies.jwt) {
+    let decoded;
+    try {
+      decoded = await promisify(jwt.verify)(
+        req.cookies.jwt,
+        process.env.JWT_SECRET
+      );
+    } catch (err) {
+      // In case the JWT has not been verified(signatures not match or simply expired), just wanna continue as logged out user
+      return next();
+    }
+
+    const user = await User.findOne({ _id: decoded.id });
+
+    // Check if user still exists/active
+    if (!user) {
+      return next();
+    }
+
+    // Check if there was a password change since the issue of JWT
+    if (user.passwordChangedAfter(decoded.iat)) {
+      return next();
+    }
+
+    // Finally, after all checks, if we are here ==> we have a logged in user
+    // Our SSR engine(pug) has access to 'locals'
+    res.locals.user = user;
+  }
+  next();
 });

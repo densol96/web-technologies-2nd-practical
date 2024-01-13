@@ -4,6 +4,9 @@ const router = express.Router();
 const authController = require('../controllers/authController.js');
 const viewContoller = require('../controllers/viewController.js');
 
+// Check if the client is a holder of JWT
+router.use(authController.forLoggedUsers);
+
 router.get('/', (req, res) => {
   res.redirect('/overview');
 });
