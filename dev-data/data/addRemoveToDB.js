@@ -1,6 +1,7 @@
 const dotenv = require('dotenv');
 const fs = require('fs');
 const Anime = require('../../models/animeModel.js');
+const Review = require('../../models/reviewModel.js');
 const mongoose = require('mongoose');
 
 dotenv.config({ path: `${__dirname}/../../config.env` });
@@ -21,13 +22,16 @@ mongoose
 const animes = fs.readFileSync(`${__dirname}/moreAnimes.json`);
 const animesDataObject = JSON.parse(animes);
 
+const reviews = fs.readFileSync(`${__dirname}/reviews.json`);
+const reviewsObject = JSON.parse(reviews);
 // const single = fs.readFileSync(`${__dirname}/moreAnimes.json`);
 // const singleObject = JSON.parse(single);
 // console.log(singleObject);
 
 const importData = async () => {
   try {
-    await Anime.create(animesDataObject);
+    // await Anime.create(animesDataObject);
+    await Review.create(reviewsObject);
     console.log('Added;');
   } catch (err) {
     console.log('💥 UNABLE to save Anime Data!');
@@ -72,11 +76,11 @@ const terminalApp = async () => {
   process.exit();
 };
 
-// terminalApp();
+terminalApp();
 // mongosh "mongodb+srv://cluster0.8gudcwj.mongodb.net/" --apiVersion 1 --username deniss11sol
 const upd = async () => {
   await Anime.updateMany({}, [
     { $set: { reviewsTotal: { $size: '$reviews' } } },
   ]);
 };
-upd();
+// upd();

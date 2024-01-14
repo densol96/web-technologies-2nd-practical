@@ -94,6 +94,10 @@ a {
   border-bottom-color: var(--font-color-light);
 }
 
+.no-underline {
+  margin-right: auto;
+}
+
 .nav-list .no-underline:hover {
   border-bottom-color: transparent;
 }
@@ -136,9 +140,9 @@ a {
   flex: 1;
 }
 
-.sign-up {
+/* .sign-up {
   margin-left: auto;
-}
+} */
 
 /* MOBILE NAV */
 .btn-mobile-nav {
@@ -810,6 +814,7 @@ main {
   background-color: #f1f3f5;
   justify-content: center;
   align-items: center;
+  max-width: 70rem;
 }
 
 .no-comment-message {
@@ -1094,4 +1099,29 @@ main {
 
 .form-label {
   font-size: 2rem;
+}
+
+/* LOGOUT BTN */
+.logout-btn {
+  padding: 1rem;
+  background: none;
+  border: none;
+  color: white;
+}
+
+.logout-btn:hover {
+  cursor: pointer;
+}
+
+/* LOGGED IN NAV MENU---- PROFILE */
+.nav-profile-pic {
+  width: 4rem;
+  border-radius: 50%;
+}
+
+.user-profile-link {
+  display: flex;
+  height: 100%;
+  align-items: center;
+  gap: 1rem;
 }

@@ -4,8 +4,8 @@ const router = express.Router();
 const authController = require('../controllers/authController.js');
 const viewContoller = require('../controllers/viewController.js');
 
-// Check if the client is a holder of JWT
-router.use(authController.forLoggedUsers);
+// Check if the client is a holder of JWT cause on it will depend how we render the pages
+router.use(authController.idLoggedInSession);
 
 router.get('/', (req, res) => {
   res.redirect('/overview');
@@ -21,5 +21,5 @@ router.get(
 );
 router.get('/forgot-password', viewContoller.forgotPassword);
 router.get('/password-reset/:token', viewContoller.resetPassword);
-
+router.get('/logout', authController.logout);
 module.exports = router;

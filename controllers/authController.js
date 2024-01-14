@@ -238,7 +238,7 @@ exports.resetPassword = catchAssyncErr(async (req, res, next) => {
   });
 });
 
-exports.forLoggedUsers = catchAssyncErr(async (req, res, next) => {
+exports.idLoggedInSession = catchAssyncErr(async (req, res, next) => {
   if (req.cookies.jwt) {
     let decoded;
     try {
@@ -264,8 +264,57 @@ exports.forLoggedUsers = catchAssyncErr(async (req, res, next) => {
     }
 
     // Finally, after all checks, if we are here ==> we have a logged in user
-    // Our SSR engine(pug) has access to 'locals'
+    // Our SSR engine(pug) has access to variables inside 'locals'
     res.locals.user = user;
   }
   next();
 });
+
+exports.protect = catchAssyncErr(async (req, res, next) => {
+  const token = req.cookies.jwt;
+  if (!token)
+    throw new AppError(
+      'This is a protected route! You must be logged in!',
+      403
+    );
+
+  const decoded = await promisify(jwt.verify)(
+    req.cookies.jwt,
+    process.env.JWT_SECRET
+  );
+
+  const user = await User.findOne({ _id: decoded.id });
+
+  // Check if user still exists/active
+  if (!user) {
+    throw new AppError(
+      'You have not passed authentication to access this resourse!',
+      403
+    );
+  }
+
+  if (user.passwordChangedAfter(decoded.iat)) {
+    throw new AppError(
+      'Your login session has expired, try to log in again!',
+      403
+    );
+  }
+
+  // Grant access
+  req.user = user;
+  next();
+});
+
+exports.logout = (req, res) => {
+  res.cookie('jwt', 'loggedOutInvalidJwtCookie', {
+    expires: new Date(Date.now() + 1000), // +1s
+    httpOnly: true,
+    secure: process.env.NODE_ENV.trim() === 'production',
+    sameSite: 'Strict',
+  });
+
+  res.status(201).json({
+    success: 'success',
+    message: 'You have been logged out',
+  });
+};

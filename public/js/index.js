@@ -9,14 +9,23 @@ navBtn.addEventListener('click', function (e) {
 // FOR DIFFERENT ROUTES
 import redirectTo from './authforms/redirectTo.js';
 import initOverview from './overview/controller.js';
-import initAnime from './anime/anime.js';
+// import initAnime from './anime/anime.js';
+import initAnime from './animeMVC/controller.js';
 import {
   initSignUp,
   initLogIn,
   initForgotPassword,
   initPasswordReset,
+  initLogOut,
 } from './authforms/authforms.js';
 
+// If user logged in
+const logOutBtn = document.querySelector('.logout-btn');
+if (logOutBtn) {
+  initLogOut(logOutBtn);
+}
+
+// Depending on the route
 if (window.location.pathname.startsWith('/overview')) {
   initOverview();
 } else if (window.location.pathname.startsWith('/anime')) {

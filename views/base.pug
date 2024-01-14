@@ -42,10 +42,21 @@ html(lang="en")
               input.search-field(type="search", placeholder="Search anime...")
               button.search-button
                 ion-icon.search-icon(name="search-outline")
-          li.sign-up
-            a(href="/sign-up") Sign Up
-          li.login
-            a(href="/login") Login
+          
+          - if (user)
+            li.profile
+              a.user-profile-link(href='/me')
+                //- div.nav-profile-img-container Hello
+                img(src=`/img/users/${user.avatar}` class='nav-profile-pic')
+                span.user-name= user.username 
+            li.logout
+              //- a(href="/logout") Logout
+              button.logout-btn Logout
+          - else 
+            li.sign-up
+              a(href="/sign-up") Sign Up
+            li.login
+              a(href="/login") Login
         button.btn-mobile-nav
           ion-icon.icon-mobile-close.icon-nav(name="close-outline")
           ion-icon.icon-mobile-open.icon-nav(name="menu-outline")

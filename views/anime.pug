@@ -76,21 +76,27 @@ block content
             ion-icon.summary-icon(name="pencil-outline")
             h3.summary-title Leave a comment
           div.no-border
-          
-        form.leave-review(action="")
-          div.leave-review-rating
-            label.review-label Rate the anime:
-            div.rate-icons-stars
-              ion-icon.rate-icons-star(name="star-outline", data-value="1")
-              ion-icon.rate-icons-star(name="star-outline", data-value="2")
-              ion-icon.rate-icons-star(name="star-outline", data-value="3")
-              ion-icon.rate-icons-star(name="star-outline", data-value="4")
-              ion-icon.rate-icons-star(name="star-outline", data-value="5")
+        
+        - if (user)
+          form.leave-review(action="")
+            div.leave-review-rating
+              label.review-label Rate the anime:
+              div.rate-icons-stars
+                ion-icon.rate-icons-star(name="star-outline", data-value="1")
+                ion-icon.rate-icons-star(name="star-outline", data-value="2")
+                ion-icon.rate-icons-star(name="star-outline", data-value="3")
+                ion-icon.rate-icons-star(name="star-outline", data-value="4")
+                ion-icon.rate-icons-star(name="star-outline", data-value="5")
 
-          div.leave-comment
-            label.review-label(for="comment") Leave a comment:
-            textarea.comment(name="", id="comment", placeholder="Type your review/comment here...")
-          button.send-comment Send
+            div.leave-comment
+              label.review-label(for="comment") Leave a comment:
+              textarea.comment(name="", id="comment", placeholder="Type your review/comment here...")
+            button.send-comment Send
+        - else 
+          div.no-comment
+              p.no-comment-message
+                ion-icon(name="close-circle-outline")
+                span.no-message-text Only registered users can leave comments
 
       section.all-reviews
         div.summary-title-container

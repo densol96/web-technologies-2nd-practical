@@ -1,4 +1,4 @@
-import { ALL_ANIME_API_ROUTE } from './helper.js';
+import { ALL_ANIME_API_ROUTE } from '../helper.js';
 
 export const state = {
   page: 1,

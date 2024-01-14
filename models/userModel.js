@@ -127,7 +127,7 @@ const createRandomToken = function (docField) {
   return randomToken;
 };
 
-// Define as static methods so it is available on the user document (to be called in the auth controller)
+// Define as INSTANCE methods so it is available on the user document (to be called in the auth controller)
 userSchema.methods.createEmailConfirmationToken = function () {
   return createRandomToken.call(this, 'emailConfirmationToken');
 };

@@ -1,5 +1,10 @@
 import { showAlert, hideAlert } from '../alerts.js';
 import redirectTo from './redirectTo.js';
+import {
+  SIGN_UP_API_ROUTE,
+  LOGIN_API_ROUTE,
+  LOGOUT_API_ROUTE,
+} from '../helper.js';
 
 const spinner = `
                 <div class="d-flex justify-content-center">
@@ -26,7 +31,7 @@ export const initSignUp = () => {
     try {
       const result = await axios({
         method: 'POST',
-        url: 'http://127.0.0.1:3000/api/v1/users/sign-up',
+        url: SIGN_UP_API_ROUTE,
         data: {
           username,
           email,
@@ -72,7 +77,7 @@ export const initLogIn = () => {
     try {
       const result = await axios({
         method: 'POST',
-        url: 'http://127.0.0.1:3000/api/v1/users/login',
+        url: LOGIN_API_ROUTE,
         data: {
           email,
           password,
@@ -98,6 +103,27 @@ export const initLogIn = () => {
   });
 };
 
+export const initLogOut = (btn) => {
+  const logUserOut = async () => {
+    try {
+      // /users/logout
+      const result = await axios({
+        method: 'GET',
+        url: LOGOUT_API_ROUTE,
+      });
+      showAlert('success', 'Logout successful!', [
+        result.data.message,
+        'You are being redirected...',
+      ]);
+      redirectTo('/overview', 1.5);
+    } catch (err) {
+      console.log(err);
+      showAlert('error', 'Loggin out went wrong...', 'Something went wrong...');
+    }
+  };
+  btn.addEventListener('click', logUserOut);
+};
+
 export const initForgotPassword = () => {
   const btn = document.querySelector('.send-reset-token');
   const email = document.querySelector('#email');
@@ -109,7 +135,7 @@ export const initForgotPassword = () => {
     try {
       const result = await axios({
         method: 'POST',
-        url: 'http://127.0.0.1:3000/api/v1/users/forgot-password',
+        url: FORGOT_PASSWORD_API_ROUTE,
         data: {
           email,
         },

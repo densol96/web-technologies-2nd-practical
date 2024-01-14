@@ -1,5 +1,5 @@
 import * as model from './model.js';
-import overviewView from './views/overviewViewer.js';
+import overviewView from './overviewViewer.js';
 
 const initOverview = () => {
   const updateState = (dropdown, pagesTotal) => {
