@@ -1,4 +1,5 @@
 const mongoose = require('mongoose');
+const Anime = require('./animeModel.js');
 
 const reviewSchema = mongoose.Schema(
   {
@@ -47,7 +48,7 @@ reviewSchema.pre('find', function (next) {
 });
 
 reviewSchema.statics.calculateRatingsAndTotal = async function (animeId) {
-  const statistic = await this.aggregate([
+  const stats = await this.aggregate([
     {
       $match: { anime: animeId },
     },
@@ -59,12 +60,22 @@ reviewSchema.statics.calculateRatingsAndTotal = async function (animeId) {
       },
     },
   ]);
-
-  console.log(statistic);
+  if (stats.length > 0) {
+    const { numOfRatings, averageRating } = stats[0];
+    await Anime.findByIdAndUpdate(animeId, {
+      reviewsTotal: numOfRatings,
+      rating: averageRating,
+    });
+  } else {
+    await Anime.findByIdAndUpdate(animeId, {
+      reviewsTotal: 0,
+      rating: undefined,
+    });
+  }
 };
 
-reviewSchema.post('save', function () {
-  this.constructor.calculateRatingsAndTotal();
+reviewSchema.post('save', function (document) {
+  this.constructor.calculateRatingsAndTotal(document.anime);
 });
 
 const Review = mongoose.model('Review', reviewSchema);

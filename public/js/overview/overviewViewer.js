@@ -62,7 +62,7 @@ const createClass = () => {
                     ${rating}                   
                     <span class="card-delimeter"> / </span>
                     <span class="card-reviews"> Reviews: ${
-                      card.reviews.length
+                      card.reviewsTotal
                     }</span>
             </div>
 

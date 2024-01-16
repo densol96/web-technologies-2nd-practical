@@ -6,7 +6,7 @@ mixin descriptionParagraph(single_p)
 mixin singleComment(comment)
   figure.single-comment
     div.img-container-comment
-      img.profile-pic-comment(src="/img/profile.jpg", alt="Profile picture")
+      img.profile-pic-comment(src=`/img/users/${comment.user.avatar}`, alt="Profile picture")
     div.comment-message
       p.comment-rate
         - const seq = starSequence(comment.rating);
@@ -16,25 +16,25 @@ mixin singleComment(comment)
       p.text-comment= comment.comment
       div.posted-by-general
         span.posted-by Posted by 
-        a.blue-under-link(href="#")= comment.username  
+        a.blue-under-link(href="#")= comment.user.username  
         span.posted-by  at 
-        span.posted-by-date 19 Dec. 23:17
+        span.posted-by-date= comment.createdAt.toString().slice(0, 21)
 
 block content
-    section.anime-layout
+    section.anime-layout(data-anime-id=anime._id)
       figure
         img.anime-main-img(src=`/img/anime/${anime.imageCover}`, alt="Anime picture")
       div.stat-data
         h1.anime-title= anime.title
         h2.japanese-title= anime.japaneseTitle
-        - if (anime.reviews.length > 0)
+        - if (anime.reviewsTotal > 0)
           div.anime-rating
             ion-icon.ani-rate-icon(name=`star`)
             span.num-rate= anime.rating
 
         div.short-info
           p.anime-label Reviews
-          p.anime-data.anime-reviews-total= anime.reviews.length
+          p.anime-data.anime-reviews-total= anime.reviewsTotal
           p.anime-label Author(s)
           - const authors = anime.authors.join(', ')
           p.anime-data.anime-authors= authors
@@ -105,9 +105,9 @@ block content
             h3.summary-title Other Reviews
           div.no-border
           
-        div.all-comments
-          - if (anime.reviews.length > 0)
-            each rev in anime.reviews 
+        div.all-comments(data-pages-total=pagesTotal)
+          - if (anime.reviewsTotal > 0)
+            each rev in reviews 
               +singleComment(rev)
           - else 
             div.no-comment
@@ -115,6 +115,6 @@ block content
                 ion-icon(name="close-circle-outline")
                 span.no-message-text Currently this anime has no reviews..
 
-        - if (anime.reviews.length > 3)
+        - if (pagesTotal > 1)
           button.load-more-comments Load more
 

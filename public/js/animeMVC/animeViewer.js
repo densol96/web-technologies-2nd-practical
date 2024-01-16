@@ -1,9 +1,21 @@
 class AnimeViewer {
+  // Summary
   #showMoreBtn = document.querySelector('.show-more');
   #summary = document.querySelector('.summary');
   #icons = document.querySelectorAll('.show-icon');
   #summaryContainer = document.querySelector('.summary');
+  // Review
   #ratingStars = document.querySelectorAll('.rate-icons-star');
+  #postReviewBtn = document.querySelector('.send-comment');
+  #postForm = document.querySelector('.leave-review');
+  #comment = document.querySelector('#comment');
+  //Other reviews
+  #allComments = document.querySelector('.all-comments');
+  #loadMoreBtn = document.querySelector('.load-more-comments');
+  #animeId = document
+    .querySelector('.anime-layout')
+    .getAttribute('data-anime-id');
+  #pagesTotal = this.#allComments.getAttribute('data-pages-total');
 
   // Handle SUMMARY section of the page
   #hideCheck() {
@@ -89,6 +101,33 @@ class AnimeViewer {
     this.#initMouseOverStars();
     this.#initMouseOutStars();
     this.#initClickStars();
+  }
+
+  // post Review Event
+  initPostReview(action) {
+    this.#postForm.addEventListener('submit', (e) => {
+      e.preventDefault();
+      const rating = document
+        .querySelector('.rate-icons-star.active')
+        ?.getAttribute('data-value');
+      const commentText = this.#comment.value;
+      action(this.#comment.value, +rating);
+    });
+  }
+
+  // LOAD MORE COMMENTS FUNCTIONALITY REQUIRED UI METHODS
+  revealState(action) {
+    action(this.#animeId, +this.#pagesTotal);
+  }
+
+  initLoadCommsListener(action) {
+    this.#loadMoreBtn.addEventListener('click', (e) => {
+      action(this.#animeId);
+    });
+  }
+
+  hideBtn() {
+    this.#loadMoreBtn.classList.add('hidden');
   }
 }
 

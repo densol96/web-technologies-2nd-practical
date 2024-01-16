@@ -2,6 +2,7 @@ const dotenv = require('dotenv');
 const fs = require('fs');
 const Anime = require('../../models/animeModel.js');
 const Review = require('../../models/reviewModel.js');
+const User = require('../../models/userModel.js');
 const mongoose = require('mongoose');
 
 dotenv.config({ path: `${__dirname}/../../config.env` });
@@ -19,11 +20,14 @@ mongoose
     console.log(`💥ERROR connecting to DB: `, err.message);
   });
 
-const animes = fs.readFileSync(`${__dirname}/moreAnimes.json`);
+const animes = fs.readFileSync(`${__dirname}/animes.json`);
 const animesDataObject = JSON.parse(animes);
 
 const reviews = fs.readFileSync(`${__dirname}/reviews.json`);
 const reviewsObject = JSON.parse(reviews);
+
+const users = fs.readFileSync(`${__dirname}/users.json`);
+const usersObject = JSON.parse(users);
 // const single = fs.readFileSync(`${__dirname}/moreAnimes.json`);
 // const singleObject = JSON.parse(single);
 // console.log(singleObject);
@@ -32,6 +36,7 @@ const importData = async () => {
   try {
     // await Anime.create(animesDataObject);
     await Review.create(reviewsObject);
+    // await User.create(usersObject);
     console.log('Added;');
   } catch (err) {
     console.log('💥 UNABLE to save Anime Data!');

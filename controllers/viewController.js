@@ -1,4 +1,5 @@
 const Anime = require('../models/animeModel.js');
+const Review = require('../models/reviewModel.js');
 const catchAssyncErr = require('../utils/catchAssyncErr.js');
 
 const starSequence = (rating) => {
@@ -28,10 +29,19 @@ exports.getAnime = catchAssyncErr(async (req, res) => {
     err.errors = 'No anime on the portal has this URL';
     return next(err);
   }
+  const DOCS_PER_PAGE = 3;
+  const SEARCH_BY = { addedAt: -1 };
+  const reviews = await Review.find({ anime: anime._id })
+    .sort(SEARCH_BY)
+    .limit(DOCS_PER_PAGE);
+
+  const pagesTotal = Math.ceil(anime.reviewsTotal / DOCS_PER_PAGE);
   const rating = starSequence(anime.rating);
   res.status(201).render('anime', {
     anime,
     starSequence,
+    reviews,
+    pagesTotal,
   });
 });
 

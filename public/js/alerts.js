@@ -15,7 +15,7 @@ export const showAlert = (type, name, infos) => {
   } else {
     msgArray = infos;
   }
-  console.log(msgArray);
+
   const html = `<div class="alert alert-${type}">
                   <h2 class="alert-name alert-${type}-heading">
                     <ion-icon name="alert-circle-outline"></ion-icon>${name}

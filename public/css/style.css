@@ -993,6 +993,7 @@ main {
 }
 
 .alert.opened {
+  position: fixed;
   transform: translate(-50%, 20%);
 }
 
