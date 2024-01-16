@@ -105,6 +105,7 @@ class AnimeViewer {
 
   // post Review Event
   initPostReview(action) {
+    if (!this.#postForm) return;
     this.#postForm.addEventListener('submit', (e) => {
       e.preventDefault();
       const rating = document
@@ -128,6 +129,52 @@ class AnimeViewer {
 
   hideBtn() {
     this.#loadMoreBtn.classList.add('hidden');
+  }
+
+  #singleCommentHTML(comment) {
+    return `
+      <figure class="single-comment">
+        <div class="img-container-comment">
+          <img
+            class="profile-pic-comment"
+            src="/img/users/${comment.user.avatar}"
+            alt="Profile picture"
+          />
+        </div>
+        <div class="comment-message">
+          <p class="comment-rate">
+            ${[1, 2, 3, 4, 5]
+              .map((el) => {
+                return `<ion-icon class="rev-icon" name="${
+                  el <= comment.rating ? 'star' : 'star-outline'
+                }"></ion-icon>`;
+              })
+              .join('')}
+          </p>
+          <p class="text-comment">
+            ${comment.comment}
+          </p>
+          <div class="posted-by-general">
+            <span class="posted-by">Posted by</span>
+            <a href="#" class="blue-under-link">${comment.user.username}</a>
+            <span class="posted-by">at</span>
+            <span class="posted-by-date">${comment.createdAt
+              .toString()
+              .slice(0, 21)}</span>
+          </div>
+        </div>
+      </figure>
+      `;
+  }
+
+  render(reviews) {
+    const allComsHTML = reviews
+      .map((review) => {
+        return this.#singleCommentHTML(review);
+      })
+      .join('');
+
+    this.#allComments.insertAdjacentHTML('beforeend', allComsHTML);
   }
 }
 

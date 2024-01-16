@@ -30,7 +30,7 @@ exports.getAnime = catchAssyncErr(async (req, res) => {
     return next(err);
   }
   const DOCS_PER_PAGE = 3;
-  const SEARCH_BY = { addedAt: -1 };
+  const SEARCH_BY = { createdAt: -1 };
   const reviews = await Review.find({ anime: anime._id })
     .sort(SEARCH_BY)
     .limit(DOCS_PER_PAGE);

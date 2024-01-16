@@ -29,8 +29,8 @@ block content
         h2.japanese-title= anime.japaneseTitle
         - if (anime.reviewsTotal > 0)
           div.anime-rating
-            ion-icon.ani-rate-icon(name=`star`)
-            span.num-rate= anime.rating
+            ion-icon.rev-icon(name=`star`)
+            span.num-rate= `${anime.rating}`.slice(0, 3)
 
         div.short-info
           p.anime-label Reviews

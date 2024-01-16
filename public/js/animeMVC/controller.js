@@ -27,6 +27,8 @@ const loadMoreSequence = async () => {
   } catch (err) {
     showAlert('error', 'Something went wrong..', 'Please, try again later');
   }
+  animeViewer.render(model.state.reviews);
+  if (model.state.page >= model.state.pagesTotal) animeViewer.hideBtn();
 };
 
 const initAnime = () => {

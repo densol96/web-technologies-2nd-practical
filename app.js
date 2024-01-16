@@ -51,10 +51,10 @@ app.use('/api/v1/', apiRouter);
 // For accessing web-application directly in browser
 app.use('/', viewRouter);
 
-app.use((req, res) => {
-  console.log('went through', req.url);
-  res.end();
-});
+// app.use((req, res) => {
+//   console.log('went through', req.url);
+//   res.end();
+// });
 
 app.all('*', (req, res, next) => {
   // Will implement the AppError class later to handle this
