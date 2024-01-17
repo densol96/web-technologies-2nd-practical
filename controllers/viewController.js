@@ -83,3 +83,15 @@ exports.resetPassword = (req, res) => {
     username: req.username,
   });
 };
+
+exports.meSettings = (req, res) => {
+  res.status(200).render('settings');
+};
+
+exports.meSecurity = (req, res) => {
+  res.status(200).render('security');
+};
+
+exports.meReviews = (req, res) => {
+  res.send('In development...');
+};

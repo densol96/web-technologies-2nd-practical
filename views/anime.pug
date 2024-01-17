@@ -11,7 +11,7 @@ mixin singleComment(comment)
       p.comment-rate
         - const seq = starSequence(comment.rating);
         each name in seq
-          ion-icon.ani-rate-icon(name=`${name}`)
+          ion-icon.rev-icon(name=`${name}`)
 
       p.text-comment= comment.comment
       div.posted-by-general
@@ -29,7 +29,7 @@ block content
         h2.japanese-title= anime.japaneseTitle
         - if (anime.reviewsTotal > 0)
           div.anime-rating
-            ion-icon.rev-icon(name=`star`)
+            ion-icon.ani-rate-icon(name=`star`)
             span.num-rate= `${anime.rating}`.slice(0, 3)
 
         div.short-info

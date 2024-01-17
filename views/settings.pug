@@ -1,0 +1,44 @@
+extends base
+
+block content
+  .me-layout
+    aside.menu
+      div.menu-option.current-profile-menu-option
+        a.menu-link(href="/me/settings")
+          ion-icon.menu-option-settings(name="settings-outline")
+          span.menu-text Settings
+
+      div.menu-option
+        a.menu-link(href="/me/security")
+          ion-icon.menu-option-settings(name="key-outline")
+          span.menu-text Security
+
+      div.menu-option
+        a.menu-link(href="/me/reviews")
+          ion-icon.menu-option-settings(name="book-outline")
+          span.menu-text My reviews
+
+    .interface-right
+      section.int-public
+        h2.int-header Your account settings
+        form.username-email-reset-form.me-form
+          div.form-field
+            label.form-label(for="username") Username:
+            input.form-input(type="text", id="username", value=user.username) 
+
+          div.form-field
+            label.form-label(for="email") Email:
+            input.form-input(type="email", id="email", value=user.email) 
+          div.form-field.file-upload-field
+            div.img-container-comment
+              img.profile-pic-comment(src=`/img/users/${user.avatar}`, alt="Profile picture / avatar")
+              ion-icon(class='uploaded-img-checker' name="checkmark-outline")
+              div.profile-pic-overlay
+
+
+            input(type="file", accept="image/*", id="avatar")
+            label.form-label(for="avatar")
+              span.upload-btn Upload avatar
+
+          button.form-btn
+            span.form-btn-text Save settings

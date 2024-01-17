@@ -9,7 +9,6 @@ exports.getAllDocs = (Model) => {
     // will pass that filter on
 
     if (Model.modelName === 'Review') {
-      console.log(req.query);
       if (req.query.userFilter) {
         filter.user = userFilter;
       } else if (req.query.animeFilter) {

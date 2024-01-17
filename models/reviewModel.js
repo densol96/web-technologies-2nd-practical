@@ -38,6 +38,8 @@ const reviewSchema = mongoose.Schema(
 
 // One user can only have 1 review for the same anime
 reviewSchema.index({ anime: 1, user: 1 }, { unique: true });
+// Most of the time need reviews in the of order 'latest' + high read/write ratio => adding index will boost performance
+reviewSchema.index({ createdAt: -1 });
 
 reviewSchema.pre('find', function (next) {
   this.populate({
@@ -47,9 +49,11 @@ reviewSchema.pre('find', function (next) {
   next();
 });
 
+// To be called after saving the review to update reviewsTotal and rating properties on the appropriate anime
 reviewSchema.statics.calculateRatingsAndTotal = async function (animeId) {
   const stats = await this.aggregate([
     {
+      //animeId comes from the updated anime doc
       $match: { anime: animeId },
     },
     {
@@ -61,6 +65,7 @@ reviewSchema.statics.calculateRatingsAndTotal = async function (animeId) {
     },
   ]);
   if (stats.length > 0) {
+    // stats format is [{num, rating}]
     const { numOfRatings, averageRating } = stats[0];
     await Anime.findByIdAndUpdate(animeId, {
       reviewsTotal: numOfRatings,
@@ -74,8 +79,10 @@ reviewSchema.statics.calculateRatingsAndTotal = async function (animeId) {
   }
 };
 
-reviewSchema.post('save', function (document) {
-  this.constructor.calculateRatingsAndTotal(document.anime);
+// AFTER(!) the review is added to the collection, perform calculating the ratings and total, then update the anime document
+reviewSchema.post('save', function () {
+  // inside document middleware this -> document; this.constructor -> Model upon which we are calling the static method
+  this.constructor.calculateRatingsAndTotal(this.anime);
 });
 
 const Review = mongoose.model('Review', reviewSchema);

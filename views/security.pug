@@ -1,0 +1,35 @@
+extends base
+
+block content
+  .me-layout
+    aside.menu
+      div.menu-option
+        a.menu-link(href="/me/settings")
+          ion-icon.menu-option-settings(name="settings-outline")
+          span.menu-text Settings
+
+      div.menu-option.current-profile-menu-option
+        a.menu-link(href="/me/security")
+          ion-icon.menu-option-settings(name="key-outline")
+          span.menu-text Security
+
+      div.menu-option
+        a.menu-link(href="/me/reviews")
+          ion-icon.menu-option-settings(name="book-outline")
+          span.menu-text My reviews
+
+    .interface-right
+      section.int-private
+        h2.int-header Password change
+        form.username-email-reset-form.me-form
+          .form-field
+            label.form-label(for="current") Current password:
+            input.form-input(type="password", id="current", placeholder="••••••••", required)
+          .form-field
+            label.form-label(for="new") New password:
+            input.form-input(type="password", id="new", placeholder="••••••••", required)
+          .form-field
+            label.form-label(for="confirm") Confirm password:
+            input.form-input(type="password", id="confirm", placeholder="••••••••", required)
+          button.send-reset-token.form-btn
+            span.form-btn-text Change password

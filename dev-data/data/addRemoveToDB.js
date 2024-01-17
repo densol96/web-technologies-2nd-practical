@@ -12,7 +12,7 @@ const DB = process.env.DATABASE_REMOTE.replace(
 );
 
 mongoose
-  .connect(DB)
+  .connect('mongodb://127.0.0.1:27017/animePortal')
   .then((connection) => {
     console.log(`Remote DB connection successful!`);
   })
@@ -34,8 +34,8 @@ const usersObject = JSON.parse(users);
 
 const importData = async () => {
   try {
-    // await Anime.create(animesDataObject);
-    await Review.create(reviewsObject);
+    await Anime.create(animesDataObject);
+    // await Review.create(reviewsObject);
     // await User.create(usersObject);
     console.log('Added;');
   } catch (err) {

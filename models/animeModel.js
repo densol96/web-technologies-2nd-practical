@@ -87,12 +87,21 @@ animeSchema.index({ addedAt: -1 });
 animeSchema.index({ addedAt: -1 });
 animeSchema.index({ reviewsTotal: -1 });
 
-// Virtual field (referncing Review model)
+// Virtual field
 animeSchema.virtual('reviews', {
   ref: 'Review',
   foreignField: 'anime',
   localField: '_id',
 });
+
+// Would need to populate the virtual field in order for it to appear in results (not relevant at this stage of development, since the API for reviews queries
+// limited num of reviews at a time directly when using 'load more' - sending the page as a query and paginating on the server). Sending all the data at once and paginating on the front end is (?)
+
+// animeSchema.pre('find', function () {
+//   this.populate({
+//     path: 'reviews',
+//   });
+// });
 
 // Use document pre-middleware to add a slug
 animeSchema.pre('save', function (next) {

@@ -45,7 +45,7 @@ html(lang="en")
           
           - if (user)
             li.profile
-              a.user-profile-link(href='/me')
+              a.user-profile-link(href='/me/settings')
                 //- div.nav-profile-img-container Hello
                 img(src=`/img/users/${user.avatar}` class='nav-profile-pic')
                 span.user-name= user.username 

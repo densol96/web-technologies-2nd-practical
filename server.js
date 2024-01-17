@@ -17,9 +17,10 @@ const DB = process.env.DATABASE_REMOTE.replace(
   '<PASSWORD>',
   process.env.ATLAS_DB_PASSWORD
 );
+// const DB = 'mongodb://localhost:27017/animePortal';
 
 mongoose
-  .connect(DB)
+  .connect('mongodb://127.0.0.1:27017/animePortal')
   .then(() => {
     console.log(`Connected to remote DB successfully!`);
   })

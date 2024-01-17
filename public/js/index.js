@@ -9,8 +9,7 @@ navBtn.addEventListener('click', function (e) {
 // FOR DIFFERENT ROUTES
 import redirectTo from './authforms/redirectTo.js';
 import initOverview from './overview/controller.js';
-// import initAnime from './anime/anime.js';
-import initAnime from './animeMVC/controller.js';
+import initAnime from './anime/controller.js';
 import {
   initSignUp,
   initLogIn,
@@ -18,6 +17,7 @@ import {
   initPasswordReset,
   initLogOut,
 } from './authforms/authforms.js';
+import { initMeSecurity, initMeSettings } from './me/me.js';
 
 // If user logged in
 const logOutBtn = document.querySelector('.logout-btn');
@@ -40,6 +40,10 @@ if (window.location.pathname.startsWith('/overview')) {
   initForgotPassword();
 } else if (window.location.pathname.startsWith('/password-reset')) {
   initPasswordReset();
+} else if (window.location.pathname.startsWith('/me/security')) {
+  initMeSecurity();
+} else if (window.location.pathname.startsWith('/me/settings')) {
+  initMeSettings();
 } else {
   alert('Unknown route!');
 }

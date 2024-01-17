@@ -4,6 +4,7 @@ import {
   SIGN_UP_API_ROUTE,
   LOGIN_API_ROUTE,
   LOGOUT_API_ROUTE,
+  FORGOT_PASSWORD_API_ROUTE,
 } from '../helper.js';
 
 const spinner = `
@@ -142,6 +143,7 @@ export const initForgotPassword = () => {
       });
       showAlert('success', 'Success!', result.data.message);
     } catch (err) {
+      console.log(err);
       showAlert('error', 'Something went wrong..', err.response.data.message);
     }
     btn.innerHTML = `<span class="form-btn-text">Send reset token</span>`;
