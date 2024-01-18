@@ -18,7 +18,7 @@ mixin singleComment(comment)
         span.posted-by Posted by 
         a.blue-under-link(href="#")= comment.user.username  
         span.posted-by  at 
-        span.posted-by-date= comment.createdAt.toString().slice(0, 21)
+        span.posted-by-date= comment.addedAt.toString().slice(0, 21)
 
 block content
     section.anime-layout(data-anime-id=anime._id)

@@ -10,6 +10,7 @@ navBtn.addEventListener('click', function (e) {
 import redirectTo from './authforms/redirectTo.js';
 import initOverview from './overview/controller.js';
 import initAnime from './anime/controller.js';
+import initMeReviews from './me/me-reviews/controller.js';
 import {
   initSignUp,
   initLogIn,
@@ -44,6 +45,8 @@ if (window.location.pathname.startsWith('/overview')) {
   initMeSecurity();
 } else if (window.location.pathname.startsWith('/me/settings')) {
   initMeSettings();
+} else if (window.location.pathname.startsWith('/me/reviews')) {
+  initMeReviews();
 } else {
   alert('Unknown route!');
 }

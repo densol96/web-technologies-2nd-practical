@@ -122,9 +122,11 @@ class AnimeViewer {
   }
 
   initLoadCommsListener(action) {
-    this.#loadMoreBtn.addEventListener('click', (e) => {
-      action(this.#animeId);
-    });
+    if (this.#loadMoreBtn) {
+      this.#loadMoreBtn.addEventListener('click', (e) => {
+        action(this.#animeId);
+      });
+    }
   }
 
   hideBtn() {
@@ -158,7 +160,7 @@ class AnimeViewer {
             <span class="posted-by">Posted by</span>
             <a href="#" class="blue-under-link">${comment.user.username}</a>
             <span class="posted-by">at</span>
-            <span class="posted-by-date">${comment.createdAt
+            <span class="posted-by-date">${comment.addedAt
               .toString()
               .slice(0, 21)}</span>
           </div>

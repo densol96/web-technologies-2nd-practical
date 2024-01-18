@@ -1,4 +1,4 @@
-import { POST_REVIEW_API_ROUTE } from '../helper.js';
+import { POST_REVIEW_API_ROUTE, updateDateFormat } from '../helper.js';
 
 export const state = {
   // For load more functionality
@@ -46,9 +46,10 @@ export const getReviews = async () => {
   try {
     const result = await axios({
       method: 'GET',
-      url: `http://127.0.0.1:3000/api/v1/reviews?sort=${state.sortBy}&page=${state.page}&limit=${state.limit}&animeFilter=${state.curAnimeId}`,
+      url: `http://127.0.0.1:3000/api/v1/reviews?sort=${state.sortBy}&page=${state.page}&limit=${state.limit}&userFilter=${state.curAnimeId}`,
     });
     state.reviews = result.data.data;
+    updateDateFormat(state.reviews);
   } catch (err) {
     throw err;
   }

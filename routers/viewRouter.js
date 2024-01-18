@@ -26,12 +26,6 @@ router.get('/password-reset/:token', viewContoller.resetPassword);
 router.use(authController.protect);
 router.get('/logout', authController.logout);
 router.get('/me/settings', viewContoller.meSettings);
-router.get(
-  '/me/security',
-  (req, res, next) => {
-    console.log('This route exists');
-    next();
-  },
-  viewContoller.meSecurity
-);
+router.get('/me/security', viewContoller.meSecurity);
+router.get('/me/reviews', viewContoller.meReviews);
 module.exports = router;

@@ -22,11 +22,11 @@ mixin singleCard(card)
             span.card-delimeter  / 
             span.card-rating
               ion-icon.card-rating-icon(name="star")
-              span.card-rate-num= card.rating
+              span.card-rate-num= `${card.rating}`.slice(0, 3)
           span.card-delimeter  / 
           span.card-reviews= `Reviews: ${card.reviewsTotal}`
 
-        p.card-description= (card.summary.length < 270 ? card.summary : card.summary.slice(0, 270))  
+        p.card-description= `${(card.summary.length < 270 ? card.summary : card.summary.slice(0, 270))}....`
         .last-line
           span.added-at
             | Added on 

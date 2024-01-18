@@ -71,7 +71,7 @@ const createClass = () => {
                       card.summary.length < 270
                         ? card.summary
                         : card.summary.slice(0, 270)
-                    };
+                    }....
                   </p>
                   <div class="last-line">
                     <span class="added-at">

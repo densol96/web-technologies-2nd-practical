@@ -14,7 +14,7 @@ const reviewSchema = mongoose.Schema(
       max: [5, 'Rating cannot be more than 5'],
       required: [true, 'Review must have a rating'],
     },
-    createdAt: {
+    addedAt: {
       type: Date,
       default: Date.now,
     },
@@ -42,10 +42,17 @@ reviewSchema.index({ anime: 1, user: 1 }, { unique: true });
 reviewSchema.index({ createdAt: -1 });
 
 reviewSchema.pre('find', function (next) {
-  this.populate({
-    path: 'user',
-    select: 'username avatar',
-  });
+  // need these fields for me-reviews and CMS
+  this.populate([
+    {
+      path: 'user',
+      select: 'username avatar',
+    },
+    {
+      path: 'anime',
+      select: 'title slug',
+    },
+  ]);
   next();
 });
 
@@ -83,6 +90,11 @@ reviewSchema.statics.calculateRatingsAndTotal = async function (animeId) {
 reviewSchema.post('save', function () {
   // inside document middleware this -> document; this.constructor -> Model upon which we are calling the static method
   this.constructor.calculateRatingsAndTotal(this.anime);
+});
+
+// After delete improtant to update reviews Total and rating on the anime
+reviewSchema.post('findOneAndDelete', function (doc) {
+  doc.constructor.calculateRatingsAndTotal(doc.anime);
 });
 
 const Review = mongoose.model('Review', reviewSchema);

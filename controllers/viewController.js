@@ -30,13 +30,20 @@ exports.getAnime = catchAssyncErr(async (req, res) => {
     return next(err);
   }
   const DOCS_PER_PAGE = 3;
-  const SEARCH_BY = { createdAt: -1 };
-  const reviews = await Review.find({ anime: anime._id })
-    .sort(SEARCH_BY)
-    .limit(DOCS_PER_PAGE);
+  const SEARCH_BY = { addedAt: -1 };
+
+  let reviews;
+  try {
+    reviews = await Review.find({ anime: anime._id })
+      .sort(SEARCH_BY)
+      .limit(DOCS_PER_PAGE);
+  } catch (err) {
+    console.log(err);
+  }
 
   const pagesTotal = Math.ceil(anime.reviewsTotal / DOCS_PER_PAGE);
   const rating = starSequence(anime.rating);
+
   res.status(201).render('anime', {
     anime,
     starSequence,
@@ -51,6 +58,7 @@ exports.getOverview = catchAssyncErr(async (req, res) => {
   const SEARCH_BY = { addedAt: -1 };
   const animes = await Anime.find().sort(SEARCH_BY).limit(DOCS_PER_PAGE);
   const total = await Anime.countDocuments();
+  // want to pass in data-set to the client to update the state on the front-side
   const pagesTotal = Math.ceil(total / DOCS_PER_PAGE);
 
   res.status(200).render('overview', {
@@ -92,6 +100,19 @@ exports.meSecurity = (req, res) => {
   res.status(200).render('security');
 };
 
-exports.meReviews = (req, res) => {
-  res.send('In development...');
-};
+exports.meReviews = catchAssyncErr(async (req, res) => {
+  const DOCS_PER_PAGE = 3; // 5
+  const SEARCH_BY = { addedAt: -1 };
+  const reviews = await Review.find({ user: req.user._id })
+    .sort(SEARCH_BY)
+    .limit(DOCS_PER_PAGE);
+  const total = await Review.countDocuments({ user: req.user._id });
+  const pagesTotal = Math.ceil(total / DOCS_PER_PAGE);
+
+  res.status(200).render('me-reviews', {
+    reviews,
+    starSequence,
+    pagesTotal,
+    user: req.user,
+  });
+});

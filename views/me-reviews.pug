@@ -1,0 +1,64 @@
+extends base
+
+mixin singleComment(review)
+  tr
+    td.review-title-table= review.anime.title
+    td.review-comment-table= review.comment
+    td.review-rating-table
+      p.rev-rate
+        - const sequenceNames = starSequence(review.rating);
+        each name in sequenceNames
+          ion-icon.rev-icon(name="star")
+    td.review-date-table= review.addedAt.toString().slice(0, 21)
+    td.review-action-table
+      a.edit-btn(href=`/edit/review/${review._id}`)
+        ion-icon.table-icon.edit-icon(name="create-outline")
+      span.delimiter / 
+      button.delete-btn(data-review-id=review._id)
+        ion-icon.table-icon.delete-icon(name="trash-outline")
+
+block content 
+  .me-layout(data-user-id=user._id)
+    aside.menu
+      .menu-option
+        a.menu-link(href="/me/settings")
+          ion-icon.menu-option-settings(name="settings-outline")
+          span.menu-text Settings
+      .menu-option
+        a.menu-link(href="/me/security")
+          ion-icon.menu-option-settings(name="key-outline")
+          span.menu-text Security
+      .menu-option.current-profile-menu-option
+        a.menu-link(href="/me/reviews")
+          ion-icon.menu-option-settings(name="book-outline")
+          span.menu-text My reviews
+
+    div.interface-right
+      section.int-reviews
+        h2.int-header Your reviews
+        if(reviews.length > 0)
+          table.reviews-table
+            thead.reviews-table-header
+              th Anime
+              th Comment
+              th Rating
+              th Date
+              th Action
+            tbody.reviews-table-body
+              each review in reviews 
+                +singleComment(review)
+          - if(pagesTotal > 1)
+            .pagination-container
+              .pagination(data-pages-total=`${pagesTotal}`)
+                button.pagination-btn.prev-page.hidden
+                  ion-icon.pagination-icon(name="chevron-back-outline")
+                span.current-page.page-num
+                  | Current page - 
+                  span.update-cur-page 1
+                button.pagination-btn.next-page
+                  ion-icon.pagination-icon(name="chevron-forward-outline")
+        else 
+          div.no-comment
+              p.no-comment-message
+                ion-icon(name="close-circle-outline")
+                span.no-message-text Currently you have left no reviews..

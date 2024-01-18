@@ -42,7 +42,7 @@ const animeSchema = new mongoose.Schema(
     },
     genres: {
       type: [String],
-      required: [true, 'Anime should have author(s)'],
+      required: [true, 'Anime should have genre(s)'],
     },
     ageAdvice: {
       type: Number, // min age

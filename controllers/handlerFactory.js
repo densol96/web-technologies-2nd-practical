@@ -10,14 +10,16 @@ exports.getAllDocs = (Model) => {
 
     if (Model.modelName === 'Review') {
       if (req.query.userFilter) {
-        filter.user = userFilter;
+        filter.user = req.query.userFilter;
       } else if (req.query.animeFilter) {
         filter.anime = req.query.animeFilter;
       }
     }
+
     const query = new APIFeatures(Model.find(filter), req.query)
       .sort()
       .paginate();
+
     const data = await query.mongooseQuery;
     res.status(201).json({
       status: 'success',

@@ -1,4 +1,4 @@
-import { ALL_ANIME_API_ROUTE } from '../helper.js';
+import { ALL_ANIME_API_ROUTE, updateDateFormat } from '../helper.js';
 
 export const state = {
   page: 1,
@@ -9,12 +9,12 @@ export const state = {
   pagesTotal: {},
 };
 
-const updateDateFormat = (animes) => {
-  animes.forEach((anime) => {
-    const date = new Date(anime.addedAt);
-    anime.addedAt = `${date}`.slice(0, 21);
-  });
-};
+// const updateDateFormat = (animes) => {
+//   animes.forEach((anime) => {
+//     const date = new Date(anime.addedAt);
+//     anime.addedAt = `${date}`.slice(0, 21);
+//   });
+// };
 
 export const loadAnimes = async () => {
   const response = await fetch(

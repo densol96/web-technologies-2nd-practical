@@ -20,3 +20,12 @@ exports.postReview = catchAsyncErr(async (req, res, next) => {
 });
 
 exports.getReviews = handlerFactory.getAllDocs(Review);
+
+exports.deleteReview = catchAsyncErr(async (req, res, next) => {
+  const { reviewId } = req.params;
+  await Review.findByIdAndDelete({ _id: reviewId });
+  res.status(200).json({
+    status: 'success',
+    message: 'The review has been deleted',
+  });
+});
