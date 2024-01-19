@@ -414,6 +414,7 @@ main {
   background-color: var(--background-color);
   color: #fff;
   justify-content: center;
+  margin-bottom: auto;
 }
 
 .footer-text {
@@ -597,7 +598,7 @@ main {
   flex-direction: column;
   gap: 2rem;
   padding-bottom: 3rem;
-  width: 70rem;
+  max-width: 70rem;
 }
 
 .leave-review-rating {
@@ -1403,4 +1404,8 @@ main {
   gap: 2.4rem;
   box-shadow: 0 0 5px 5px rgba(85, 85, 85, 0.3);
   margin: 0 auto;
+}
+
+.social-aside {
+  display: none;
 }

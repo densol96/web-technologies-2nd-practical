@@ -29,3 +29,31 @@ export const redirectTo = (route, waitTimeSec) => {
     window.location.href = route;
   }, 1000 * waitTimeSec);
 };
+
+export const viewportAdjuster = () => {
+  const adjuster = () => {
+    if (window.innerHeight > document.body.offsetHeight) {
+      main.style.height = '100vh';
+    } else {
+      main.style.height = 'auto';
+    }
+  };
+  const mainLayout = document.querySelector('.main-layout');
+  const socialAsideClicker = document.querySelector('.social-aside');
+  const socialMenu = document.querySelector('.aside');
+
+  socialAsideClicker.addEventListener('click', (e) => {
+    mainLayout.classList.toggle('openned-menu');
+    adjuster();
+  });
+
+  // VIEWPORT CHECKER
+  const main = document.querySelector('main');
+  if (window.innerHeight > document.body.offsetHeight) {
+    main.style.height = '100vh';
+  }
+
+  window.addEventListener('resize', (e) => {
+    adjuster();
+  });
+};

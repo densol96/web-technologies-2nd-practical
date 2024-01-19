@@ -1,4 +1,4 @@
-@media (max-width: 1500px) {
+@media (max-width: 1605px) {
   .main-layout {
     grid-template-columns: 1fr 1fr;
     grid-template-rows: 30rem auto;
@@ -27,6 +27,14 @@
     height: auto;
   }
 
+  .chat-texts {
+    height: 17rem;
+  }
+
+  .chat-msg-unit {
+    width: 100%;
+  }
+
   .aside {
     grid-row: 1;
     grid-column: span 2;
@@ -40,9 +48,13 @@
     grid-row: 2;
     grid-column: span 2;
   }
+
+  .reviews-table {
+    max-width: 80%;
+  }
 }
 
-@media (max-width: 1270px) {
+@media (max-width: 1220px) {
   .btn-mobile-nav {
     display: block;
     margin-left: auto;
@@ -80,5 +92,223 @@
 
   .sign-up {
     margin-left: 0;
+  }
+
+  .menu-option {
+    padding: 1.6rem;
+  }
+
+  .me-layout {
+    grid-template-columns: auto 1fr;
+  }
+
+  .menu-text {
+    display: none;
+  }
+
+  .reviews-table {
+    max-width: 100%;
+  }
+
+  .reviews-table-header th {
+    padding: 1rem 2rem;
+  }
+
+  .reviews-table-body td {
+    padding: 0.3rem;
+  }
+}
+
+@media (max-width: 995px) {
+  .reviews {
+    height: 22rem;
+  }
+
+  .review {
+    padding: 0.5rem;
+  }
+}
+
+@media (max-width: 870px) {
+  html {
+    font-size: 55.5%;
+  }
+
+  .nav-menu {
+    width: 90%;
+  }
+
+  .main-layout {
+    width: 90%;
+    column-gap: 5rem;
+  }
+
+  .aside {
+    gap: 5rem;
+  }
+
+  /* ME-REVIEWS */
+  .review-comment-table {
+    display: none;
+  }
+
+  .review-date-table {
+    display: none;
+  }
+}
+
+@media (max-width: 695px) {
+  .main-layout {
+    padding: 3.2rem 1.6rem;
+  }
+
+  .anime-layout {
+    column-gap: 3.2rem;
+    row-gap: 4.8rem;
+  }
+
+  .anime-main-img {
+    width: 210px;
+  }
+
+  .anime-title {
+    font-size: 3.2rem;
+  }
+
+  .japanese-title {
+    margin-bottom: 1rem;
+  }
+
+  .anime-label,
+  .anime-data {
+    font-size: 1.8rem;
+  }
+  .anime-main-img {
+    width: 200px;
+  }
+  /* ME-REVIEWS */
+  .int-reviews {
+    margin: 4rem 2rem 4rem 1.6rem;
+  }
+}
+
+@media (max-width: 630px) {
+  main {
+    padding: 3.2rem 0;
+  }
+
+  .aside {
+    flex-direction: column;
+  }
+
+  /* OVERVIEW PAGE */
+  .card-description {
+    display: none;
+  }
+
+  .card-facts {
+    margin-top: 2rem;
+    line-height: 1.6;
+  }
+}
+
+@media (max-width: 500px) {
+  .main-layout {
+    width: 98%;
+    box-shadow: 0 0 15px 10px rgba(0, 0, 0, 0.568);
+  }
+
+  /* ANIME_PAGE */
+  .anime-layout figure {
+    display: flex;
+    align-items: center;
+  }
+
+  .short-info {
+    column-gap: 3.2rem;
+  }
+}
+
+/* VIEW PORT ADJUSTER PART ---  LEFT OUT AT THE BOTTOM OF THE STYLES TO SEPARATE FROM STYLE SETTINGS*/
+@media (max-width: 1605px) {
+  .main-layout {
+    grid-template-rows: auto 33rem 1fr;
+    row-gap: 0;
+  }
+
+  .social-aside {
+    grid-row: 1;
+    grid-column: 1 / span 2;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 1rem;
+    border: 2px solid #555;
+    border-radius: 12px;
+    padding: 1rem;
+    background-color: #ddd;
+  }
+
+  .social-pop-title {
+    text-transform: uppercase;
+    font-size: 2.4rem;
+    font-weight: 700;
+    color: #555;
+  }
+
+  .social-btn {
+    border: none;
+    background: none;
+    width: 3.2rem;
+    height: 3.2rem;
+    transition: all 300ms;
+  }
+
+  .social-btn:hover {
+    cursor: pointer;
+    transform: scale(1.2);
+  }
+
+  .social-btn[name='arrow-down-outline'] {
+    display: block;
+  }
+
+  .social-btn[name='close-outline'] {
+    display: none;
+  }
+
+  .reviews-title {
+    font-size: 2rem;
+  }
+
+  .aside {
+    margin-bottom: 3rem;
+    display: none;
+  }
+
+  .article {
+    grid-row: 2;
+  }
+
+  .openned-menu .aside {
+    display: flex;
+    grid-row: 2;
+    grid-column: 1 / span 2;
+  }
+
+  .openned-menu .article {
+    grid-row: 3;
+  }
+
+  .main-layout {
+    grid-template-rows: auto 1fr;
+  }
+
+  .openned-menu.main-layout {
+    grid-template-rows: auto auto 1fr;
+  }
+
+  .social-aside {
+    margin-bottom: 3rem;
   }
 }

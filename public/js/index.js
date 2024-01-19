@@ -6,6 +6,10 @@ navBtn.addEventListener('click', function (e) {
   navMenu.classList.toggle('open');
 });
 
+// ASIDE MENU
+import { viewportAdjuster } from './helper.js';
+viewportAdjuster();
+
 // FOR DIFFERENT ROUTES
 import redirectTo from './authforms/redirectTo.js';
 import initOverview from './overview/controller.js';
