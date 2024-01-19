@@ -11,7 +11,9 @@ router.route('/anime/all').get(animeController.getAllAnimes);
 // AUTH
 router.route('/users/sign-up').post(authController.signUp);
 router.route('/users/login').post(authController.login);
-router.route('/users/logout').get(authController.logout);
+router
+  .route('/users/logout')
+  .get(authController.protect, authController.logout);
 router.route('/users/forgot-password').post(authController.forgotPassword);
 router.route('/password-reset/:token').post(authController.resetPassword);
 router
@@ -30,6 +32,10 @@ router.route('/reviews').get(reviewController.getReviews);
 router
   .route('/post-review')
   .post(authController.protect, reviewController.postReview);
-router.route('/review/:reviewId').delete(reviewController.deleteReview);
+router
+  .route('/review/:reviewId')
+  .all(authController.protect)
+  .patch(reviewController.updateReview)
+  .delete(reviewController.deleteReview);
 
 module.exports = router;

@@ -116,3 +116,12 @@ exports.meReviews = catchAssyncErr(async (req, res) => {
     user: req.user,
   });
 });
+
+exports.editReviews = catchAssyncErr(async (req, res, next) => {
+  const { id } = req.params;
+  const review = await Review.findOne({ _id: id });
+  res.status(200).render('editReviews', {
+    starSequence,
+    review,
+  });
+});

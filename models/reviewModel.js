@@ -41,7 +41,7 @@ reviewSchema.index({ anime: 1, user: 1 }, { unique: true });
 // Most of the time need reviews in the of order 'latest' + high read/write ratio => adding index will boost performance
 reviewSchema.index({ createdAt: -1 });
 
-reviewSchema.pre('find', function (next) {
+reviewSchema.pre(/^find/, function (next) {
   // need these fields for me-reviews and CMS
   this.populate([
     {
@@ -86,15 +86,17 @@ reviewSchema.statics.calculateRatingsAndTotal = async function (animeId) {
   }
 };
 
-// AFTER(!) the review is added to the collection, perform calculating the ratings and total, then update the anime document
+// USING A POST HOOK(NOT PRE!) cause after the review is added/deleted, perform calculating the ratings and total, then update the anime document
+// ADD a new review to a collection
 reviewSchema.post('save', function () {
   // inside document middleware this -> document; this.constructor -> Model upon which we are calling the static method
   this.constructor.calculateRatingsAndTotal(this.anime);
 });
 
-// After delete improtant to update reviews Total and rating on the anime
-reviewSchema.post('findOneAndDelete', function (doc) {
-  doc.constructor.calculateRatingsAndTotal(doc.anime);
+// findOneAndUpdate --- findOneAndDelete
+reviewSchema.post(/^findOneAnd/, function (doc) {
+  // this is a query middleware, therefore it will also get populated ---> need to use doc.anime._id to get access to anime id
+  doc.constructor.calculateRatingsAndTotal(doc.anime._id);
 });
 
 const Review = mongoose.model('Review', reviewSchema);

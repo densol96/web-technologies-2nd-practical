@@ -1,0 +1,17 @@
+extends base 
+
+block content
+  section.int-edit(data-cur-rating= review.rating)
+    h2.int-header Edit your review
+    form.leave-review(action='')
+      .leave-review-rating
+        label.review-label Rate the anime:
+        .rate-icons-stars
+          -const seq = starSequence(review.rating);
+          each s, i in seq 
+            ion-icon.rate-icons-star(name=`${s}` data-value=`${i+1}`)
+          
+      .leave-comment
+        label.review-label(for='comment') Leave a comment:
+        textarea.comment(name='' id='comment' placeholder='Type your review/comment here...')= review.comment
+      button.send-comment(data-id-review=review._id) Send

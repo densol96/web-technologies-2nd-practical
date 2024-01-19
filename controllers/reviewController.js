@@ -2,6 +2,7 @@ const handlerFactory = require('./handlerFactory.js');
 const catchAsyncErr = require('../utils/catchAssyncErr.js');
 const Review = require('../models/reviewModel.js');
 const Anime = require('../models/animeModel.js');
+const AppError = require('../utils/AppError.js');
 
 exports.postReview = catchAsyncErr(async (req, res, next) => {
   const { comment, rating, slug } = req.body;
@@ -27,5 +28,25 @@ exports.deleteReview = catchAsyncErr(async (req, res, next) => {
   res.status(200).json({
     status: 'success',
     message: 'The review has been deleted',
+  });
+});
+
+exports.updateReview = catchAsyncErr(async (req, res, next) => {
+  const { reviewId } = req.params;
+  const { rating, comment } = req.body;
+
+  await Review.findOneAndUpdate(
+    {
+      _id: reviewId,
+    },
+    {
+      rating,
+      comment,
+    },
+    { runValidators: true }
+  );
+  res.status(200).json({
+    status: 'success',
+    message: 'Review has been updated',
   });
 });

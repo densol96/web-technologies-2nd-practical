@@ -19,34 +19,41 @@ import {
   initLogOut,
 } from './authforms/authforms.js';
 import { initMeSecurity, initMeSettings } from './me/me.js';
-
+// CMS
+import { initEditReview } from './edit/review.js';
 // If user logged in
 const logOutBtn = document.querySelector('.logout-btn');
 if (logOutBtn) {
   initLogOut(logOutBtn);
 }
 
+const URL = window.location.pathname;
+
 // Depending on the route
-if (window.location.pathname.startsWith('/overview')) {
+if (URL.startsWith('/overview')) {
   initOverview();
-} else if (window.location.pathname.startsWith('/anime')) {
+} else if (URL.startsWith('/anime')) {
   initAnime();
-} else if (window.location.pathname.startsWith('/sign-up')) {
+} else if (URL.startsWith('/sign-up')) {
   initSignUp();
-} else if (window.location.pathname.startsWith('/email-confirmation')) {
+} else if (URL.startsWith('/email-confirmation')) {
   redirectTo('/login', 5);
-} else if (window.location.pathname.startsWith('/login')) {
+} else if (URL.startsWith('/login')) {
   initLogIn();
-} else if (window.location.pathname.startsWith('/forgot-password')) {
+} else if (URL.startsWith('/forgot-password')) {
   initForgotPassword();
-} else if (window.location.pathname.startsWith('/password-reset')) {
+} else if (URL.startsWith('/password-reset')) {
   initPasswordReset();
-} else if (window.location.pathname.startsWith('/me/security')) {
-  initMeSecurity();
-} else if (window.location.pathname.startsWith('/me/settings')) {
-  initMeSettings();
-} else if (window.location.pathname.startsWith('/me/reviews')) {
-  initMeReviews();
+} else if (URL.startsWith('/me/')) {
+  if (URL.startsWith('/me/security')) {
+    initMeSecurity();
+  } else if (URL.startsWith('/me/settings')) {
+    initMeSettings();
+  } else if (URL.startsWith('/me/reviews')) {
+    initMeReviews();
+  }
+} else if (URL.startsWith('/edit/review')) {
+  initEditReview();
 } else {
   alert('Unknown route!');
 }

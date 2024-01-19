@@ -1305,7 +1305,7 @@ main {
 .int-edit {
   display: flex;
   flex-direction: column;
-  width: 70%;
+  width: auto;
   padding: 7rem;
   gap: 2.4rem;
   box-shadow: 0 0 5px 5px rgba(85, 85, 85, 0.3);

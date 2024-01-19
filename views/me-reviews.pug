@@ -7,8 +7,8 @@ mixin singleComment(review)
     td.review-rating-table
       p.rev-rate
         - const sequenceNames = starSequence(review.rating);
-        each name in sequenceNames
-          ion-icon.rev-icon(name="star")
+        each starName in sequenceNames
+          ion-icon.rev-icon(name=starName)
     td.review-date-table= review.addedAt.toString().slice(0, 21)
     td.review-action-table
       a.edit-btn(href=`/edit/review/${review._id}`)

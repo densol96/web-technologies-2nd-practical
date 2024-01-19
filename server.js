@@ -17,15 +17,16 @@ const DB = process.env.DATABASE_REMOTE.replace(
   '<PASSWORD>',
   process.env.ATLAS_DB_PASSWORD
 );
+// At one moment, the cloud platform was unavailable, so I was working with the DB on my localhost
 // const DB = 'mongodb://localhost:27017/animePortal';
 
 mongoose
   .connect(DB)
   .then(() => {
-    console.log(`Connected to remote DB successfully!`);
+    console.log(`Connected to DB successfully!`);
   })
   .catch((err) => {
-    console.log(`💥 UNABLE TO CONNECT TO REMOTE DB:`);
+    console.log(`💥 UNABLE TO CONNECT TO DB:`);
     console.log(err);
   });
 
