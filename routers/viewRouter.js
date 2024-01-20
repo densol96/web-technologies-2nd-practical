@@ -29,4 +29,8 @@ router.get('/me/settings', viewController.meSettings);
 router.get('/me/security', viewController.meSecurity);
 router.get('/me/reviews', viewController.meReviews);
 router.get('/edit/review/:id', viewController.editReviews);
+
+// ADMIN RIGHTS FOR CMS
+router.get('/admin/reviews', viewController.adminReviews);
+
 module.exports = router;

@@ -10,14 +10,14 @@ export const state = {
   page: 1,
   pagesTotal: '',
   reviews: [],
-  curUserId: '',
+  curUsername: '',
 };
 
 export const loadReviews = async () => {
   try {
     const result = await axios({
       method: 'GET',
-      url: `${ME_REVIEWS_API_ROUTE}?sort=latest&page=${state.page}&limit=3&userFilter=${state.curUserId}`,
+      url: `${ME_REVIEWS_API_ROUTE}?sort=latest&page=${state.page}&limit=3&userFilter=${state.curUsername}`,
     });
     state.reviews = result.data.data;
     updateDateFormat(state.reviews);

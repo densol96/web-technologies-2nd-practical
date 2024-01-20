@@ -1,0 +1,83 @@
+extends base 
+
+mixin singleComment(review)
+  tr
+    td.review-author-table
+      a.user-link.cms-link(href=`/users/${review.user.username}`, target="_blank")= review.user.username
+
+    td.review-comment-table= review.comment
+      
+
+    td.review-title-table
+      a.anime-link.cms-link(href=`/anime/${review.anime.slug}`, target="_blank")= review.anime.title
+
+    td.review-rating-table
+      p.rev-rate
+        ion-icon.rev-icon(name="star")
+        ion-icon.rev-icon(name="star")
+        ion-icon.rev-icon(name="star")
+        ion-icon.rev-icon(name="star")
+        ion-icon.rev-icon(name="star-outline")
+
+    td.review-date-table= review.addedAt.toString().slice(0, 21)
+
+    td.review-action-table
+      a.edit-btn(href=`/edit/review/${review._id}`)
+        ion-icon.table-icon.edit-icon(name="create-outline")
+
+      span.delimiter / 
+
+      button.delete-btn(data-review-id=`${review._id}`)
+        ion-icon.table-icon.delete-icon(name="trash-outline")
+
+block content
+  div.header-line
+    h2.int-header Reviews
+
+  section.admin-top-line-panel.sort-by
+    div.admin-sort-by
+      label.sort-text.admin-fields-spacing Sort by: 
+      select.drop-down(name="sort")
+        option(value="latest") Latest
+        option(value="odlest") Oldest
+        option(value="best") Highest rating
+        option(value="worst") Lowest rating
+
+    form.admin-search-by
+      div.search-by-unit
+        input.search-review-field.admin-fields-spacing(type="text", placeholder="Enter author's name", autofocus)
+        button.admin-search-btn.search-review-btn.admin-fields-spacing Search reviews
+      button.admin-search-btn.show-all-reviews-btn.admin-fields-spacing Show all
+  //- TABLE WITH CONTENT ON THE SITE
+  -if(reviews.length > 0)
+    table.reviews-table
+      thead.cms-table-header
+        th Author
+        th Comment
+        th Anime
+        th Rating
+        th Date
+        th Action
+
+      tbody.reviews-table-body
+        each review in reviews 
+          +singleComment(review)
+    
+    //- PAGINATION
+    - if(pagesTotal > 1)
+      div.pagination-container
+        div.pagination(data-pages-total=pagesTotal)
+          button.pagination-btn.prev-page.hidden
+            ion-icon.pagination-icon(name="chevron-back-outline")
+
+          span.current-page.page-num
+            | Current page - 
+            span.update-cur-page 1
+
+          button.pagination-btn.next-page
+            ion-icon.pagination-icon(name="chevron-forward-outline")
+  - else 
+    div.no-comment.admin-no-comment
+      p.no-comment-message
+        ion-icon(name="close-circle-outline")
+        span.no-message-text Currently, users have left no reviews..

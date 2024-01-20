@@ -67,6 +67,10 @@ const userSchema = new mongoose.Schema({
     default: true,
     select: false,
   },
+  reviewsLeft: {
+    type: Number,
+    default: 0,
+  },
   emailConfirmationToken: String,
   emailConfirmed: {
     type: Boolean,

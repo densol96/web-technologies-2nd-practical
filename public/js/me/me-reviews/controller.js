@@ -1,8 +1,8 @@
 import * as model from './model.js';
 import meReviewsViewer from './viewer.js';
 
-const updateState = (id, total) => {
-  model.state.curUserId = id;
+const updateState = (username, total) => {
+  model.state.curUsername = username;
   model.state.pagesTotal = total;
 };
 

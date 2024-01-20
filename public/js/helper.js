@@ -31,29 +31,35 @@ export const redirectTo = (route, waitTimeSec) => {
 };
 
 export const viewportAdjuster = () => {
+  const main = document.querySelector('main');
+  const footer = document.querySelector('.footer');
   const adjuster = () => {
     if (window.innerHeight > document.body.offsetHeight) {
-      main.style.height = '100vh';
+      // Adjust the body
+      document.body.style.height = '100vh';
+      document.body.style.display = 'flex';
+      document.body.style.flexDirection = 'column';
+      // Place footer at the bottom of the viewport
+      footer.style.marginTop = 'auto';
+      // Adjust flex-grow on main
+      main.style.flexGrow = '1';
     } else {
-      main.style.height = 'auto';
+      document.body.style.display = 'block';
+      document.body.style.height = 'auto';
     }
   };
   const mainLayout = document.querySelector('.main-layout');
   const socialAsideClicker = document.querySelector('.social-aside');
   const socialMenu = document.querySelector('.aside');
 
-  socialAsideClicker.addEventListener('click', (e) => {
+  socialAsideClicker?.addEventListener('click', (e) => {
     mainLayout.classList.toggle('openned-menu');
     adjuster();
   });
 
-  // VIEWPORT CHECKER
-  const main = document.querySelector('main');
-  if (window.innerHeight > document.body.offsetHeight) {
-    main.style.height = '100vh';
-  }
-
   window.addEventListener('resize', (e) => {
     adjuster();
   });
+
+  adjuster();
 };

@@ -2,7 +2,8 @@ extends base
 
 mixin singleComment(review)
   tr
-    td.review-title-table= review.anime.title
+    td.review-title-table
+      a.cms-link(href=`/anime/${review.anime.slug}`)= review.anime.title
     td.review-comment-table= review.comment
     td.review-rating-table
       p.rev-rate
@@ -18,7 +19,7 @@ mixin singleComment(review)
         ion-icon.table-icon.delete-icon(name="trash-outline")
 
 block content 
-  .me-layout(data-user-id=user._id)
+  .me-layout(data-user-username=user.username)
     aside.menu
       .menu-option
         a.menu-link(href="/me/settings")
@@ -38,7 +39,7 @@ block content
         h2.int-header Your reviews
         if(reviews.length > 0)
           table.reviews-table
-            thead.reviews-table-header
+            thead.cms-table-header
               th Anime
               th.review-comment-table Comment
               th Rating

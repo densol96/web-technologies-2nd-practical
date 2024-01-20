@@ -4,16 +4,16 @@ class meReviewsViewer {
   #nextPageBtn = document.querySelector('.next-page');
 
   // DATA FOT STATE
-  #curUserId = document
+  #curUsername = document
     .querySelector('.me-layout')
-    ?.getAttribute('data-user-id');
+    ?.getAttribute('data-user-username');
   #pagesTotal = document
     .querySelector('.pagination')
     ?.getAttribute('data-pages-total');
   #currentPage = document.querySelector('.update-cur-page');
 
   revealState(action) {
-    action(this.#curUserId, +this.#pagesTotal);
+    action(this.#curUsername, +this.#pagesTotal);
   }
 
   initBtnsEventsListeners(nextPageAction, prevPageAction) {
@@ -28,7 +28,11 @@ class meReviewsViewer {
   #singleReviewHTML(review) {
     return `
             <tr>
-                <td class="review-title-table">${review.anime.title}</td>
+                <td class="review-title-table">
+                  <a class="cms-link" href="/anime/${review.anime.slug}">
+                    ${review.anime.title}
+                  </a>
+                </td>
                 <td class="review-comment-table">
                   ${review.comment}
                 </td>

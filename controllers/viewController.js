@@ -44,7 +44,7 @@ exports.getAnime = catchAssyncErr(async (req, res) => {
   const pagesTotal = Math.ceil(anime.reviewsTotal / DOCS_PER_PAGE);
   const rating = starSequence(anime.rating);
 
-  res.status(201).render('anime', {
+  res.status(201).render('siteFront/anime', {
     anime,
     starSequence,
     reviews,
@@ -61,7 +61,7 @@ exports.getOverview = catchAssyncErr(async (req, res) => {
   // want to pass in data-set to the client to update the state on the front-side
   const pagesTotal = Math.ceil(total / DOCS_PER_PAGE);
 
-  res.status(200).render('overview', {
+  res.status(200).render('siteFront/overview', {
     animes,
     renderPages: total > DOCS_PER_PAGE,
     pagesTotal,
@@ -69,35 +69,35 @@ exports.getOverview = catchAssyncErr(async (req, res) => {
 });
 
 exports.login = (req, res) => {
-  res.status(200).render('login');
+  res.status(200).render('siteFront/login');
 };
 
 exports.signUp = (req, res) => {
-  res.status(200).render('signup');
+  res.status(200).render('siteFront/signup');
 };
 
 exports.emailConfirmed = (req, res) => {
-  res.status(200).render('emailConfirmed', {
+  res.status(200).render('siteFront/emailConfirmed', {
     username: req.username,
   });
 };
 
 exports.forgotPassword = (req, res) => {
-  res.status(200).render('forgotPassword');
+  res.status(200).render('siteFront/forgotPassword');
 };
 
 exports.resetPassword = (req, res) => {
-  res.status(200).render('resetPassword', {
+  res.status(200).render('siteFront/resetPassword', {
     username: req.username,
   });
 };
 
 exports.meSettings = (req, res) => {
-  res.status(200).render('settings');
+  res.status(200).render('siteFront/settings');
 };
 
 exports.meSecurity = (req, res) => {
-  res.status(200).render('security');
+  res.status(200).render('siteFront/security');
 };
 
 exports.meReviews = catchAssyncErr(async (req, res) => {
@@ -109,7 +109,7 @@ exports.meReviews = catchAssyncErr(async (req, res) => {
   const total = await Review.countDocuments({ user: req.user._id });
   const pagesTotal = Math.ceil(total / DOCS_PER_PAGE);
 
-  res.status(200).render('me-reviews', {
+  res.status(200).render('siteFront/me-reviews', {
     reviews,
     starSequence,
     pagesTotal,
@@ -120,8 +120,23 @@ exports.meReviews = catchAssyncErr(async (req, res) => {
 exports.editReviews = catchAssyncErr(async (req, res, next) => {
   const { id } = req.params;
   const review = await Review.findOne({ _id: id });
-  res.status(200).render('editReviews', {
+  res.status(200).render('siteFront/editReviews', {
     starSequence,
     review,
+  });
+});
+
+// ----------------- ADMIN - VIEW CONTROLLER -----------------
+exports.adminReviews = catchAssyncErr(async (req, res, next) => {
+  const DOCS_PER_PAGE = 5;
+  const SEARCH_BY = { addedAt: -1 };
+  const reviews = await Review.find().sort(SEARCH_BY).limit(DOCS_PER_PAGE);
+  const total = await Review.countDocuments();
+  const pagesTotal = Math.ceil(total / DOCS_PER_PAGE);
+
+  res.status(200).render('admin/reviews', {
+    pagesTotal,
+    reviews,
+    starSequence,
   });
 });

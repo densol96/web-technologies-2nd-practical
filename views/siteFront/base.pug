@@ -28,40 +28,8 @@ html(lang="en")
     
   body
     // HEADER
-    header.header
-      nav.nav-menu
-        a.logo-title.nav-element(href="/")
-          span AniPortal
-        ul.nav-list.left
-          li
-            a(href="/overview") Anime
-          li
-            a(href="#") Random show
-          li.no-underline
-            form.search-form(action="")
-              input.search-field(type="search", placeholder="Search anime...")
-              button.search-button
-                ion-icon.search-icon(name="search-outline")
-          
-          - if (user)
-            -if(user.role === 'admin') 
-              a.user-profile-link(href='/admin') Admin
-            li.profile
-              a.user-profile-link(href='/me/settings')
-                //- div.nav-profile-img-container Hello
-                img(src=`/img/users/${user.avatar}` class='nav-profile-pic')
-                span.user-name= user.username 
-            li.logout
-              //- a(href="/logout") Logout
-              button.logout-btn Logout
-          - else 
-            li.sign-up
-              a(href="/sign-up") Sign Up
-            li.login
-              a(href="/login") Login
-        button.btn-mobile-nav
-          ion-icon.icon-mobile-close.icon-nav(name="close-outline")
-          ion-icon.icon-mobile-open.icon-nav(name="menu-outline")
+    include ../_header
+    
     // MAIN 
     main
       div.overlay
@@ -206,9 +174,10 @@ html(lang="en")
               textarea.typing-field(cols="23", rows="2", maxlength="150", placeholder="Type your text here! (max length 150 chars)")
               button.send-to-chat
                 ion-icon.send-icon(name="send") 
-        // CONTENT 
+        
+        // CONTENT of the web-site goes here
         article.article
           block content  
+    
     // FOOTER
-    footer.footer
-      p.footer-text © Deniss Solovjovs, Web Technologies, 2nd Practical project, 2023-2024
+    include ../_footer

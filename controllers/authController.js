@@ -266,7 +266,6 @@ exports.idLoggedInSession = catchAssyncErr(async (req, res, next) => {
     // Finally, after all checks, if we are here ==> we have a logged in user
     // Our SSR engine(pug) has access to variables inside 'locals'
     res.locals.user = user;
-    console.log(user);
   }
   next();
 });

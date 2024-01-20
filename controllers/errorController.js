@@ -42,7 +42,7 @@ const sendErrDev = (err, req, res) => {
   }
   // THE PORTAL ITSELF
   else {
-    res.status(err.statusCode).render('error', {
+    res.status(err.statusCode).render('siteFront/error', {
       errorName: err.name,
       errors: err.errors,
       message: err.message,

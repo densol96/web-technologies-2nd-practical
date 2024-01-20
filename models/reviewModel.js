@@ -1,5 +1,6 @@
 const mongoose = require('mongoose');
 const Anime = require('./animeModel.js');
+const User = require('./userModel.js');
 
 const reviewSchema = mongoose.Schema(
   {
@@ -85,18 +86,50 @@ reviewSchema.statics.calculateRatingsAndTotal = async function (animeId) {
     });
   }
 };
+// We also want to keep the reviews counter for each user, taking into account high read/write ratio, better to do it here
+// rather than do extra-query every time we check the user's profile
+reviewSchema.statics.calculateUserReviews = async function (userId) {
+  const stats = await this.aggregate([
+    {
+      //animeId comes from the updated anime doc
+      $match: { user: userId },
+    },
+    {
+      $group: {
+        _id: '$user',
+        numOfReviews: { $sum: 1 },
+      },
+    },
+  ]);
+  console.log(stats);
+  if (stats.length > 0) {
+    // stats format is [{num, rating}]
+
+    const { numOfReviews } = stats[0];
+    await User.findByIdAndUpdate(userId, {
+      reviewsLeft: numOfReviews,
+    });
+  } else {
+    await User.findByIdAndUpdate(userId, {
+      reviewsLeft: 0,
+    });
+  }
+};
 
 // USING A POST HOOK(NOT PRE!) cause after the review is added/deleted, perform calculating the ratings and total, then update the anime document
 // ADD a new review to a collection
 reviewSchema.post('save', function () {
   // inside document middleware this -> document; this.constructor -> Model upon which we are calling the static method
   this.constructor.calculateRatingsAndTotal(this.anime);
+  this.constructor.calculateUserReviews(this.user);
 });
 
 // findOneAndUpdate --- findOneAndDelete
 reviewSchema.post(/^findOneAnd/, function (doc) {
+  console.log('REVIEW DELETED!');
   // this is a query middleware, therefore it will also get populated ---> need to use doc.anime._id to get access to anime id
   doc.constructor.calculateRatingsAndTotal(doc.anime._id);
+  doc.constructor.calculateUserReviews(doc.user._id);
 });
 
 const Review = mongoose.model('Review', reviewSchema);

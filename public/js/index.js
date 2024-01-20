@@ -25,6 +25,8 @@ import {
 import { initMeSecurity, initMeSettings } from './me/me.js';
 // CMS
 import { initEditReview } from './edit/review.js';
+import initAdminReviews from './cms/reviews/controller.js';
+
 // If user logged in
 const logOutBtn = document.querySelector('.logout-btn');
 if (logOutBtn) {
@@ -58,6 +60,14 @@ if (URL.startsWith('/overview')) {
   }
 } else if (URL.startsWith('/edit/review')) {
   initEditReview();
+}
+// CMS PART
+else if (URL.startsWith('/admin')) {
+  if (URL.startsWith('/admin')) {
+    if (URL.startsWith('/admin/reviews')) {
+      initAdminReviews();
+    }
+  }
 } else {
   alert('Unknown route!');
 }
