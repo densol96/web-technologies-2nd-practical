@@ -1,0 +1,348 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <!-- META DATA -->
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <!-- FONTS -->
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Lobster&family=Rubik:wght@400;500;700&display=swap"
+      rel="stylesheet"
+    />
+    <!-- ICONS -->
+    <script
+      type="module"
+      src="https://unpkg.com/ionicons@7.1.0/dist/ionicons/ionicons.esm.js"
+    ></script>
+    <script
+      nomodule
+      src="https://unpkg.com/ionicons@7.1.0/dist/ionicons/ionicons.js"
+    ></script>
+    <!-- CSS STYLES -->
+    <link rel="stylesheet" href="css/style.css" />
+    <link rel="stylesheet" href="css/querries.css" />
+    <!-- JS -->
+    <script defer src="index.js"></script>
+    <!-- TITLE -->
+    <title>AniPortal - For Anime Fans</title>
+  </head>
+  <body>
+    <header class="header">
+      <nav class="nav-menu">
+        <a href="#" class="logo-title nav-element"><span>AniPortal</span></a>
+        <ul class="nav-list left">
+          <li><a href="#">Anime</a></li>
+          <li><a href="#">Random show</a></li>
+          <li><a href="#">Top 10</a></li>
+          <li class="no-underline">
+            <form class="search-form" action="">
+              <input
+                class="search-field"
+                type="search"
+                placeholder="Search anime..."
+              />
+              <button class="search-button">
+                <ion-icon class="search-icon" name="search-outline"></ion-icon>
+              </button>
+            </form>
+          </li>
+          <li class="sign-up"><a href="#">Sign Up</a></li>
+          <li class="login"><a href="#">Login</a></li>
+        </ul>
+        <button class="btn-mobile-nav">
+          <ion-icon
+            class="icon-mobile-close icon-nav"
+            name="close-outline"
+          ></ion-icon>
+          <ion-icon
+            class="icon-mobile-open icon-nav"
+            name="menu-outline"
+          ></ion-icon>
+        </button>
+      </nav>
+    </header>
+    <main>
+      <div class="overlay"></div>
+      <div class="main-layout">
+        <div class="admin-layout">
+          <aside class="menu">
+            <a class="admin-menu-link" href="/admin/anime">
+              <div class="menu-option admin-option">
+                <ion-icon
+                  class="admin-menu-option-icon"
+                  name="eye-outline"
+                ></ion-icon>
+                <span class="admin-menu-option-text">Anime</span>
+              </div>
+            </a>
+            <a class="admin-menu-link" href="/admin/users">
+              <div class="menu-option admin-option">
+                <ion-icon
+                  class="admin-menu-option-icon"
+                  name="accessibility-outline"
+                ></ion-icon>
+                <span class="admin-menu-option-text">Users</span>
+              </div>
+            </a>
+            <a class="admin-menu-link" href="/admin/reviews">
+              <div class="menu-option admin-option current-profile-menu-option">
+                <ion-icon
+                  class="admin-menu-option-icon"
+                  name="book-outline"
+                ></ion-icon>
+                <span class="admin-menu-option-text">Reviews</span>
+              </div>
+            </a>
+          </aside>
+          <article class="admin-interface">
+            <div class="header-line">
+              <h2 class="int-header">Reviews</h2>
+            </div>
+            <section class="admin-top-line-panel sort-by">
+              <div class="admin-sort-by">
+                <label class="sort-text admin-fields-spacing">Sort by: </label>
+                <select class="drop-down" name="sort">
+                  <option value="rating">Rating</option>
+                  <option value="reviews">Reviews</option>
+                  <option value="-addedAt">Newest</option>
+                  <option value="addedAt">Oldest</option>
+                </select>
+              </div>
+              <form class="admin-search-by">
+                <input
+                  class="search-review-field admin-fields-spacing"
+                  type="text"
+                  placeholder="Enter author's name"
+                />
+                <button
+                  class="admin-search-btn search-review-btn admin-fields-spacing"
+                >
+                  Search reviews
+                </button>
+                <button
+                  class="admin-search-btn show-all-reviews-btn admin-fields-spacing"
+                >
+                  Show all
+                </button>
+              </form>
+            </section>
+
+            <table class="reviews-table">
+              <thead class="reviews-table-header">
+                <th>Author</th>
+                <th>Comment</th>
+                <th>Anime</th>
+                <th>Rating</th>
+                <th>Date</th>
+                <th>Action</th>
+              </thead>
+              <tbody class="reviews-table-body">
+                <tr>
+                  <td class="review-author-table">
+                    <a class="user-link" href="/users/solodeni">solodeni</a>
+                  </td>
+
+                  <td class="review-comment-table">
+                    Hey, I really liked this anime! I think it was really cool!
+                  </td>
+                  <td class="review-title-table">Naruto in the Fantasy</td>
+                  <td class="review-rating-table">
+                    <p class="rev-rate">
+                      <ion-icon class="rev-icon" name="star"></ion-icon>
+                      <ion-icon class="rev-icon" name="star"></ion-icon>
+                      <ion-icon class="rev-icon" name="star"></ion-icon>
+                      <ion-icon class="rev-icon" name="star"></ion-icon>
+                      <ion-icon class="rev-icon" name="star-outline"></ion-icon>
+                    </p>
+                  </td>
+                  <td class="review-date-table">Mon Jan 15 2024 21:29</td>
+                  <td class="review-action-table">
+                    <a class="edit-btn" href="/edit/naruto">
+                      <ion-icon
+                        class="table-icon edit-icon"
+                        name="create-outline"
+                      ></ion-icon>
+                    </a>
+                    <span class="delimiter"> / </span>
+                    <button class="delete-btn">
+                      <ion-icon
+                        class="table-icon delete-icon"
+                        name="trash-outline"
+                      ></ion-icon>
+                    </button>
+                  </td>
+                </tr>
+                <tr>
+                  <td class="review-author-table">
+                    <a class="user-link" href="/users/solodeni">solodeni</a>
+                  </td>
+
+                  <td class="review-comment-table">
+                    Hey, I really liked this anime! I think it was really cool!
+                  </td>
+                  <td class="review-title-table">Naruto in the Fantasy</td>
+                  <td class="review-rating-table">
+                    <p class="rev-rate">
+                      <ion-icon class="rev-icon" name="star"></ion-icon>
+                      <ion-icon class="rev-icon" name="star"></ion-icon>
+                      <ion-icon class="rev-icon" name="star"></ion-icon>
+                      <ion-icon class="rev-icon" name="star"></ion-icon>
+                      <ion-icon class="rev-icon" name="star-outline"></ion-icon>
+                    </p>
+                  </td>
+                  <td class="review-date-table">Mon Jan 15 2024 21:29</td>
+                  <td class="review-action-table">
+                    <a class="edit-btn" href="/edit/naruto">
+                      <ion-icon
+                        class="table-icon edit-icon"
+                        name="create-outline"
+                      ></ion-icon>
+                    </a>
+                    <span class="delimiter"> / </span>
+                    <button class="delete-btn">
+                      <ion-icon
+                        class="table-icon delete-icon"
+                        name="trash-outline"
+                      ></ion-icon>
+                    </button>
+                  </td>
+                </tr>
+                <tr>
+                  <td class="review-author-table">
+                    <a class="user-link" href="/users/solodeni">solodeni</a>
+                  </td>
+
+                  <td class="review-comment-table">
+                    Hey, I really liked this anime! I think it was really cool!
+                  </td>
+                  <td class="review-title-table">Naruto in the Fantasy</td>
+                  <td class="review-rating-table">
+                    <p class="rev-rate">
+                      <ion-icon class="rev-icon" name="star"></ion-icon>
+                      <ion-icon class="rev-icon" name="star"></ion-icon>
+                      <ion-icon class="rev-icon" name="star"></ion-icon>
+                      <ion-icon class="rev-icon" name="star"></ion-icon>
+                      <ion-icon class="rev-icon" name="star-outline"></ion-icon>
+                    </p>
+                  </td>
+                  <td class="review-date-table">Mon Jan 15 2024 21:29</td>
+                  <td class="review-action-table">
+                    <a class="edit-btn" href="/edit/naruto">
+                      <ion-icon
+                        class="table-icon edit-icon"
+                        name="create-outline"
+                      ></ion-icon>
+                    </a>
+                    <span class="delimiter"> / </span>
+                    <button class="delete-btn">
+                      <ion-icon
+                        class="table-icon delete-icon"
+                        name="trash-outline"
+                      ></ion-icon>
+                    </button>
+                  </td>
+                </tr>
+                <tr>
+                  <td class="review-author-table">
+                    <a class="user-link" href="/users/solodeni">solodeni</a>
+                  </td>
+
+                  <td class="review-comment-table">
+                    Hey, I really liked this anime! I think it was really cool!
+                  </td>
+                  <td class="review-title-table">Naruto in the Fantasy</td>
+                  <td class="review-rating-table">
+                    <p class="rev-rate">
+                      <ion-icon class="rev-icon" name="star"></ion-icon>
+                      <ion-icon class="rev-icon" name="star"></ion-icon>
+                      <ion-icon class="rev-icon" name="star"></ion-icon>
+                      <ion-icon class="rev-icon" name="star"></ion-icon>
+                      <ion-icon class="rev-icon" name="star-outline"></ion-icon>
+                    </p>
+                  </td>
+                  <td class="review-date-table">Mon Jan 15 2024 21:29</td>
+                  <td class="review-action-table">
+                    <a class="edit-btn" href="/edit/naruto">
+                      <ion-icon
+                        class="table-icon edit-icon"
+                        name="create-outline"
+                      ></ion-icon>
+                    </a>
+                    <span class="delimiter"> / </span>
+                    <button class="delete-btn">
+                      <ion-icon
+                        class="table-icon delete-icon"
+                        name="trash-outline"
+                      ></ion-icon>
+                    </button>
+                  </td>
+                </tr>
+                <tr>
+                  <td class="review-author-table">
+                    <a class="user-link" href="/users/solodeni">solodeni</a>
+                  </td>
+
+                  <td class="review-comment-table">
+                    Hey, I really liked this anime! I think it was really cool!
+                  </td>
+                  <td class="review-title-table">Naruto in the Fantasy</td>
+                  <td class="review-rating-table">
+                    <p class="rev-rate">
+                      <ion-icon class="rev-icon" name="star"></ion-icon>
+                      <ion-icon class="rev-icon" name="star"></ion-icon>
+                      <ion-icon class="rev-icon" name="star"></ion-icon>
+                      <ion-icon class="rev-icon" name="star"></ion-icon>
+                      <ion-icon class="rev-icon" name="star-outline"></ion-icon>
+                    </p>
+                  </td>
+                  <td class="review-date-table">Mon Jan 15 2024 21:29</td>
+                  <td class="review-action-table">
+                    <a class="edit-btn" href="/edit/naruto">
+                      <ion-icon
+                        class="table-icon edit-icon"
+                        name="create-outline"
+                      ></ion-icon>
+                    </a>
+                    <span class="delimiter"> / </span>
+                    <button class="delete-btn">
+                      <ion-icon
+                        class="table-icon delete-icon"
+                        name="trash-outline"
+                      ></ion-icon>
+                    </button>
+                  </td>
+                </tr>
+              </tbody>
+            </table>
+            <div class="pagination-container">
+              <div class="pagination" data-pages-total="2">
+                <button class="pagination-btn prev-page">
+                  <ion-icon
+                    class="pagination-icon"
+                    name="chevron-back-outline"
+                  ></ion-icon>
+                </button>
+                <span class="current-page page-num"
+                  >Current page - <span class="update-cur-page">2</span></span
+                >
+                <button class="pagination-btn next-page">
+                  <ion-icon
+                    class="pagination-icon"
+                    name="chevron-forward-outline"
+                  ></ion-icon>
+                </button>
+              </div>
+            </div>
+          </article>
+        </div>
+      </div>
+    </main>
+    <footer class="footer">
+      <p class="footer-text">
+        © Deniss Solovjovs, Web Technologies, 2nd Practical project, 2023-2024
+      </p>
+    </footer>
+  </body>
+</html>

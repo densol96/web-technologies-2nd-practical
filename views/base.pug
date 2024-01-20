@@ -44,6 +44,8 @@ html(lang="en")
                 ion-icon.search-icon(name="search-outline")
           
           - if (user)
+            -if(user.role === 'admin') 
+              a.user-profile-link(href='/admin') Admin
             li.profile
               a.user-profile-link(href='/me/settings')
                 //- div.nav-profile-img-container Hello

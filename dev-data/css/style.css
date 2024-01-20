@@ -1311,3 +1311,51 @@ main {
   box-shadow: 0 0 5px 5px rgba(85, 85, 85, 0.3);
   margin: 0 auto;
 }
+
+/* ADMIN PANEL ------- CMS */
+.admin-layout {
+  grid-column: 1 / span 2;
+  display: grid;
+  grid-template-columns: 20rem 1fr;
+  box-shadow: 0 0 15px 15px rgba(0, 0, 0, 0.103);
+}
+
+.admin-menu {
+  border: 1px solid red;
+}
+
+.admin-option {
+  display: flex;
+  gap: 1rem;
+}
+
+.admin-interface {
+  margin: 7rem;
+  display: flex;
+  flex-direction: column;
+  gap: 2.4rem;
+}
+
+.admin-top-line-panel {
+  display: flex;
+  justify-content: space-between;
+}
+
+.admin-fields-spacing {
+  padding: 0.8rem 0.4rem;
+  font-family: inherit;
+  color: #555;
+}
+
+.search-review-field {
+  max-width: 20rem;
+}
+
+.user-link {
+  text-decoration: underline;
+  color: blue;
+}
+
+.user-link:hover {
+  text-decoration: none;
+}

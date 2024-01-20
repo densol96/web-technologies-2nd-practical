@@ -57,7 +57,7 @@ const userSchema = new mongoose.Schema({
   },
   role: {
     type: String,
-    // admin will have acces to adding and editing animes + CMS over animes/reviews/users
+    // admin will have acces to CMS over animes/reviews/users
     enum: ['user', 'admin'],
     default: 'user',
   },
