@@ -7,6 +7,7 @@ const bcrypt = require('bcryptjs');
 const jwt = require(`jsonwebtoken`);
 const crypto = require(`crypto`);
 const { promisify } = require('util');
+const Review = require('../models/reviewModel.js');
 
 const signToken = (id) => {
   return jwt.sign({ id }, process.env.JWT_SECRET, {
@@ -266,6 +267,7 @@ exports.idLoggedInSession = catchAssyncErr(async (req, res, next) => {
     // Finally, after all checks, if we are here ==> we have a logged in user
     // Our SSR engine(pug) has access to variables inside 'locals'
     res.locals.user = user;
+    req.user = user;
   }
   next();
 });
@@ -275,7 +277,8 @@ exports.protect = catchAssyncErr(async (req, res, next) => {
   if (!token)
     throw new AppError(
       'This is a protected route! You must be logged in!',
-      403
+      403,
+      'Access denied'
     );
 
   const decoded = await promisify(jwt.verify)(
@@ -319,7 +322,42 @@ exports.logout = (req, res) => {
   });
 };
 
-exports.restrictTo = catchAssyncErr(async (req, res, next) => {
-  console.log('Only admin should be able to access this resourse!');
+exports.restrictTo = (...roles) => {
+  return (req, res, next) => {
+    let pass = false;
+    roles.forEach((role) => {
+      if (req.user.role === role) pass = true;
+    });
+    if (!pass) {
+      return next(
+        new AppError(
+          'You have no access to this resource',
+          403,
+          'Access denied'
+        )
+      );
+    }
+    next();
+  };
+};
+
+exports.authReviewEdit = catchAssyncErr(async (req, res, next) => {
+  const { id } = req.params;
+  const review = await Review.findById(id);
+  if (!review) {
+    throw new AppError(
+      'Unable to find the Review with such id',
+      404,
+      'Invalid ID'
+    );
+  }
+  // Only review's author or admin should be able to edit
+  if (review.user !== req.user._id && req.user.role !== 'admin') {
+    throw new AppError(
+      'You have no permission to perform this action',
+      403,
+      'Access denied'
+    );
+  }
   next();
 });

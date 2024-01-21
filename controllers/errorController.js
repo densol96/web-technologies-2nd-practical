@@ -30,8 +30,17 @@ const handleDuplicateFieldsErrorDB = (err) => {
   return duplicateError;
 };
 
+const handleCastErrorDB = (err) => {
+  return new AppError(
+    'Unable to proccess ID. Check URL or get in touch with the admin.',
+    404,
+    'Invalid ID'
+  );
+};
+
 const sendErrDev = (err, req, res) => {
   // API
+  console.log(err);
   if (req.originalUrl.startsWith('/api')) {
     res.status(err.statusCode || 500).json({
       status: err.status,
@@ -52,13 +61,11 @@ const sendErrDev = (err, req, res) => {
 
 module.exports = (err, req, res, next) => {
   err.statusCode = err.statusCode || 500;
-  console.log(err);
-  console.log(err.name);
-  console.log(err.code);
   if (process.env.NODE_ENV.trim() === 'development') {
     let error = err;
     if (err.name === 'ValidationError') error = handleValidationErrorDB(err);
     else if (err.code === 11000) error = handleDuplicateFieldsErrorDB(err);
+    else if (err.name === 'CastError') error = handleCastErrorDB(err);
     sendErrDev(error, req, res);
   } else if (process.env.NODE_ENV.trim() === 'production') {
     let error;

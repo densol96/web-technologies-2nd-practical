@@ -74,7 +74,13 @@ app.use('/', viewRouter);
 
 app.all('*', (req, res, next) => {
   // Will implement the AppError class later to handle this
-  next(new AppError('Page Not Found!', 404));
+  next(
+    new AppError(
+      'We could not find a page with such URL',
+      404,
+      'Page not found'
+    )
+  );
 });
 
 app.use(errorHandlerMiddleware);

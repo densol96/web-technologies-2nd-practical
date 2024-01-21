@@ -30,6 +30,10 @@ const reviewSchema = mongoose.Schema(
       ref: 'User',
       required: [true, 'Review must belong to a user'],
     },
+    checked: {
+      type: Boolean,
+      default: false,
+    },
   },
   {
     toJSON: { virtuals: true },
@@ -101,7 +105,7 @@ reviewSchema.statics.calculateUserReviews = async function (userId) {
       },
     },
   ]);
-  console.log(stats);
+
   if (stats.length > 0) {
     // stats format is [{num, rating}]
 
@@ -126,7 +130,6 @@ reviewSchema.post('save', function () {
 
 // findOneAndUpdate --- findOneAndDelete
 reviewSchema.post(/^findOneAnd/, function (doc) {
-  console.log('REVIEW DELETED!');
   // this is a query middleware, therefore it will also get populated ---> need to use doc.anime._id to get access to anime id
   doc.constructor.calculateRatingsAndTotal(doc.anime._id);
   doc.constructor.calculateUserReviews(doc.user._id);

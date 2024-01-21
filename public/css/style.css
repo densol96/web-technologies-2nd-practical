@@ -1036,7 +1036,7 @@ main {
   width: 80%;
   margin: 0 auto;
   display: flex;
-  flex-direction: row;
+  flex-direction: column;
   gap: 2.2rem;
   padding: 2rem 7rem;
   border-radius: 12px;
@@ -1481,4 +1481,45 @@ th.review-comment-table {
 
 .admin-no-comment {
   width: 100%;
+}
+
+.cms-content {
+  display: flex;
+  flex-direction: column;
+  gap: 2.4rem;
+}
+
+/* EDIT INTERVIEW FROM ADMIN */
+.admin-int-edit {
+  width: 70%;
+  margin: 0 auto;
+  display: flex;
+  flex-direction: column;
+  gap: 2.4rem;
+}
+
+.back-to-admin {
+  max-width: 70rem;
+  border: 2.5px solid #555;
+  padding: 0.5rem;
+  font-weight: 700;
+  text-transform: uppercase;
+  text-align: center;
+  font-family: inherit;
+}
+
+.back-to-admin:hover {
+  background-color: #555;
+  color: #fff;
+}
+
+.checked-status {
+  display: flex;
+  gap: 1rem;
+  align-items: center;
+}
+
+.checked {
+  width: 2.4rem;
+  height: 2.4rem;
 }

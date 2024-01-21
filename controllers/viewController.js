@@ -69,10 +69,12 @@ exports.getOverview = catchAssyncErr(async (req, res) => {
 });
 
 exports.login = (req, res) => {
+  if (req.user) return res.redirect('/overview');
   res.status(200).render('siteFront/login');
 };
 
 exports.signUp = (req, res) => {
+  if (req.user) return res.redirect('/overview');
   res.status(200).render('siteFront/signup');
 };
 
@@ -83,10 +85,12 @@ exports.emailConfirmed = (req, res) => {
 };
 
 exports.forgotPassword = (req, res) => {
+  if (req.user) return res.redirect('/overview');
   res.status(200).render('siteFront/forgotPassword');
 };
 
 exports.resetPassword = (req, res) => {
+  if (req.user) return res.redirect('/overview');
   res.status(200).render('siteFront/resetPassword', {
     username: req.username,
   });
@@ -138,5 +142,14 @@ exports.adminReviews = catchAssyncErr(async (req, res, next) => {
     pagesTotal,
     reviews,
     starSequence,
+  });
+});
+
+exports.adminEditReviews = catchAssyncErr(async (req, res, next) => {
+  const { id } = req.params;
+  const review = await Review.findOne({ _id: id });
+  res.status(200).render('admin/editReviews', {
+    starSequence,
+    review,
   });
 });

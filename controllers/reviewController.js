@@ -14,7 +14,10 @@ exports.postReview = catchAsyncErr(async (req, res, next) => {
     rating,
     user: user._id,
     anime: anime._id,
+    // Admins should have verified comments by default
+    checked: req.user.role === 'admin',
   });
+
   res.status(200).json({
     status: 'success',
     message: 'Your review has been posted',
@@ -25,9 +28,9 @@ exports.getReviews = catchAsyncErr(async (req, res, next) => {
   // We will want the reviews of some specific anime/user
   // will pass that filter in
   let filter = {};
-
+  let user;
   if (req.query.userFilter) {
-    const user = await User.findOne({
+    user = await User.findOne({
       username: req.query.userFilter,
     });
     if (!user) {
@@ -38,6 +41,7 @@ exports.getReviews = catchAsyncErr(async (req, res, next) => {
       );
     }
     filter.user = user._id;
+    // calc totalOages of reviews per user using user.reviewsLeft
   } else if (req.query.animeFilter) {
     filter.anime = req.query.animeFilter;
   }
@@ -47,16 +51,27 @@ exports.getReviews = catchAsyncErr(async (req, res, next) => {
     .paginate();
 
   const data = await query.mongooseQuery;
+
+  let pagesTotal;
+  const DOCS_PER_PAGE = 5;
+  if (user) {
+    pagesTotal = Math.ceil(user.reviewsLeft / DOCS_PER_PAGE);
+  } else {
+    const total = await Review.countDocuments();
+    pagesTotal = Math.ceil(total / DOCS_PER_PAGE);
+  }
+
   res.status(201).json({
     status: 'success',
     results: data.length,
     data,
+    pagesTotal,
   });
 });
 
 exports.deleteReview = catchAsyncErr(async (req, res, next) => {
-  const { reviewId } = req.params;
-  await Review.findByIdAndDelete({ _id: reviewId });
+  const { id } = req.params;
+  await Review.findByIdAndDelete({ _id: id });
   res.status(200).json({
     status: 'success',
     message: 'The review has been deleted',
@@ -64,16 +79,17 @@ exports.deleteReview = catchAsyncErr(async (req, res, next) => {
 });
 
 exports.updateReview = catchAsyncErr(async (req, res, next) => {
-  const { reviewId } = req.params;
-  const { rating, comment } = req.body;
+  const { id } = req.params;
+  const { rating, comment, checked } = req.body;
 
-  await Review.findOneAndUpdate(
+  const review = await Review.findOneAndUpdate(
     {
-      _id: reviewId,
+      _id: id,
     },
     {
       rating,
       comment,
+      checked,
     },
     { runValidators: true }
   );

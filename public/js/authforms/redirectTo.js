@@ -1,6 +1,6 @@
 const redirectTo = (route, waitTimeSec) => {
-  const redirectStop = document.querySelector('#err-no-redirect');
-  if (redirectStop) return;
+  // const redirectStop = document.querySelector('#err-no-redirect');
+  // if (redirectStop) return;
   setTimeout(() => {
     window.location.href = route;
   }, 1000 * waitTimeSec);

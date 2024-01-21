@@ -33,8 +33,8 @@ router
   .route('/post-review')
   .post(authController.protect, reviewController.postReview);
 router
-  .route('/review/:reviewId')
-  .all(authController.protect)
+  .route('/review/:id')
+  .all(authController.protect, authController.authReviewEdit)
   .patch(reviewController.updateReview)
   .delete(reviewController.deleteReview);
 

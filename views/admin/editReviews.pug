@@ -1,0 +1,26 @@
+extends base 
+
+block content
+  section.admin-int-edit(data-cur-rating= review.rating)
+    h2.int-header Edit review
+    form.leave-review
+      .leave-review-rating
+        label.review-label Edit the rating:
+        .rate-icons-stars
+          -const seq = starSequence(review.rating);
+          each s, i in seq 
+            ion-icon.rate-icons-star(name=`${s}` data-value=`${i+1}`)
+          
+      .leave-comment
+        label.review-label(for='comment') Edit a comment:
+        textarea.comment(id='comment' placeholder='Type your review/comment here...')= review.comment
+      
+      .checked-status 
+        label.review-label(for='checked') Approve a comment:
+        - if(review.checked)
+          input.checked(type="checkbox" id="checked" checked)
+        - else 
+          input.checked(type="checkbox" id="checked" ) 
+
+      button.send-comment(data-id-review=review._id) Send
+      a.back-to-admin(href='/admin/reviews') Go back

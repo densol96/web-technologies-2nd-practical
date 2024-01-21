@@ -1,10 +1,12 @@
 class adminReviewsViewer {
+  // Table body where tr with data about review will be stored
   #dataContainer = document.querySelector('.reviews-table-body');
-  #wholeSection = document.querySelector('.reviews-table');
+  // wrapper around the function
+  #wholeSection = document.querySelector('.cms-content');
+  // pagination inside CMS and udnerneath the table
+  #pagination = document.querySelector('.pagination');
   // SORTING BY
   #sortDropDown = document.querySelector('.drop-down');
-  #searchByBtn = document.querySelector('.search-review-btn');
-  #searchByField = document.querySelector('.search-review-field');
 
   // AUTHOR AKA USER
   #usernameInputField = document.querySelector('.search-review-field');
@@ -26,13 +28,17 @@ class adminReviewsViewer {
   // ---------- METHODS ------------------
 
   // INIT STUFF
+  anyReviews() {
+    return this.#wholeSection;
+  }
+
   revealPagesTotal(action) {
     action(this.#pagesTotal);
   }
 
   // EVENTS
   addSortByEvent(action) {
-    this.#sortDropDown.addEventListener('change', (e) => {
+    this.#sortDropDown?.addEventListener('change', (e) => {
       const index = this.#sortDropDown.selectedIndex;
       const sortBy = this.#sortDropDown[index].value;
       action(sortBy);
@@ -48,9 +54,27 @@ class adminReviewsViewer {
   }
 
   addSearchByUserEvent(action) {
-    this.#searchByUserBtn.addEventListener('click', (e) => {
+    this.#searchByUserBtn?.addEventListener('click', (e) => {
       e.preventDefault();
       action(this.#usernameInputField.value);
+    });
+  }
+
+  addShowAllBtnEvent(action) {
+    this.#showAllBtn?.addEventListener('click', (e) => {
+      e.preventDefault();
+      this.#usernameInputField.value = '';
+      action();
+    });
+  }
+
+  addDeleteBtnsEvent(action) {
+    const btns = document.querySelectorAll('.delete-btn');
+    btns.forEach((btn) => {
+      btn.addEventListener('click', (e) => {
+        // want to pass the button to the function to know exactly which btn out of many delets was called
+        action(e.target.closest('button').getAttribute('data-review-id'));
+      });
     });
   }
 
@@ -66,7 +90,13 @@ class adminReviewsViewer {
                 <td class="review-comment-table">
                   ${review.comment}
                 </td>
-                <td class="review-title-table">${review.anime.title}</td>
+                <td class="review-title-table">
+                  <a href="/anime/${
+                    review.anime.slug
+                  }" class="anime-link cms-link" target="_blank">
+                    ${review.anime.title}
+                  </a>
+                </td>
                 <td class="review-rating-table">
                   <p class="rev-rate">
                     ${[1, 2, 3, 4, 5]
@@ -81,15 +111,25 @@ class adminReviewsViewer {
                 <td class="review-date-table">${review.addedAt
                   .toString()
                   .slice(0, 21)}</td>
+                <td class="review-approved-table">
+                  <ion-icon
+                      class="table-icon checked-icon"
+                      name="${
+                        review.checked
+                          ? 'chevron-down-circle-outline'
+                          : 'close-circle-outline'
+                      }"
+                    ></ion-icon>
+                </td>
                 <td class="review-action-table">
-                  <a class="edit-btn" href="/edit/${review.anime.slug}">
+                  <a class="edit-btn" href="/admin/reviews/edit/${review._id}">
                     <ion-icon
                       class="table-icon edit-icon"
                       name="create-outline"
                     ></ion-icon>
                   </a>
                   <span class="delimiter"> / </span>
-                  <button class="delete-btn" data-review-id=@${review._id}">
+                  <button class="delete-btn" data-review-id="${review._id}">
                     <ion-icon
                       class="table-icon delete-icon"
                       name="trash-outline"
@@ -105,7 +145,7 @@ class adminReviewsViewer {
           <div class="no-comment admin-no-comment">
             <p class="no-comment-message">
               <ion-icon name="close-circle-outline"></ion-icon>
-              <span class="no-message-text">Currently you have left no reviews.</span>
+              <span class="no-message-text">No reviews found</span>
             </p>
           </div>
           `;
@@ -115,7 +155,7 @@ class adminReviewsViewer {
     // first check: if no table(no reviews in DB) -> do not do anything -> keep the current warning message 'no-reveiws'
     if (!this.#wholeSection) return;
     if (data.length === 0) {
-      return (this.#wholeSection.innerHTML = this.#noReviewsFoundHTML());
+      this.#dataContainer.innerHTML = '';
     }
     const html = data
       .map((dataElement) => {
@@ -143,6 +183,14 @@ class adminReviewsViewer {
 
   updateCurrentPage(num) {
     if (this.#currentPage) this.#currentPage.textContent = num;
+  }
+
+  hidePagination() {
+    this.#pagination?.classList.add('hidden');
+  }
+
+  showPagination() {
+    this.#pagination?.classList.remove('hidden');
   }
 }
 

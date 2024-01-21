@@ -1,10 +1,10 @@
-import { showAlert } from '../alerts.js';
-import { redirectTo } from '../helper.js';
+import { showAlert } from '../../alerts.js';
+import { redirectTo } from '../../helper.js';
 
 const initStarEffect = () => {
   const stars = document.querySelectorAll('.rate-icons-star');
   let rating = document
-    .querySelector('.int-edit')
+    .querySelector('.admin-int-edit')
     .getAttribute('data-cur-rating');
 
   const markActive = (rating) => {
@@ -63,6 +63,8 @@ const sendData = async (e) => {
     .querySelector(`.rate-icons-star.active`)
     ?.getAttribute('data-value');
   const comment = document.querySelector('#comment').value;
+  const checked = document.querySelector('#checked').checked;
+
   const id = e.target.getAttribute('data-id-review');
   try {
     const result = await axios({
@@ -71,17 +73,18 @@ const sendData = async (e) => {
       data: {
         rating,
         comment,
+        checked,
       },
     });
 
     showAlert('success', 'Success', result.data.message);
-    redirectTo('/me/reviews', 2);
+    redirectTo('/admin/reviews', 2);
   } catch (err) {
     showAlert('error', 'Invalid input', err.response.data.errors);
   }
 };
 
-export const initEditReview = () => {
+export const initAdminEditReview = () => {
   const btn = document.querySelector('.send-comment');
   initStarEffect();
   btn.addEventListener('click', sendData);

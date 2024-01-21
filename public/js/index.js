@@ -26,7 +26,7 @@ import { initMeSecurity, initMeSettings } from './me/me.js';
 // CMS
 import { initEditReview } from './edit/review.js';
 import initAdminReviews from './cms/reviews/controller.js';
-
+import { initAdminEditReview } from './cms/edit/review.js';
 // If user logged in
 const logOutBtn = document.querySelector('.logout-btn');
 if (logOutBtn) {
@@ -63,8 +63,10 @@ if (URL.startsWith('/overview')) {
 }
 // CMS PART
 else if (URL.startsWith('/admin')) {
-  if (URL.startsWith('/admin')) {
-    if (URL.startsWith('/admin/reviews')) {
+  if (URL.startsWith('/admin/reviews')) {
+    if (URL.startsWith('/admin/reviews/edit')) {
+      initAdminEditReview();
+    } else {
       initAdminReviews();
     }
   }

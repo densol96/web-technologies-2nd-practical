@@ -30,6 +30,10 @@ module.exports = class {
         this.mongooseQuery = this.mongooseQuery.sort({ rating: -1 });
       } else if (this.queryFromRequest.sort === 'worst') {
         this.mongooseQuery = this.mongooseQuery.sort({ rating: 1 });
+      } else if (this.queryFromRequest.sort === 'checked') {
+        this.mongooseQuery = this.mongooseQuery.sort({ checked: -1 });
+      } else if (this.queryFromRequest.sort === 'not-checked') {
+        this.mongooseQuery = this.mongooseQuery.sort({ checked: 1 });
       }
     }
   }

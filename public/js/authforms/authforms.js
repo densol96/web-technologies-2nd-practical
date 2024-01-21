@@ -117,6 +117,7 @@ export const initLogOut = (btn) => {
         'You are being redirected...',
       ]);
       redirectTo('/overview', 1.5);
+      console.log('U should get redirected');
     } catch (err) {
       console.log(err);
       showAlert('error', 'Loggin out went wrong...', 'Something went wrong...');
