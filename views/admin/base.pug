@@ -34,23 +34,21 @@ html(lang="en")
         .admin-layout
           aside.menu
             a.admin-menu-link(href="/admin/anime")
-              div.menu-option.admin-option
+              div.menu-option.admin-option#animesMenuOption
                 ion-icon.admin-menu-option-icon(name="eye-outline")
                 span.admin-menu-option-text Anime
 
             a.admin-menu-link(href="/admin/users")
-              div.menu-option.admin-option
+              div.menu-option.admin-option#usersMenuOption
                 ion-icon.admin-menu-option-icon(name="accessibility-outline")
                 span.admin-menu-option-text Users
 
             a.admin-menu-link(href="/admin/reviews")
-              div.menu-option.admin-option.current-profile-menu-option
+              div.menu-option.admin-option#reviewsMenuOption
                 ion-icon.admin-menu-option-icon(name="book-outline")
                 span.admin-menu-option-text Reviews
 
           article.admin-interface
-
-            
             block content
 
     include ../_footer

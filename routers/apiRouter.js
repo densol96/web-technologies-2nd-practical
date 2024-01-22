@@ -27,6 +27,8 @@ router
     userController.processImage,
     userController.updateSettings
   );
+
+// ------- CMS CALLS TO API ---------
 // REVIEWS
 router.route('/reviews').get(reviewController.getReviews);
 router
@@ -38,4 +40,22 @@ router
   .patch(reviewController.updateReview)
   .delete(reviewController.deleteReview);
 
+// USERS
+router.route('/users').get(userController.getUsers);
+router
+  .route('/admin/users/edit/:id')
+  .patch(
+    authController.protect,
+    authController.restrictTo('admin'),
+    userController.uploadAvatar,
+    userController.processImage,
+    userController.adminUpdateUser
+  );
+router
+  .route('/admin/users/create')
+  .post(
+    authController.protect,
+    authController.restrictTo('admin'),
+    userController.adminCreateUser
+  );
 module.exports = router;

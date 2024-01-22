@@ -44,7 +44,7 @@ block content
       label.sort-text.admin-fields-spacing Sort by: 
       select.drop-down(name="sort")
         option(value="latest") Latest
-        option(value="odlest") Oldest
+        option(value="oldest") Oldest
         option(value="best") Highest rating
         option(value="worst") Lowest rating
         option(value="checked") Approved
@@ -53,13 +53,13 @@ block content
 
     form.admin-search-by
       div.search-by-unit
-        input.search-review-field.admin-fields-spacing(type="text", placeholder="Enter author's name", autofocus)
-        button.admin-search-btn.search-review-btn.admin-fields-spacing Search reviews
-      button.admin-search-btn.show-all-reviews-btn.admin-fields-spacing Show all
+        input.search-review-field.admin-fields-spacing.search-input-field-admin(type="text", placeholder="Enter author's name", autofocus)
+        button.admin-search-btn.search-review-btn.admin-fields-spacing.search-btn-admin Search reviews
+      button.admin-search-btn.show-all-reviews-btn.admin-fields-spacing.show-all-btn-admin Show all
   //- TABLE WITH CONTENT ON THE SITE
   -if(reviews.length > 0)
     div.cms-content
-      table.reviews-table
+      table.reviews-table.admin-cms-table
         thead.cms-table-header
           th Author
           th Comment
@@ -69,7 +69,7 @@ block content
           th Approved
           th Action
 
-        tbody.reviews-table-body
+        tbody.reviews-table-body.admin-cms-table-body
           each review in reviews 
             +singleComment(review)
       
@@ -87,7 +87,7 @@ block content
             button.pagination-btn.next-page
               ion-icon.pagination-icon(name="chevron-forward-outline")
   - else 
-    div.no-comment.admin-no-comment
+    div.admin-no-comment
       p.no-comment-message
         ion-icon(name="close-circle-outline")
         span.no-message-text Currently, users have left no reviews..

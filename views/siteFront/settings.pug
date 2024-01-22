@@ -29,13 +29,19 @@ block content
           div.form-field
             label.form-label(for="email") Email:
             input.form-input(type="email", id="email", value=user.email) 
+          
+          div.form-field.email-public-field 
+            label.form-label(for="email-checkbox") Email is public:
+            - if(user.emailIsPublic)
+             input.form-input(class="checked" type="checkbox", id="email-checkbox", checked)
+            - else 
+              input.form-input(class="checked" type="checkbox", id="email-checkbox")
+          
           div.form-field.file-upload-field
             div.img-container-comment
               img.profile-pic-comment(src=`/img/users/${user.avatar}`, alt="Profile picture / avatar")
               ion-icon(class='uploaded-img-checker' name="checkmark-outline")
-              div.profile-pic-overlay
-
-
+              div.profile-pic-overlay 
             input(type="file", accept="image/*", id="avatar")
             label.form-label(for="avatar")
               span.upload-btn Upload avatar

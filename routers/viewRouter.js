@@ -39,6 +39,8 @@ router.get('/me/settings', authController.protect, viewController.meSettings);
 router.get('/me/security', authController.protect, viewController.meSecurity);
 router.get('/me/reviews', authController.protect, viewController.meReviews);
 
+// PUBLIC USER PROFILE
+router.get('/users/:id', viewController.publicUserProfile);
 // EDITING VIA CMS / ME-REVIEWS PAGE
 // Review (can be accessed by the original user and admins  --  auth the action inside the controller)
 router.get(

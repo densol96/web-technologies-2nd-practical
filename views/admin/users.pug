@@ -1,0 +1,91 @@
+extends base 
+
+mixin singleUser(user)
+  tr
+    td.user-username-table= user.username
+      //- a.user-link.cms-link(href=`/users/${review.user.username}`, target="_blank")= review.user.username
+
+    td.user-email-table= user.email
+
+    td.user-joined-table= user.registrationDate.toString().slice(0, 21)
+    
+    - if(user.active)
+      td.user-approved-table 
+        ion-icon.table-icon.checked-icon(name="chevron-down-circle-outline")
+    - else 
+      td.user-approved-table 
+        ion-icon.table-icon.checked-icon(name="close-circle-outline")
+
+    td.user-role-table= user.role
+    
+    - if(user.emailConfirmed)
+      td.user-email-confirm-table
+        ion-icon.table-icon.checked-icon(name="chevron-down-circle-outline")
+    - else 
+      td.user-email-confirm-table
+        ion-icon.table-icon.checked-icon(name="close-circle-outline")
+
+    td.review-action-table
+      a.view-btn(href=`/users/${user._id}`)
+        ion-icon.table-icon.edit-icon(name="eye-outline")
+      span.delimiter / 
+      a.edit-btn(href=`/admin/users/edit/${user._id}`)
+        ion-icon.table-icon.edit-icon(name="create-outline")
+
+block content
+  div.header-line
+    h2.int-header Users
+    a.create-admin-btn(href='/admin/users/create') Create user
+
+  section.admin-top-line-panel.sort-by
+    div.admin-sort-by
+      label.sort-text.admin-fields-spacing Sort by: 
+      select.drop-down(name="sort")
+        option(value="newest") Newest
+        option(value="oldest") Oldest
+        option(value="admin") Admin
+        option(value="user") User
+        option(value="email-confirm") Email+
+        option(value="email-not-confirm") Email-
+
+
+    form.admin-search-by
+      div.search-by-unit
+        input.search-user-field.admin-fields-spacing.search-input-field-admin(type="text", placeholder="Enter username", autofocus)
+        button.admin-search-btn.search-user-btn.admin-fields-spacing.search-btn-admin Search users
+      button.admin-search-btn.show-all-reviews-btn.admin-fields-spacing.show-all-btn-admin Show all
+  //- TABLE WITH CONTENT ON THE SITE
+  -if(users.length > 0)
+    div.cms-content
+      table.cms-table.admin-cms-table
+        thead.cms-table-header
+          th Username
+          th Email
+          th Joined on
+          th Active
+          th Role
+          th Email confirmed
+          th Action
+
+        tbody.cms-table-body.admin-cms-table-body
+          each user in users 
+            +singleUser(user)
+      
+      //- PAGINATION
+      - if(pagesTotal > 1)
+        div.pagination-container
+          div.pagination(data-pages-total=pagesTotal)
+            button.pagination-btn.prev-page.hidden
+              ion-icon.pagination-icon(name="chevron-back-outline")
+
+            span.current-page.page-num
+              | Current page - 
+              span.update-cur-page 1
+
+            button.pagination-btn.next-page
+              ion-icon.pagination-icon(name="chevron-forward-outline")
+  - else 
+    div.no-comment.admin-no-comment
+      p.no-comment-message
+        ion-icon(name="close-circle-outline")
+        span.no-message-text No registered users at present 

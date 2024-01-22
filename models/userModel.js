@@ -65,7 +65,6 @@ const userSchema = new mongoose.Schema({
     type: Boolean,
     // Instead of permanent delete, users will get deactivated for reference purposes
     default: true,
-    select: false,
   },
   reviewsLeft: {
     type: Number,
@@ -86,6 +85,14 @@ const userSchema = new mongoose.Schema({
   },
   passwordResetToken: String,
   passwordResetExpiry: Date,
+  registrationDate: {
+    type: Date,
+    default: Date.now,
+  },
+  emailIsPublic: {
+    type: Boolean,
+    default: false,
+  },
 });
 
 // For storing passwords, use more complicated encryption using bcrypt
@@ -107,11 +114,13 @@ userSchema.pre('save', function (next) {
   next();
 });
 
+// Commented this one out, cause i want the admin to see all users
+// Instead, editted the logic in the relevant controllers
 // Exclude deactivated users from the user list
-userSchema.pre(/^find/, function (next) {
-  this.find({ active: { $ne: false } });
-  next();
-});
+// userSchema.pre(/^find/, function (next) {
+//   this.find({ active: { $ne: false } });
+//   next();
+// });
 
 // Create random token, encryption permitted to be less complicated in these cases (will also require less resources) since we expect user to follow the confirmation/reset link shortly after it is sent out
 const createRandomToken = function (docField) {

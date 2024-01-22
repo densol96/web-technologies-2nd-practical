@@ -5,6 +5,14 @@ import redirectTo from '../authforms/redirectTo.js';
 
 const post = async (comment, rating) => {
   await model.postReview(comment, rating);
+  // if (model.state.posted.postResultTitle === '')
+  if (model.state.posted.postResultTitle === 'Duplicate input data') {
+    return showAlert(
+      'error',
+      'Duplicate input data',
+      'You have already rated this anime'
+    );
+  }
   showAlert(
     model.state.posted.postStatus,
     model.state.posted.postResultTitle,

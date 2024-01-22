@@ -23,10 +23,16 @@ import {
   initLogOut,
 } from './authforms/authforms.js';
 import { initMeSecurity, initMeSettings } from './me/me.js';
-// CMS
 import { initEditReview } from './edit/review.js';
+
+// CMS
+// Reviews
 import initAdminReviews from './cms/reviews/controller.js';
 import { initAdminEditReview } from './cms/edit/review.js';
+// Users
+import { initAdminUsers } from './cms/users/controller.js';
+import initAdminEditUser from './cms/edit/user.js';
+import initAdminCreateUser from './cms/create/user.js';
 // If user logged in
 const logOutBtn = document.querySelector('.logout-btn');
 if (logOutBtn) {
@@ -68,6 +74,14 @@ else if (URL.startsWith('/admin')) {
       initAdminEditReview();
     } else {
       initAdminReviews();
+    }
+  } else if (URL.startsWith('/admin/users')) {
+    if (URL.startsWith('/admin/users/edit')) {
+      initAdminEditUser();
+    } else if (URL.startsWith('/admin/users/create')) {
+      initAdminCreateUser();
+    } else {
+      initAdminUsers();
     }
   }
 } else {

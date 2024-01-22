@@ -51,7 +51,7 @@ class meReviewsViewer {
                   .toString()
                   .slice(0, 21)}</td>
                 <td class="review-action-table">
-                  <a class="edit-btn" href="/edit/${review._id}">
+                  <a class="edit-btn" href="/edit/review/${review._id}">
                     <ion-icon
                       class="table-icon edit-icon"
                       name="create-outline"

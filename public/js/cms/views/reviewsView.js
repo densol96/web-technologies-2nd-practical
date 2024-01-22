@@ -1,85 +1,8 @@
-class adminReviewsViewer {
-  // Table body where tr with data about review will be stored
-  #dataContainer = document.querySelector('.reviews-table-body');
-  // wrapper around the function
-  #wholeSection = document.querySelector('.cms-content');
-  // pagination inside CMS and udnerneath the table
-  #pagination = document.querySelector('.pagination');
-  // SORTING BY
-  #sortDropDown = document.querySelector('.drop-down');
+import BaseView from './baseView.js';
 
-  // AUTHOR AKA USER
-  #usernameInputField = document.querySelector('.search-review-field');
-  #searchByUserBtn = document.querySelector('.search-review-btn');
-
-  // SHOW ALL
-  #showAllBtn = document.querySelector('.show-all-reviews-btn');
-
-  //PAGINATION
-  #prevBtn = document.querySelector('.prev-page');
-  #nextBtn = document.querySelector('.next-page');
-  #currentPage = document.querySelector('.update-cur-page');
-
-  // META DATA
-  #pagesTotal = +document
-    .querySelector('.pagination')
-    ?.getAttribute('data-pages-total');
-
-  // ---------- METHODS ------------------
-
-  // INIT STUFF
-  anyReviews() {
-    return this.#wholeSection;
-  }
-
-  revealPagesTotal(action) {
-    action(this.#pagesTotal);
-  }
-
-  // EVENTS
-  addSortByEvent(action) {
-    this.#sortDropDown?.addEventListener('change', (e) => {
-      const index = this.#sortDropDown.selectedIndex;
-      const sortBy = this.#sortDropDown[index].value;
-      action(sortBy);
-    });
-  }
-
-  addNextPageEvent(action) {
-    this.#nextBtn?.addEventListener('click', action);
-  }
-
-  addPrevPageEvent(action) {
-    this.#prevBtn?.addEventListener('click', action);
-  }
-
-  addSearchByUserEvent(action) {
-    this.#searchByUserBtn?.addEventListener('click', (e) => {
-      e.preventDefault();
-      action(this.#usernameInputField.value);
-    });
-  }
-
-  addShowAllBtnEvent(action) {
-    this.#showAllBtn?.addEventListener('click', (e) => {
-      e.preventDefault();
-      this.#usernameInputField.value = '';
-      action();
-    });
-  }
-
-  addDeleteBtnsEvent(action) {
-    const btns = document.querySelectorAll('.delete-btn');
-    btns.forEach((btn) => {
-      btn.addEventListener('click', (e) => {
-        // want to pass the button to the function to know exactly which btn out of many delets was called
-        action(e.target.closest('button').getAttribute('data-review-id'));
-      });
-    });
-  }
-
+class adminReviewsViewer extends BaseView {
   // RENDERING
-  #singleDataElementHTML(review) {
+  #singleReviewHTML(review) {
     return `
             <tr>
                 <td class="review-author-table">
@@ -140,57 +63,19 @@ class adminReviewsViewer {
           `;
   }
 
-  #noReviewsFoundHTML() {
-    return `
-          <div class="no-comment admin-no-comment">
-            <p class="no-comment-message">
-              <ion-icon name="close-circle-outline"></ion-icon>
-              <span class="no-message-text">No reviews found</span>
-            </p>
-          </div>
-          `;
-  }
-
-  render(data) {
+  render(reviews) {
+    console.log('RENDER RUN');
     // first check: if no table(no reviews in DB) -> do not do anything -> keep the current warning message 'no-reveiws'
-    if (!this.#wholeSection) return;
-    if (data.length === 0) {
-      this.#dataContainer.innerHTML = '';
+    if (!this._wholeSection) return;
+    if (reviews.length === 0) {
+      this._dataContainer.innerHTML = '';
     }
-    const html = data
-      .map((dataElement) => {
-        return this.#singleDataElementHTML(dataElement);
+    const html = reviews
+      .map((review) => {
+        return this.#singleReviewHTML(review);
       })
       .join('');
-    this.#dataContainer.innerHTML = html;
-  }
-
-  hidePrevBtn() {
-    this.#prevBtn?.classList.add('hidden');
-  }
-
-  hideNextBtn() {
-    this.#nextBtn?.classList.add('hidden');
-  }
-
-  showPrevBtn() {
-    this.#prevBtn?.classList.remove('hidden');
-  }
-
-  showNextBtn() {
-    this.#nextBtn?.classList.remove('hidden');
-  }
-
-  updateCurrentPage(num) {
-    if (this.#currentPage) this.#currentPage.textContent = num;
-  }
-
-  hidePagination() {
-    this.#pagination?.classList.add('hidden');
-  }
-
-  showPagination() {
-    this.#pagination?.classList.remove('hidden');
+    this._dataContainer.innerHTML = html;
   }
 }
 

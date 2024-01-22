@@ -1,0 +1,76 @@
+extends base 
+
+block content
+  h2.int-header Edit user
+  form.edit-user-form
+    // USERNAME
+    .form-field.edit-user-form-unit
+      label.form-label.edit-username-label.edit-user-label(for="username") Username:
+      input.form-input.edit-username-value.edit-user-value(id="username", type="text", value=clientUser.username)
+
+    // EMAIL
+    .form-field.edit-user-form-unit
+      label.form-label.edit-email-label.edit-user-label(for="email") Email:
+      input.form-input.edit-email-value.edit-user-value(id="email", type="email", value=clientUser.email)
+
+    // EMAIL IS PUBLIC
+    .edit-user-form-unit.edit-admin-user-checkbox
+      label.form-label.edit-is-public-label.edit-user-label(for="email-checkbox") Email is public:
+      - if(clientUser.emailIsPublic)
+        input.form-input.edit-is-public-value.edit-user-value.checked(id="email-checkbox", type="checkbox", checked)
+      - else 
+        input.form-input.edit-is-public-value.edit-user-value.checked(id="email-checkbox", type="checkbox")
+
+    // EMAIL IS CONFIRMED
+    .edit-user-form-unit.edit-admin-user-checkbox
+      label.form-label.edit-email-is-confirmed-label.edit-user-label(for="email-confirmed-checkbox") Email is confirmed:
+      - if (clientUser.emailConfirmed)
+        input.form-input.edit-email-is-confirmed-value.edit-user-value.checked(id="email-confirmed-checkbox", type="checkbox", checked)
+      - else 
+        input.form-input.edit-email-is-confirmed-value.edit-user-value.checked(id="email-confirmed-checkbox", type="checkbox")
+
+    // AVATAR
+    .form-field.edit-user-form-unit.admin-profile-avatar-unit
+      .img-container-edit-user-admin
+        img.profile-pic-admin-img(src=`/img/users/${clientUser.avatar}`, alt="Profile picture / avatar")
+        ion-icon.uploaded-img-checker-admin(name="checkmark-outline")
+        .profile-pic-overlay-admin
+      input(type="file", accept="image/*", id="avatar")
+      label.form-label.admin-upload-img(for="avatar") Upload avatar
+
+    // ROLE
+    .form-field.edit-user-form-unit.admin-radio-role
+      p.edit-role-label.edit-user-label.form-label(for="username") Role:
+      // User Role
+      .radio-btn-role-option
+        - if(clientUser.role === 'user')
+          input.form-input(id="user", type="radio", value="user", name="role", checked)
+        - else 
+          input.form-input(id="user", type="radio", value="user", name="role")
+        label.form-label(for="user") User
+      // Admin Role
+      .radio-btn-option
+        - if(clientUser.role === 'admin')
+          input.form-input(id="admin", type="radio", value="admin", name="role" checked)
+        - else 
+          input.form-input(id="admin", type="radio", value="admin", name="role")
+        label.form-label(for="admin") Admin
+
+    // BAN
+    .edit-user-form-unit.edit-ban-admin
+      label.form-label.edit-ban-label.edit-user-label(for="ban") Ban:
+      input.form-input.edit-username-value.edit-user-value(id="ban", type="datetime-local", value=clientUser.banString)
+      
+
+    // ACCOUNT IS ACTIVE
+    .form-field.edit-user-form-unit.admin-edit-active
+      label.form-label.edit-username-label.edit-user-label(for="active") Account is active:
+      -if(clientUser.active)
+        input.form-input.edit-username-value.edit-user-value.checked(id="active", type="checkbox", checked)
+      -else 
+        input.form-input.edit-username-value.edit-user-value.checked(id="active", type="checkbox")
+
+    button.form-btn.admin-save-user-changes(data-user-id=clientUser._id)
+      span.form-btn-text Save changes
+    a.form-btn.admin-return-user-changes(href='/admin/users')
+      span.form-btn-text Go back

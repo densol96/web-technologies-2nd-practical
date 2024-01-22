@@ -43,7 +43,9 @@ const createClass = () => {
                       class="card-rating-icon"
                       name="star"
                     ></ion-icon>
-                    <span class="card-rate-num">${card.rating}</span></span
+                <span class="card-rate-num">${card.rating
+                  .toString()
+                  .slice(0, 3)}</span></span
                   >`;
         }
         return `<img class="anime-card-img"

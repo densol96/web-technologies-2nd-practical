@@ -109,6 +109,17 @@ exports.login = catchAssyncErr(async (req, res, next) => {
   if (!user) {
     return next(new AppError(`No user with such email!`, 401));
   }
+
+  if (!user.active) {
+    return next(
+      new AppError(
+        'Authentication disabled for this user',
+        403,
+        'Access denied'
+      )
+    );
+  }
+
   if (!user.emailConfirmed) {
     return next(
       new AppError(
@@ -264,6 +275,11 @@ exports.idLoggedInSession = catchAssyncErr(async (req, res, next) => {
       return next();
     }
 
+    // Check if the user is banned
+    if (user.accountLocked()) {
+      return next();
+    }
+
     // Finally, after all checks, if we are here ==> we have a logged in user
     // Our SSR engine(pug) has access to variables inside 'locals'
     res.locals.user = user;
@@ -292,7 +308,8 @@ exports.protect = catchAssyncErr(async (req, res, next) => {
   if (!user) {
     throw new AppError(
       'You have not passed authentication to access this resourse!',
-      403
+      403,
+      'Access denied'
     );
   }
 
@@ -300,6 +317,14 @@ exports.protect = catchAssyncErr(async (req, res, next) => {
     throw new AppError(
       'Your login session has expired, try to log in again!',
       403
+    );
+  }
+
+  if (user.accountLocked()) {
+    throw new AppError(
+      'Authorisation has been disabled for this user! Please, check your email or get in touch with the administrator!',
+      403,
+      'Access denied'
     );
   }
 
@@ -352,7 +377,7 @@ exports.authReviewEdit = catchAssyncErr(async (req, res, next) => {
     );
   }
   // Only review's author or admin should be able to edit
-  if (review.user !== req.user._id && req.user.role !== 'admin') {
+  if (!req.user._id.equals(review.user._id) && req.user.role !== 'admin') {
     throw new AppError(
       'You have no permission to perform this action',
       403,

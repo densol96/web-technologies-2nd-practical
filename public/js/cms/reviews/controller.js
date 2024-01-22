@@ -1,5 +1,6 @@
 import * as model from './model.js';
 import adminReviewsViewer from '../views/reviewsView.js';
+import { viewportAdjuster } from '../../helper.js';
 
 const updateState = (pagesTotal) => {
   model.state.pagesTotal = pagesTotal;
@@ -28,10 +29,10 @@ const adjustPagination = () => {
 const getAndDisplayData = async () => {
   await model.loadReviews();
   adminReviewsViewer.render(model.state.reviews);
-  // if (model.state.status === 'error') return;
   adminReviewsViewer.updateCurrentPage(model.state.page);
-  adjustPagination();
   adminReviewsViewer.addDeleteBtnsEvent(deleteReview);
+  adjustPagination();
+  viewportAdjuster();
 };
 
 const sortReviewsBy = async (sortByValue) => {
@@ -68,12 +69,15 @@ const deleteReview = async (reviewId) => {
 
 const initAdminReviews = () => {
   // MVC arch implemented by using "publisher-subscriber" approach
-  if (!adminReviewsViewer.anyReviews()) return; // if no any reviews on the portal, simply return after displaying the basic msg
+  document
+    .querySelector('#reviewsMenuOption')
+    .classList.add('current-profile-menu-option');
+  if (!adminReviewsViewer.anyDocs()) return; // if no any reviews on the portal, simply return after displaying the basic msg
   adminReviewsViewer.revealPagesTotal(updateState);
   adminReviewsViewer.addSortByEvent(sortReviewsBy);
   adminReviewsViewer.addNextPageEvent(showNextPage);
   adminReviewsViewer.addPrevPageEvent(showPrevPage);
-  adminReviewsViewer.addSearchByUserEvent(searchByAuthor);
+  adminReviewsViewer.addSearchEvent(searchByAuthor);
   adminReviewsViewer.addShowAllBtnEvent(showAll);
   adminReviewsViewer.addDeleteBtnsEvent(deleteReview);
 };

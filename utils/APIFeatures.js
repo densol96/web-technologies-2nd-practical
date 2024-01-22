@@ -38,13 +38,31 @@ module.exports = class {
     }
   }
 
+  #sortUsers() {
+    if (this.queryFromRequest.sort) {
+      if (this.queryFromRequest.sort === 'newest') {
+        this.mongooseQuery = this.mongooseQuery.sort({ registrationDate: -1 });
+      } else if (this.queryFromRequest.sort === 'oldest') {
+        this.mongooseQuery = this.mongooseQuery.sort({ registrationDate: 1 });
+      } else if (this.queryFromRequest.sort === 'admin') {
+        this.mongooseQuery = this.mongooseQuery.sort({ role: 1 });
+      } else if (this.queryFromRequest.sort === 'user') {
+        this.mongooseQuery = this.mongooseQuery.sort({ role: -1 });
+      } else if (this.queryFromRequest.sort === 'email-confirm') {
+        this.mongooseQuery = this.mongooseQuery.sort({ emailConfirmed: -1 });
+      } else if (this.queryFromRequest.sort === 'email-not-confirm') {
+        this.mongooseQuery = this.mongooseQuery.sort({ emailConfirmed: 1 });
+      }
+    }
+  }
+
   sort() {
     if (this.collectionName === 'Review') {
       this.#sortReviews();
     } else if (this.collectionName === 'Anime') {
       this.#sortAnimes();
     } else if (this.collectionName === 'User') {
-      // this.#sortUser();
+      this.#sortUsers();
     }
     return this;
   }

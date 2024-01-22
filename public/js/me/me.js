@@ -54,6 +54,7 @@ export const initMeSecurity = () => {
 export const initMeSettings = () => {
   const username = document.querySelector('#username');
   const email = document.querySelector('#email');
+  const emailCheckbox = document.querySelector('#email-checkbox');
   const avatar = document.querySelector('#avatar');
   const overlay = document.querySelector('.img-container-comment');
   const form = document.querySelector('.username-email-reset-form');
@@ -94,6 +95,7 @@ export const initMeSettings = () => {
     const formData = new FormData();
     formData.append('username', username.value);
     formData.append('email', email.value);
+    formData.append('emailIsPublic', emailCheckbox.checked);
     formData.append('avatar', avatar.files[0]);
     applyChanges(formData);
   });

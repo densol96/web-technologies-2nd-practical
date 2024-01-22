@@ -1359,3 +1359,155 @@ main {
 .user-link:hover {
   text-decoration: none;
 }
+
+/* CMS ------  USER PROFILE PUBLIC */
+.user-profile-layout-public {
+  border-radius: 12px;
+  width: 70%;
+  margin: 0 auto;
+  padding: 7.2rem;
+  display: flex;
+  flex-direction: column;
+  gap: 2.4rem;
+  box-shadow: 0 0 5px 5px rgba(85, 85, 85, 0.3);
+}
+
+.user-unit-public {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 2.8rem;
+}
+
+.username-avatar-public-profile {
+  width: 10rem;
+  border-radius: 50%;
+}
+
+.username-public-profile {
+  font-size: 4.2rem;
+  /* margin-left: auto; */
+}
+
+.profile-data-container {
+  display: flex;
+  justify-content: center;
+}
+
+.profile-data {
+  width: auto;
+  display: grid;
+  grid-template-columns: auto 1fr;
+  column-gap: 3.2rem;
+  row-gap: 1rem;
+}
+
+.user-label {
+  grid-column: 1;
+  font-size: 2rem;
+  font-weight: 700;
+}
+
+.user-value {
+  grid-column: 2;
+  font-size: 2rem;
+}
+
+/* CMS EDIT PROFILE */
+.edit-user-form {
+  max-width: 60rem;
+  display: flex;
+  flex-direction: column;
+  gap: 2.4rem;
+}
+
+.edit-username-value,
+.edit-email-value {
+  max-width: 40rem;
+}
+
+.edit-admin-user-checkbox {
+  display: flex;
+  gap: 1rem;
+  align-items: center;
+}
+
+.checked {
+  width: 2.4rem;
+  height: 2.4rem;
+}
+
+.admin-profile-avatar-unit {
+  display: flex;
+  flex-direction: row;
+  gap: 1rem;
+  align-items: center;
+}
+
+.img-container-edit-user-admin {
+  position: relative;
+  width: 7rem;
+  height: 7rem;
+}
+
+.profile-pic-admin-img {
+  width: 100%;
+  height: 100%;
+  border-radius: 50%;
+}
+
+.uploaded-img-checker-admin {
+  width: 5rem;
+  height: 5rem;
+  color: white;
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+}
+
+.profile-pic-overlay-admin {
+  background-color: #00000060;
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  border-radius: 50%;
+}
+
+.admin-upload-img {
+  text-decoration: underline;
+  color: #e67700;
+}
+
+.admin-upload-img:hover {
+  text-decoration: none;
+  cursor: pointer;
+}
+
+.admin-radio-role {
+  display: flex;
+  flex-direction: row;
+}
+
+.edit-role-label {
+  margin-right: 2rem;
+}
+
+.edit-ban-admin {
+  display: flex;
+  align-items: center;
+  gap: 2.4rem;
+}
+
+.admin-edit-active,
+.edit-admin-user-checkbox {
+  display: flex;
+  flex-direction: row;
+  gap: 1rrem;
+}
+
+.admin-save-user-changes {
+  max-width: 40rem;
+}

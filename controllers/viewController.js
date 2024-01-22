@@ -1,5 +1,6 @@
 const Anime = require('../models/animeModel.js');
 const Review = require('../models/reviewModel.js');
+const User = require('../models/userModel.js');
 const catchAssyncErr = require('../utils/catchAssyncErr.js');
 
 const starSequence = (rating) => {
@@ -21,7 +22,7 @@ const starSequence = (rating) => {
   return starsForRender;
 };
 
-exports.getAnime = catchAssyncErr(async (req, res) => {
+exports.getAnime = catchAssyncErr(async (req, res, next) => {
   const anime = await Anime.findOne({ slug: req.params.slug });
   if (!anime) {
     const err = new AppError('Page not found', 404);
@@ -52,7 +53,7 @@ exports.getAnime = catchAssyncErr(async (req, res) => {
   });
 });
 
-exports.getOverview = catchAssyncErr(async (req, res) => {
+exports.getOverview = catchAssyncErr(async (req, res, next) => {
   // Want the overview page to render the latest 5 animes that were posted
   const DOCS_PER_PAGE = 5;
   const SEARCH_BY = { addedAt: -1 };
@@ -65,6 +66,19 @@ exports.getOverview = catchAssyncErr(async (req, res) => {
     animes,
     renderPages: total > DOCS_PER_PAGE,
     pagesTotal,
+  });
+});
+
+exports.publicUserProfile = catchAssyncErr(async (req, res, next) => {
+  const { id } = req.params;
+  const clientUser = await User.findById(id);
+  if (!clientUser) {
+    return next(
+      new AppError('Unable to find a user with such ID', 400, 'Invalid input')
+    );
+  }
+  res.status(200).render('siteFront/user', {
+    clientUser,
   });
 });
 
@@ -104,7 +118,7 @@ exports.meSecurity = (req, res) => {
   res.status(200).render('siteFront/security');
 };
 
-exports.meReviews = catchAssyncErr(async (req, res) => {
+exports.meReviews = catchAssyncErr(async (req, res, next) => {
   const DOCS_PER_PAGE = 3; // 5
   const SEARCH_BY = { addedAt: -1 };
   const reviews = await Review.find({ user: req.user._id })
@@ -131,6 +145,7 @@ exports.editReviews = catchAssyncErr(async (req, res, next) => {
 });
 
 // ----------------- ADMIN - VIEW CONTROLLER -----------------
+// REVIEWS
 exports.adminReviews = catchAssyncErr(async (req, res, next) => {
   const DOCS_PER_PAGE = 5;
   const SEARCH_BY = { addedAt: -1 };
@@ -153,3 +168,54 @@ exports.adminEditReviews = catchAssyncErr(async (req, res, next) => {
     review,
   });
 });
+
+// USERS
+exports.adminUsers = catchAssyncErr(async (req, res, next) => {
+  const DOCS_PER_PAGE = 5;
+  const SEARCH_BY = { registrationDate: -1 };
+  const users = await User.find().sort(SEARCH_BY).limit(DOCS_PER_PAGE);
+
+  const total = await User.countDocuments();
+  const pagesTotal = Math.ceil(total / DOCS_PER_PAGE);
+
+  res.status(200).render('admin/users', {
+    pagesTotal,
+    users,
+  });
+});
+
+const formatDateToUTC2 = (ban) => {
+  let [date, time] = ban.toISOString().slice(0, 16).split('T');
+  let [hr, min] = time.split(':');
+  hr = +hr;
+  hr += 2; // go +2hrs to make it UTC+2
+  return `${date}T${hr}:${min}`;
+};
+
+exports.adminEditUsers = catchAssyncErr(async (req, res, next) => {
+  const { id } = req.params;
+  const clientUser = await User.findById(id);
+  if (!clientUser) {
+    return next(
+      new AppError(
+        'Unable to find user with such ID',
+        400,
+        'Invalid input data'
+      )
+    );
+  }
+
+  if (clientUser.ban) {
+    clientUser.banString = formatDateToUTC2(clientUser.ban);
+  } else {
+    clientUser.banString = ``;
+  }
+
+  res.status(200).render('admin/editUser', {
+    clientUser,
+  });
+});
+
+exports.adminCreateUser = (req, res, next) => {
+  res.status(200).render('admin/createUser');
+};

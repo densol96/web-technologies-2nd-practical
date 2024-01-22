@@ -1,0 +1,246 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <!-- META DATA -->
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <!-- FONTS -->
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Lobster&family=Rubik:wght@400;500;700&display=swap"
+      rel="stylesheet"
+    />
+    <!-- ICONS -->
+    <script
+      type="module"
+      src="https://unpkg.com/ionicons@7.1.0/dist/ionicons/ionicons.esm.js"
+    ></script>
+    <script
+      nomodule
+      src="https://unpkg.com/ionicons@7.1.0/dist/ionicons/ionicons.js"
+    ></script>
+    <!-- CSS STYLES -->
+    <link rel="stylesheet" href="css/style.css" />
+    <link rel="stylesheet" href="css/querries.css" />
+    <!-- JS -->
+    <script defer src="index.js"></script>
+    <!-- TITLE -->
+    <title>AniPortal - For Anime Fans</title>
+  </head>
+  <body>
+    <header class="header">
+      <nav class="nav-menu">
+        <a href="#" class="logo-title nav-element"><span>AniPortal</span></a>
+        <ul class="nav-list left">
+          <li><a href="#">Anime</a></li>
+          <li><a href="#">Random show</a></li>
+          <li><a href="#">Top 10</a></li>
+          <li class="no-underline">
+            <form class="search-form" action="">
+              <input
+                class="search-field"
+                type="search"
+                placeholder="Search anime..."
+              />
+              <button class="search-button">
+                <ion-icon class="search-icon" name="search-outline"></ion-icon>
+              </button>
+            </form>
+          </li>
+          <li class="sign-up"><a href="#">Sign Up</a></li>
+          <li class="login"><a href="#">Login</a></li>
+        </ul>
+        <button class="btn-mobile-nav">
+          <ion-icon
+            class="icon-mobile-close icon-nav"
+            name="close-outline"
+          ></ion-icon>
+          <ion-icon
+            class="icon-mobile-open icon-nav"
+            name="menu-outline"
+          ></ion-icon>
+        </button>
+      </nav>
+    </header>
+    <main>
+      <div class="overlay"></div>
+      <div class="main-layout">
+        <div class="admin-layout">
+          <aside class="menu">
+            <a class="admin-menu-link" href="/admin/anime">
+              <div class="menu-option admin-option">
+                <ion-icon
+                  class="admin-menu-option-icon"
+                  name="eye-outline"
+                ></ion-icon>
+                <span class="admin-menu-option-text">Anime</span>
+              </div>
+            </a>
+            <a class="admin-menu-link" href="/admin/users">
+              <div class="menu-option admin-option">
+                <ion-icon
+                  class="admin-menu-option-icon"
+                  name="accessibility-outline"
+                ></ion-icon>
+                <span class="admin-menu-option-text">Users</span>
+              </div>
+            </a>
+            <a class="admin-menu-link" href="/admin/reviews">
+              <div class="menu-option admin-option current-profile-menu-option">
+                <ion-icon
+                  class="admin-menu-option-icon"
+                  name="book-outline"
+                ></ion-icon>
+                <span class="admin-menu-option-text">Reviews</span>
+              </div>
+            </a>
+          </aside>
+          <article class="admin-interface">
+            <h2 class="int-header">Edit user</h2>
+            <form class="edit-user-form">
+              <!-- USERNAME -->
+              <div class="form-field edit-user-form-unit">
+                <label
+                  class="form-label edit-username-label edit-user-label"
+                  for="username"
+                  >Username:</label
+                >
+                <input
+                  class="form-input edit-username-value edit-user-value"
+                  id="username"
+                  type="text"
+                />
+              </div>
+              <!-- EMAIL -->
+              <div class="form-field edit-user-form-unit">
+                <label
+                  class="form-label edit-email-label edit-user-label"
+                  for="username"
+                  >Email:</label
+                >
+                <input
+                  class="form-input edit-email-value edit-user-value"
+                  id="username"
+                  type="email"
+                />
+              </div>
+              <!-- EMAIL IS PUBLIC -->
+              <div class="edit-user-form-unit edit-admin-user-checkbox">
+                <label
+                  class="form-label edit-is-public-label edit-user-label"
+                  for="email-checkbox"
+                  >Email is public:</label
+                >
+                <input
+                  class="form-input edit-is-public-value edit-user-value checked"
+                  id="email-checkbox"
+                  type="checkbox"
+                />
+              </div>
+              <!-- Email IS CONFIRMED -->
+              <div class="edit-user-form-unit edit-admin-user-checkbox">
+                <label
+                  class="form-label edit-email-is-confirmed-label edit-user-label"
+                  for="email-checkbox"
+                  >Email is confirmed:</label
+                >
+                <input
+                  class="form-input edit-email-is-confirmed-value edit-user-value checked"
+                  id="email-checkbox"
+                  type="checkbox"
+                />
+              </div>
+              <!-- AVATAR -->
+              <div
+                class="form-field edit-user-form-unit admin-profile-avatar-unit"
+              >
+                <div class="img-container-edit-user-admin">
+                  <img
+                    src="./img/profile.jpg"
+                    alt="Profile picture / avatar"
+                    class="profile-pic-admin-img"
+                  />
+                  <ion-icon
+                    class="uploaded-img-checker-admin"
+                    name="checkmark-outline"
+                  ></ion-icon>
+                  <div class="profile-pic-overlay-admin"></div>
+                </div>
+                <input type="file" accept="image/*" id="avatar" />
+                <label class="form-label admin-upload-img" for="avatar"
+                  >Upload avatar</label
+                >
+              </div>
+              <!-- ROLE -->
+              <div class="form-field edit-user-form-unit admin-radio-role">
+                <p
+                  class="edit-role-label edit-user-label form-label"
+                  for="username"
+                >
+                  Role:
+                </p>
+                <div class="radio-btn-role-option">
+                  <input
+                    class="form-input"
+                    id="user"
+                    type="radio"
+                    value="user"
+                    name="role"
+                    checked
+                  />
+                  <label class="form-label" for="user">User</label>
+                </div>
+                <div class="radio-btn-option">
+                  <input
+                    class="form-input"
+                    id="admin"
+                    type="radio"
+                    value="admin"
+                    name="role"
+                  />
+                  <label class="form-label" for="admin">Admin</label>
+                </div>
+              </div>
+              <!-- BAN -->
+              <div class="edit-user-form-unit edit-ban-admin">
+                <label
+                  class="form-label edit-ban-label edit-user-label"
+                  for="date"
+                  >Ban:
+                </label>
+                <input
+                  class="form-input edit-username-value edit-user-value"
+                  id="date"
+                  type="datetime-local"
+                />
+              </div>
+              <!-- ACCOUNT IS ACTIVE -->
+              <div class="form-field edit-user-form-unit admin-edit-active">
+                <label
+                  class="form-label edit-username-label edit-user-label"
+                  for="active"
+                  >Account is active:</label
+                >
+                <input
+                  class="form-input edit-username-value edit-user-value checked"
+                  id="active"
+                  type="checkbox"
+                />
+              </div>
+
+              <button class="form-btn admin-save-user-changes">
+                <span class="form-btn-text">Save changes</span>
+              </button>
+            </form>
+          </article>
+        </div>
+      </div>
+    </main>
+    <footer class="footer">
+      <p class="footer-text">
+        © Deniss Solovjovs, Web Technologies, 2nd Practical project, 2023-2024
+      </p>
+    </footer>
+  </body>
+</html>

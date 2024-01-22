@@ -1,24 +1,35 @@
-// ANIME
-export const ALL_ANIME_API_ROUTE = 'http://127.0.0.1:3000/api/v1/anime/all';
-
 // AUTHENTICATION
 export const SIGN_UP_API_ROUTE = 'http://127.0.0.1:3000/api/v1/users/sign-up';
 export const LOGIN_API_ROUTE = 'http://127.0.0.1:3000/api/v1/users/login';
 export const LOGOUT_API_ROUTE = 'http://127.0.0.1:3000/api/v1/users/logout';
 export const FORGOT_PASSWORD_API_ROUTE =
   'http://127.0.0.1:3000/api/v1/users/forgot-password';
+// ANIMES
+export const ALL_ANIME_API_ROUTE = 'http://127.0.0.1:3000/api/v1/anime/all';
+// REVIEWS
 export const POST_REVIEW_API_ROUTE = 'http://127.0.0.1:3000/api/v1/post-review';
+export const ME_REVIEWS_API_ROUTE = 'http://127.0.0.1:3000/api/v1/reviews';
+export const SINGLE_REVIEW_API_ROUTE = 'http://127.0.0.1:3000/api/v1/review';
+// USERS
+export const USERS_API_ROUTE = 'http://127.0.0.1:3000/api/v1/users';
+// USERS - AUTH
 export const SECURITY_CHANGE_API_ROUTE =
   'http://127.0.0.1:3000/api/v1/me-security';
 export const SETTINGS_CHANGE_API_ROUTE =
   'http://127.0.0.1:3000/api/v1/me-settings';
-export const ME_REVIEWS_API_ROUTE = 'http://127.0.0.1:3000/api/v1/reviews';
-export const SINGLE_REVIEW_API_ROUTE = 'http://127.0.0.1:3000/api/v1/review';
+export const CREATE_USER_API_ROUTE =
+  'http://127.0.0.1:3000/api/v1/admin/users/create';
+////////////////////////////////////////////////////////////////////////
 
 export const updateDateFormat = (array) => {
   array.forEach((el) => {
-    const date = new Date(el.addedAt);
-    el.addedAt = `${date}`.slice(0, 21);
+    if (el.addedAt) {
+      const date = new Date(el.addedAt);
+      el.addedAt = `${date}`.slice(0, 21);
+    } else if (el.registrationDate) {
+      const date = new Date(el.registrationDate);
+      el.registrationDate = `${date}`.slice(0, 21);
+    }
   });
 };
 
@@ -34,7 +45,7 @@ export const viewportAdjuster = () => {
   const main = document.querySelector('main');
   const footer = document.querySelector('.footer');
   const adjuster = () => {
-    if (window.innerHeight > document.body.offsetHeight) {
+    if (window.innerHeight + 1 > document.body.offsetHeight) {
       // Adjust the body
       document.body.style.height = '100vh';
       document.body.style.display = 'flex';

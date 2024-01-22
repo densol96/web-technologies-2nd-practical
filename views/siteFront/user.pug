@@ -1,0 +1,24 @@
+extends base 
+
+block content 
+  .user-profile-layout-public
+    figure.user-unit-public
+      img.username-avatar-public-profile(src=`/img/users/${clientUser.avatar}`, alt='User avatar')
+      h2.username-public-profile= clientUser.username
+
+    .profile-data-container
+      .profile-data
+        p.user-label.join-label Joined on:
+        p.user-value.join-value= clientUser.registrationDate.toString().slice(0, 21)
+
+        p.user-label.role-label Role:
+        p.user-value.role-value= clientUser.role
+
+        p.user-label.reviews-label Reviews
+        p.user-value.reviews-value= clientUser.reviewsLeft
+
+        p.user-label.email-label Email:
+        - if(clientUser.emailIsPublic)
+          p.user-value.email-value= clientUser.email
+        - else 
+          p.user-value.email-value Email is hidden
