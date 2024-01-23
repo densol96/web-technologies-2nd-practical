@@ -54,7 +54,7 @@ const animeSchema = new mongoose.Schema(
     },
     imageCover: {
       type: String, // path to the image file on the server
-      required: [true, 'An anime must have a front cover'],
+      // required: [true, 'An anime must have a front cover'],
     },
     addedAt: {
       type: Date,
@@ -68,6 +68,7 @@ const animeSchema = new mongoose.Schema(
     status: {
       type: String,
       required: [true, 'Anime must have a status'],
+      enum: ['Ongoing', 'Completed'],
     },
   },
   // if / when converting include virtual fields

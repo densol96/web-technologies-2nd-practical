@@ -1,0 +1,92 @@
+extends base 
+
+block content
+  h2.int-header Create anime
+  form.edit-user-form
+    // TITLE
+    .form-field.edit-anime-form-unit
+      label.form-label.edit-title-label.edit-anime-label(for="title") Title:
+      input.form-input.edit-title-value.edit-anime-value(id="title", type="text")
+
+    // JAPANESE TITLE
+    .form-field.edit-anime-form-unit
+      label.form-label.edit-japanese-title-label.edit-anime-label(for="japanese") Japanese title:
+      input.form-input.edit-japanese-title-value.edit-anime-value(id="japanese", type="text")
+
+    // RELEASE YEAR
+    .form-field.edit-anime-form-unit
+      label.form-label.edit-release-year-label.edit-anime-label(for="release") Release year:
+      input.form-input.edit-release-year-value.edit-anime-value(id="release", type="number")
+
+    // AGE ADVICE
+    .form-field.edit-anime-form-unit
+      label.form-label.edit-age-label.edit-anime-label(for="age") Age advice:
+      input.form-input.edit-age-value.edit-anime-value(id="age", type="number")
+    
+    // DURATION
+    .form-field.edit-anime-form-unit
+      label.form-label.edit-duration-label.edit-anime-label(for="duration") Duration:
+      input.form-input.edit-duration-value.edit-anime-value(id="duration", type="number")
+    
+    // STATUS
+    .form-field.edit-anime-form-unit.admin-radio-role.edit-anime-status-container
+      p.edit-status-label.edit-anime-status-label.form-label Status:
+      .radio-btn-role-option
+        input.form-input(id="ongoing", type="radio", value="ongoing", name="status")
+        label.form-label(for="ongoing") Ongoing
+      .radio-btn-option
+        input.form-input(id="completed", type="radio", value="completed", name="status")
+        label.form-label(for="completed") Completed
+
+    // GENRES 
+    .edit-user-form-unit.edit-admin-anime-genres
+      p.form-label.edit-summary-label.edit-anime-label Mark appropriate genres:
+      div.genre-units
+        div.genre-unit
+          input.form-input.edit-genre-value.edit-user-value.checked(type="checkbox", value='adventure', id="adventure") 
+          label.form-label.edit-genres-label.edit-anime-label(for="adventure") Adventure
+
+        div.genre-unit
+          input.form-input.edit-genre-value.edit-user-value.checked(type="checkbox", value='epic',id="epic") 
+          label.form-label.edit-genres-label.edit-anime-label(for="epic") Epic
+
+        div.genre-unit
+          input.form-input.edit-genre-value.edit-user-value.checked(type="checkbox", value='historical',id="historical") 
+          label.form-label.edit-genres-label.edit-anime-label(for="historical") Historical
+
+        div.genre-unit
+          input.form-input.edit-genre-value.edit-user-value.checked(type="checkbox", value='fantasy',id="fantasy") 
+          label.form-label.edit-genres-label.edit-anime-label(for="fantasy") Fantasy
+
+        div.genre-unit
+          input.form-input.edit-genre-value.edit-user-value.checked(type="checkbox", value='supernatural',id="supernatural") 
+          label.form-label.edit-genres-label.edit-anime-label(for="supernatural") Supernatural
+
+        div.genre-unit
+          input.form-input.edit-genre-value.edit-user-value.checked(type="checkbox", value='comedy', id="comedy") 
+          label.form-label.edit-genres-label.edit-anime-label(for="comedy") Comedy
+        
+        div.genre-unit
+          input.form-input.edit-genre-value.edit-user-value.checked(type="checkbox", value='drama',id="drama") 
+          label.form-label.edit-genres-label.edit-anime-label(for="drama") Drama
+    // AUTHORS
+    .form-field.edit-anime-form-unit
+      label.form-label.edit-authors-label.edit-anime-label(for="authors") Authors (1 per line):
+      textarea.form-input.edit-authors-value.edit-anime-value(id="authors", type="textarea", rows="5", cols="10")
+
+    // SUMMARY []
+    .form-field.edit-anime-form-unit
+      label.form-label.edit-summary-label.edit-anime-label(for="summary") Summary:
+      textarea.form-input.edit-summary-value.edit-anime-value(id="summary", type="textarea", rows="15", cols="80")
+
+    // IMAGE COVER []
+    .form-field.edit-anime-form-unit.admin-cover-photo
+      p.form-label.edit-summary-label.edit-anime-label Image cover:
+      div.upload-photo-cover-anime
+        input(type="file", accept="image/*", id="image-cover")
+        label.form-label.admin-upload-img(for="image-cover") Upload image (250x350px min)
+
+    button.form-btn.admin-save-anime-changes
+      span.form-btn-text Create anime
+    a.form-btn.admin-return-admin-changes(href='/admin/animes')
+      span.form-btn-text Go back

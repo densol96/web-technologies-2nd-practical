@@ -91,7 +91,6 @@ const filteredBody = (object, ...fields) => {
 exports.updateSettings = catchAssyncErr(async (req, res, next) => {
   const updates = filteredBody(req.body, 'username', 'email', 'emailIsPublic');
   if (req.filename) updates.avatar = req.filename;
-
   await User.findByIdAndUpdate(req.user._id, updates, {
     runValidators: true, // important to run validators here to ensure username/email are free
   });
@@ -117,6 +116,7 @@ exports.getUsers = catchAssyncErr(async (req, res, next) => {
     return res.status(200).json({
       status: 'success',
       data: [user],
+      pagesTotal: 1,
     });
   }
   const query = new APIFeatures(User.find(), req.query, 'User')
@@ -135,6 +135,7 @@ exports.getUsers = catchAssyncErr(async (req, res, next) => {
 
 exports.adminUpdateUser = catchAssyncErr(async (req, res, next) => {
   const { id } = req.params;
+  console.log('1.', req.body);
   const updates = filteredBody(
     req.body,
     'username',
@@ -145,6 +146,7 @@ exports.adminUpdateUser = catchAssyncErr(async (req, res, next) => {
     'ban',
     'active'
   );
+  console.log(updates);
   // convert strings to bool
   if (updates.emailIsPublic === 'false') {
     updates.emailIsPublic = false;

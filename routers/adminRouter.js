@@ -16,4 +16,7 @@ router.get('/users', viewController.adminUsers);
 router.get('/users/edit/:id', viewController.adminEditUsers);
 router.get('/users/create', viewController.adminCreateUser);
 // ANIMES
+router.get('/animes', viewController.adminAnimes);
+router.get('/animes/edit/:id', viewController.adminEditAnimes);
+router.get('/animes/create', viewController.adminCreateAnimes);
 module.exports = router;

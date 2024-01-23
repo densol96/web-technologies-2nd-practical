@@ -98,12 +98,6 @@ class adminViewer {
     if (data.length === 0) {
       this._dataContainer.innerHTML = '';
     }
-    // const html = data
-    //   .map((dataElement) => {
-    //     return this._singleDataElementHTML(dataElement);
-    //   })
-    //   .join('');
-    // this._dataContainer.innerHTML = html;
   }
 
   hidePrevBtn() {

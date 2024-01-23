@@ -16,6 +16,10 @@ module.exports = class {
         this.mongooseQuery = this.mongooseQuery.sort({ rating: -1 });
       } else if (this.queryFromRequest.sort === 'reviews') {
         this.mongooseQuery = this.mongooseQuery.sort({ reviewsTotal: -1 });
+      } else if (this.queryFromRequest.sort === 'age') {
+        this.mongooseQuery = this.mongooseQuery.sort({ ageAdvice: -1 });
+      } else if (this.queryFromRequest.sort === 'duration') {
+        this.mongooseQuery = this.mongooseQuery.sort({ duration: -1 });
       }
     }
   }

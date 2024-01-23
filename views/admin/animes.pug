@@ -1,0 +1,96 @@
+extends base 
+
+mixin singleAnime(anime)
+  tr
+    td.anime-title-table= anime.title
+
+    td.anime-released-table= anime.releaseYear
+
+    td.anime-reviews-table= anime.reviewsTotal
+    
+    td.anime-rating-table
+      - if (anime.reviewsTotal > 0)
+        ion-icon.ani-rate-admin-icon(name=`star`)
+        span.admin-num-rate= `${anime.rating}`.slice(0, 3)
+      - else
+        span.no-rating-span Not rated yet
+    
+    td.anime-released-table= anime.addedAt.toString().slice(0, 21)
+
+    td.anime-age-table= anime.ageAdvice
+
+    td.anime-duration-table= anime.duration
+
+    td.review-action-table
+
+      a.view-btn(href=`/anime/${anime.slug}`)
+        ion-icon.table-icon.edit-icon(name="eye-outline")
+
+      span.delimiter / 
+
+      a.edit-btn(href=`/admin/animes/edit/${anime._id}`)
+        ion-icon.table-icon.edit-icon(name="create-outline")
+
+      span.delimiter / 
+
+      button.delete-btn(data-doc-id=`${anime._id}`)
+        ion-icon.table-icon.delete-icon(name="trash-outline")
+
+block content
+  div.header-line
+    h2.int-header Animes
+    a.create-admin-btn(href='/admin/animes/create') Add anime
+
+  section.admin-top-line-panel.sort-by
+    div.admin-sort-by
+      label.sort-text.admin-fields-spacing Sort by: 
+      select.drop-down(name="sort")
+        option(value="latest") Latest
+        option(value="oldest") Oldest
+        option(value="rating") Rating
+        option(value="reviews") Reviews
+        option(value="age") Age-
+        option(value="duration") Duration
+
+
+    form.admin-search-by
+      div.search-by-unit
+        input.search-anime-field.admin-fields-spacing.search-input-field-admin(type="text", placeholder="Enter anime title", autofocus)
+        button.admin-search-btn.search-anime-btn.admin-fields-spacing.search-btn-admin Search animes
+      button.admin-search-btn.show-all-reviews-btn.admin-fields-spacing.show-all-btn-admin Show all
+  //- TABLE WITH CONTENT ON THE SITE
+  -if(animes.length > 0)
+    div.cms-content
+      table.cms-table.admin-cms-table
+        thead.cms-table-header
+          th Title
+          th Released in
+          th Reviews
+          th Rating
+          th Added on
+          th Age advice
+          th Duration
+          th Action
+
+        tbody.cms-table-body.admin-cms-table-body
+          each anime in animes 
+            +singleAnime(anime)
+      
+      //- PAGINATION
+      - if(pagesTotal > 1)
+        div.pagination-container
+          div.pagination(data-pages-total=pagesTotal)
+            button.pagination-btn.prev-page.hidden
+              ion-icon.pagination-icon(name="chevron-back-outline")
+
+            span.current-page.page-num
+              | Current page - 
+              span.update-cur-page 1
+
+            button.pagination-btn.next-page
+              ion-icon.pagination-icon(name="chevron-forward-outline")
+  - else 
+    div.no-comment.admin-no-comment
+      p.no-comment-message
+        ion-icon(name="close-circle-outline")
+        span.no-message-text No added animes at present 

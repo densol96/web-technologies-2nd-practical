@@ -52,7 +52,7 @@ class adminReviewsViewer extends BaseView {
                     ></ion-icon>
                   </a>
                   <span class="delimiter"> / </span>
-                  <button class="delete-btn" data-review-id="${review._id}">
+                  <button class="delete-btn" data-doc-id="${review._id}">
                     <ion-icon
                       class="table-icon delete-icon"
                       name="trash-outline"
@@ -64,7 +64,6 @@ class adminReviewsViewer extends BaseView {
   }
 
   render(reviews) {
-    console.log('RENDER RUN');
     // first check: if no table(no reviews in DB) -> do not do anything -> keep the current warning message 'no-reveiws'
     if (!this._wholeSection) return;
     if (reviews.length === 0) {

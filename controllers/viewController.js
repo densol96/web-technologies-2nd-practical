@@ -2,6 +2,7 @@ const Anime = require('../models/animeModel.js');
 const Review = require('../models/reviewModel.js');
 const User = require('../models/userModel.js');
 const catchAssyncErr = require('../utils/catchAssyncErr.js');
+const AppError = require('../utils/AppError.js');
 
 const starSequence = (rating) => {
   const fullStars = Math.floor(rating);
@@ -218,4 +219,36 @@ exports.adminEditUsers = catchAssyncErr(async (req, res, next) => {
 
 exports.adminCreateUser = (req, res, next) => {
   res.status(200).render('admin/createUser');
+};
+
+// Animes
+exports.adminAnimes = catchAssyncErr(async (req, res, next) => {
+  const DOCS_PER_PAGE = 5;
+  const SEARCH_BY = { addedAt: -1 };
+
+  const animes = await Anime.find().sort(SEARCH_BY).limit(DOCS_PER_PAGE);
+  const total = await Anime.countDocuments();
+  const pagesTotal = Math.ceil(total / DOCS_PER_PAGE);
+
+  res.status(200).render('admin/animes', {
+    pagesTotal,
+    animes,
+  });
+});
+
+exports.adminEditAnimes = catchAssyncErr(async (req, res, next) => {
+  const { id } = req.params;
+  const anime = await Anime.findOne({ _id: id });
+
+  if (!anime) {
+    throw new AppError('Unable to find anime with such id', 400, 'Invalid id');
+  }
+
+  res.status(200).render('admin/editAnime', {
+    anime,
+  });
+});
+
+exports.adminCreateAnimes = (req, res, next) => {
+  res.status(200).render('admin/createAnime');
 };

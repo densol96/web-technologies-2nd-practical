@@ -7,7 +7,6 @@ const updateState = (pagesTotal) => {
 };
 
 const adjustPagination = () => {
-  console.log(model.state);
   if (model.state.pagesTotal > 1) {
     adminUsersViewer.showPagination();
   } else {

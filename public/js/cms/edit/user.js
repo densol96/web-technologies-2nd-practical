@@ -36,7 +36,7 @@ const initAdminEditUser = () => {
         result.data.message,
         'Refreshing the page..',
       ]);
-      redirectTo('/admin/users', 2);
+      // redirectTo('/admin/users', 2);
     } catch (err) {
       showAlert(
         'error',
@@ -60,6 +60,7 @@ const initAdminEditUser = () => {
     formData.append('role', userRoleRadio.checked ? 'user' : 'admin');
     formData.append('ban', ban.value ? ban.value : undefined);
     formData.append('active', activeCheck.checked);
+    console.log(formData);
     applyChanges(formData);
   });
 };

@@ -51,6 +51,7 @@ router
     userController.processImage,
     userController.adminUpdateUser
   );
+
 router
   .route('/admin/users/create')
   .post(
@@ -58,4 +59,44 @@ router
     authController.restrictTo('admin'),
     userController.adminCreateUser
   );
+
+// ANIMES
+router.get(
+  '/admin/animes',
+  authController.protect,
+  authController.restrictTo('admin'),
+  animeController.getAllAnimes
+);
+
+router.get(
+  '/admin/anime/:id/genres',
+  authController.protect,
+  authController.restrictTo('admin'),
+  animeController.getGenres
+);
+
+router
+  .route('/admin/animes/:id')
+  .patch(
+    authController.protect,
+    authController.restrictTo('admin'),
+    animeController.uploadImageCover,
+    animeController.processImage,
+    animeController.adminUpdateAnime
+  )
+  .delete(
+    authController.protect,
+    authController.restrictTo('admin'),
+    animeController.adminDeleteAnime
+  );
+
+router
+  .route('/admin/animes/create')
+  .post(
+    authController.protect,
+    authController.restrictTo('admin'),
+    animeController.uploadImageCover,
+    animeController.adminCreateAnime
+  );
+
 module.exports = router;

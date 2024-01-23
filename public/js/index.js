@@ -33,6 +33,11 @@ import { initAdminEditReview } from './cms/edit/review.js';
 import { initAdminUsers } from './cms/users/controller.js';
 import initAdminEditUser from './cms/edit/user.js';
 import initAdminCreateUser from './cms/create/user.js';
+// Animes
+import { initAdminAnimes } from './cms/animes/controller.js';
+import initAdminEditAnime from './cms/edit/anime.js';
+import initAdminCreateAnime from './cms/create/anime.js';
+
 // If user logged in
 const logOutBtn = document.querySelector('.logout-btn');
 if (logOutBtn) {
@@ -69,19 +74,45 @@ if (URL.startsWith('/overview')) {
 }
 // CMS PART
 else if (URL.startsWith('/admin')) {
+  // REVIEWS
   if (URL.startsWith('/admin/reviews')) {
+    // EDIT
     if (URL.startsWith('/admin/reviews/edit')) {
       initAdminEditReview();
-    } else {
+    }
+    // ADMIN REVIEWS TABLE
+    else {
       initAdminReviews();
     }
-  } else if (URL.startsWith('/admin/users')) {
+  }
+  // USERS
+  else if (URL.startsWith('/admin/users')) {
+    // EDIT
     if (URL.startsWith('/admin/users/edit')) {
       initAdminEditUser();
-    } else if (URL.startsWith('/admin/users/create')) {
+    }
+    // CREATE
+    else if (URL.startsWith('/admin/users/create')) {
       initAdminCreateUser();
-    } else {
+    }
+    // TABLE
+    else {
       initAdminUsers();
+    }
+  }
+  // ANIMES
+  else if (URL.startsWith('/admin/animes')) {
+    //EDIT
+    if (URL.startsWith('/admin/animes/edit')) {
+      initAdminEditAnime();
+    }
+    // CREATE
+    else if (URL.startsWith('/admin/animes/create')) {
+      initAdminCreateAnime();
+    }
+    // TABLE
+    else {
+      initAdminAnimes();
     }
   }
 } else {

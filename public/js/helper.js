@@ -19,6 +19,9 @@ export const SETTINGS_CHANGE_API_ROUTE =
   'http://127.0.0.1:3000/api/v1/me-settings';
 export const CREATE_USER_API_ROUTE =
   'http://127.0.0.1:3000/api/v1/admin/users/create';
+export const ADMIN_ANIME_API_ROUTE =
+  'http://127.0.0.1:3000/api/v1/admin/animes';
+
 ////////////////////////////////////////////////////////////////////////
 
 export const updateDateFormat = (array) => {

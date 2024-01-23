@@ -1,6 +1,5 @@
 import {
-  ME_REVIEWS_API_ROUTE,
-  SINGLE_REVIEW_API_ROUTE,
+  ADMIN_ANIME_API_ROUTE,
   updateDateFormat,
   redirectTo,
 } from '../../helper.js';
@@ -11,48 +10,50 @@ export const state = {
   limit: 5,
   pagesTotal: '',
   sortBy: 'latest',
-  username: undefined,
-  reviews: [],
+  slug: '',
+  animes: [],
   status: 'success',
 };
 
-export const loadReviews = async () => {
+export const loadAnimes = async () => {
   try {
-    let urlString = `${ME_REVIEWS_API_ROUTE}?sort=${state.sortBy}&page=${state.page}&limit=${state.limit}`;
-    if (state.username) {
-      urlString += `&userFilter=${state.username}`;
+    let urlString = `${ADMIN_ANIME_API_ROUTE}?sort=${state.sortBy}&page=${state.page}&limit=${state.limit}`;
+    if (state.slug) {
+      urlString += `&slugFilter=${state.slug}`;
     }
 
     const result = await axios({
       method: 'GET',
       url: urlString,
     });
-    state.reviews = result.data.data;
+    console.log(result);
+    state.animes = result.data.data;
     state.pagesTotal = result.data.pagesTotal;
     state.status = 'success';
-    updateDateFormat(state.reviews);
+    updateDateFormat(state.animes);
   } catch (err) {
-    state.reviews = [];
+    console.log(err);
+    state.animes = [];
     state.status = 'error';
     state.pagesTotal = 0;
     showAlert('error', err.response.data.name, err.response.data.message);
   }
 };
 
-export const deleteReview = async (id) => {
+export const deleteAnime = async (id) => {
   try {
     const result = await axios({
       method: 'DELETE',
-      url: `${SINGLE_REVIEW_API_ROUTE}/${id}`,
+      url: `http://127.0.0.1:3000/api/v1/admin/animes/${id}`,
     });
     showAlert(
       'success',
-      'Review deleted',
-      `Selected review with the id of ${id} has been deleted`
+      'Anime deleted',
+      `Selected anime with the id of ${id} has been deleted`
     );
-    redirectTo('/admin/reviews', 1);
+    redirectTo('/admin/animes', 2);
   } catch (err) {
-    state.status = 'error';
+    console.log(err);
     showAlert('error', err.response.data.name, err.response.data.message);
   }
 };

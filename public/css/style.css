@@ -1783,3 +1783,118 @@ th.review-comment-table {
   margin: 0 auto;
   box-shadow: 0 0 5px 5px rgba(85, 85, 85, 0.3);
 }
+
+/* CMS - ADMIN ANIMES */
+.anime-rating-table {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: 1rem;
+}
+
+th {
+  line-height: 1.3;
+}
+
+.edit-admin-anime-genres {
+  display: flex;
+  flex-direction: column;
+  gap: 1.2rem;
+}
+
+.genre-units {
+  display: flex;
+  flex-direction: row;
+  gap: 1.5rem;
+}
+
+.genre-unit {
+  display: flex;
+  align-content: center;
+  gap: 0.7rem;
+}
+
+.edit-anime-status-container {
+  display: flex;
+  flex-direction: row;
+  gap: 1.2rem;
+}
+
+.edit-anime-status-label {
+  margin-right: 3rem;
+}
+
+.upload-photo-cover-anime {
+  display: flex;
+  flex-direction: row;
+  gap: 3.5rem;
+  align-items: center;
+}
+
+.img-container-edit-anime-admin {
+  width: 100%;
+  height: 100%;
+}
+
+.img-container-edit-anime-admin {
+  width: 25rem;
+  height: 35rem;
+}
+
+#image-cover {
+  display: none;
+}
+
+.admin-return-admin-changes {
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+  align-items: center;
+  background-color: #555;
+  color: white;
+}
+
+.admin-return-admin-changes .form-btn-text {
+  color: #fff;
+}
+
+.admin-return-admin-changes:hover {
+  color: #555;
+  background-color: #fff;
+}
+
+.admin-return-admin-changes:hover .form-btn-text {
+  color: #555;
+}
+
+.img-container-edit-anime-admin {
+  position: relative;
+}
+
+.uploaded-img-checker-admin-anime {
+  height: 9.2rem;
+  width: 9.2rem;
+  color: #fff;
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  z-index: 2;
+  display: none;
+}
+
+.profile-pic-overlay-admin-anime {
+  position: absolute;
+  width: 100%;
+  height: 100%;
+  top: 0;
+  left: 0;
+  background-color: rgba(0, 0, 0, 0.411);
+  z-index: 1;
+  display: none;
+}
+
+.uploaded .uploaded-img-checker-admin-anime,
+.uploaded .profile-pic-overlay-admin-anime {
+  display: block;
+}
